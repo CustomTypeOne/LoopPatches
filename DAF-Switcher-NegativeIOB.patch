@@ -1,0 +1,504 @@
+From 3b54758fe74dc1d33e376ab73090423777c3b22f Mon Sep 17 00:00:00 2001
+From: Jon Fawcett <jonfawcett10@gmail.com>
+Date: Tue, 15 Feb 2022 15:41:28 -0500
+Subject: [PATCH 1/4] Added patches for Dynamic PAF, Auto Strategy Switching,
+ and Negative IOB Factor
+
+---
+ Loop/Managers/LoopDataManager.swift   |  48 ++++-
+ Settings.bundle/Root.plist            | 255 ++++++++++++++++++++++++++
+ Settings.bundle/en.lproj/Root.strings | Bin 0 -> 546 bytes
+ 3 files changed, 298 insertions(+), 5 deletions(-)
+ create mode 100644 Settings.bundle/Root.plist
+ create mode 100644 Settings.bundle/en.lproj/Root.strings
+
+diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
+index b0f558cb..5720919e 100644
+--- a/Loop/Managers/LoopDataManager.swift
++++ b/Loop/Managers/LoopDataManager.swift
+@@ -1638,9 +1638,47 @@ extension LoopDataManager {
+             }
+ 
+             let dosingRecommendation: AutomaticDoseRecommendation?
++            
++            // Dynamic Application Factor and Strategy Switching
++        
++            // Set to the hard coded 0.4
++            var dynamicApplicationFactor = LoopConstants.bolusPartialApplicationFactor;
++            
++            let dynamicPAFEnabled = UserDefaults.standard.bool(forKey: "dynamicPAFEnabled")
++            let minPartialApplicationFactor = UserDefaults.standard.double(forKey: "minPAF")
++            let minPartialApplicationFactorBG = UserDefaults.standard.double(forKey: "minPAFThreshold")
++            let maxPartialApplicationFactor = UserDefaults.standard.double(forKey: "maxPAF")
++            let maxPartialApplicationFactorBG = UserDefaults.standard.double(forKey: "maxPAFThreshold")
++            
++            let dosingStrategyAutomationEnabled = UserDefaults.standard.bool(forKey: "dosingStrategyAutomationEnabled")
++            let dosingStrategyThreshold = UserDefaults.standard.double(forKey: "dosingStrategyThreshold")
++            
++            if (dynamicPAFEnabled) {
++                if (glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: minPartialApplicationFactorBG) &&
++                    glucose.quantity < HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)){
++                    dynamicApplicationFactor = ((glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter) - minPartialApplicationFactorBG) * ((maxPartialApplicationFactor - minPartialApplicationFactor)/(maxPartialApplicationFactorBG - minPartialApplicationFactorBG)) + minPartialApplicationFactor)
++                } else if (glucose.quantity >= HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)) {
++                    dynamicApplicationFactor = maxPartialApplicationFactorBG
++                } else if (glucose.quantity <= HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: minPartialApplicationFactorBG)) {
++                    dynamicApplicationFactor = minPartialApplicationFactorBG
++                }
++            }
++            
++            var switcherIsAB = false;
++            
++            if (dosingStrategyAutomationEnabled) {
++                if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.dosingStrategy == .automaticBolus){
++                     switcherIsAB = true;
++                 } else {
++                     switcherIsAB = false;
++                 }
++            } else if (settings.dosingStrategy == .automaticBolus) {
++                switcherIsAB = true;
++            }
++            
+ 
+-            switch settings.dosingStrategy {
+-            case .automaticBolus:
++            switch switcherIsAB {
++            case true:
+                 let volumeRounder = { (_ units: Double) in
+                     return self.delegate?.loopDataManager(self, roundBolusVolume: units) ?? units
+                 }
+@@ -1652,14 +1690,14 @@ extension LoopDataManager {
+                     sensitivity: insulinSensitivity!,
+                     model: doseStore.insulinModelProvider.model(for: pumpInsulinType),
+                     basalRates: basalRates!,
+-                    maxAutomaticBolus: maxBolus! * LoopConstants.bolusPartialApplicationFactor,
+-                    partialApplicationFactor: LoopConstants.bolusPartialApplicationFactor,
++                    maxAutomaticBolus: maxBolus! * dynamicApplicationFactor,
++                    partialApplicationFactor: dynamicApplicationFactor,
+                     lastTempBasal: lastTempBasal,
+                     volumeRounder: volumeRounder,
+                     rateRounder: rateRounder,
+                     isBasalRateScheduleOverrideActive: settings.scheduleOverride?.isBasalRateScheduleOverriden(at: startDate) == true
+                 )
+-            case .tempBasalOnly:
++            case false:
+                 let temp = predictedGlucose.recommendedTempBasal(
+                     to: glucoseTargetRange!,
+                     at: predictedGlucose[0].startDate,
+diff --git a/Settings.bundle/Root.plist b/Settings.bundle/Root.plist
+new file mode 100644
+index 00000000..b3da12b6
+--- /dev/null
++++ b/Settings.bundle/Root.plist
+@@ -0,0 +1,255 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>StringsTable</key>
++	<string>Root</string>
++	<key>PreferenceSpecifiers</key>
++	<array>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Dynamic Application Factor</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSToggleSwitchSpecifier</string>
++			<key>Title</key>
++			<string>Enabled</string>
++			<key>Key</key>
++			<string>dynamicPAFEnabled</string>
++			<key>DefaultValue</key>
++			<false/>
++			<key>TrueValue</key>
++			<true/>
++			<key>FalseValue</key>
++			<false/>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSMultiValueSpecifier</string>
++			<key>Title</key>
++			<string>Min Factor</string>
++			<key>Key</key>
++			<string>minPAF</string>
++			<key>DefaultValue</key>
++			<string>0.15</string>
++			<key>Values</key>
++			<array>
++				<real>0.05</real>
++				<real>0.1</real>
++				<real>0.15</real>
++				<real>0.2</real>
++				<real>0.25</real>
++				<real>0.3</real>
++				<real>0.35</real>
++				<real>0.4</real>
++				<real>0.45</real>
++				<real>0.5</real>
++				<real>0.55</real>
++				<real>0.6</real>
++				<real>0.65</real>
++				<real>0.7</real>
++				<real>0.75</real>
++				<real>0.8</real>
++				<real>0.85</real>
++				<real>0.9</real>
++				<real>0.95</real>
++				<real>1</real>
++			</array>
++			<key>Titles</key>
++			<array>
++				<string>5%</string>
++				<string>10%</string>
++				<string>15%</string>
++				<string>20%</string>
++				<string>25%</string>
++				<string>30%</string>
++				<string>35%</string>
++				<string>40%</string>
++				<string>45%</string>
++				<string>50%</string>
++				<string>55%</string>
++				<string>60%</string>
++				<string>65%</string>
++				<string>70%</string>
++				<string>75%</string>
++				<string>80%</string>
++				<string>85%</string>
++				<string>90%</string>
++				<string>95%</string>
++				<string>100%</string>
++			</array>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSTextFieldSpecifier</string>
++			<key>Title</key>
++			<string>BG Threshold for Min</string>
++			<key>Key</key>
++			<string>minPAFThreshold</string>
++			<key>KeyboardType</key>
++			<string>NumberPad</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSMultiValueSpecifier</string>
++			<key>Title</key>
++			<string>Max Factor</string>
++			<key>Key</key>
++			<string>maxPAF</string>
++			<key>DefaultValue</key>
++			<string>0.5</string>
++			<key>Values</key>
++			<array>
++				<real>0.05</real>
++				<real>0.1</real>
++				<real>0.15</real>
++				<real>0.2</real>
++				<real>0.25</real>
++				<real>0.3</real>
++				<real>0.35</real>
++				<real>0.4</real>
++				<real>0.45</real>
++				<real>0.5</real>
++				<real>0.55</real>
++				<real>0.6</real>
++				<real>0.65</real>
++				<real>0.7</real>
++				<real>0.75</real>
++				<real>0.8</real>
++				<real>0.85</real>
++				<real>0.9</real>
++				<real>0.95</real>
++				<real>1</real>
++			</array>
++			<key>Titles</key>
++			<array>
++				<string>5%</string>
++				<string>10%</string>
++				<string>15%</string>
++				<string>20%</string>
++				<string>25%</string>
++				<string>30%</string>
++				<string>35%</string>
++				<string>40%</string>
++				<string>45%</string>
++				<string>50%</string>
++				<string>55%</string>
++				<string>60%</string>
++				<string>65%</string>
++				<string>70%</string>
++				<string>75%</string>
++				<string>80%</string>
++				<string>85%</string>
++				<string>90%</string>
++				<string>95%</string>
++				<string>100%</string>
++			</array>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSTextFieldSpecifier</string>
++			<key>Title</key>
++			<string>BG Threshold for Max</string>
++			<key>Key</key>
++			<string>maxPAFThreshold</string>
++			<key>KeyboardType</key>
++			<string>NumberPad</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Automatic Strategy Switching</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSToggleSwitchSpecifier</string>
++			<key>Title</key>
++			<string>Enabled</string>
++			<key>Key</key>
++			<string>dosingStrategyAutomationEnabled</string>
++			<key>DefaultValue</key>
++			<false/>
++			<key>TrueValue</key>
++			<true/>
++			<key>FalseValue</key>
++			<false/>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSTextFieldSpecifier</string>
++			<key>Title</key>
++			<string>Switching BG Threshold</string>
++			<key>Key</key>
++			<string>dosingStrategyThreshold</string>
++			<key>KeyboardType</key>
++			<string>NumberPad</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Negative IOB Factor</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSMultiValueSpecifier</string>
++			<key>Title</key>
++			<string>Negative IOB Factor</string>
++			<key>Key</key>
++			<string>negativeBasalMultiplier</string>
++			<key>DefaultValue</key>
++			<string>0.5</string>
++			<key>Values</key>
++			<array>
++				<real>0.05</real>
++				<real>0.1</real>
++				<real>0.15</real>
++				<real>0.2</real>
++				<real>0.25</real>
++				<real>0.3</real>
++				<real>0.35</real>
++				<real>0.4</real>
++				<real>0.45</real>
++				<real>0.5</real>
++				<real>0.55</real>
++				<real>0.6</real>
++				<real>0.65</real>
++				<real>0.7</real>
++				<real>0.75</real>
++				<real>0.8</real>
++				<real>0.85</real>
++				<real>0.9</real>
++				<real>0.95</real>
++				<real>1</real>
++			</array>
++			<key>Titles</key>
++			<array>
++				<string>5%</string>
++				<string>10%</string>
++				<string>15%</string>
++				<string>20%</string>
++				<string>25%</string>
++				<string>30%</string>
++				<string>35%</string>
++				<string>40%</string>
++				<string>45%</string>
++				<string>50%</string>
++				<string>55%</string>
++				<string>60%</string>
++				<string>65%</string>
++				<string>70%</string>
++				<string>75%</string>
++				<string>80%</string>
++				<string>85%</string>
++				<string>90%</string>
++				<string>95%</string>
++				<string>100%</string>
++			</array>
++		</dict>
++	</array>
++</dict>
++</plist>
+diff --git a/Settings.bundle/en.lproj/Root.strings b/Settings.bundle/en.lproj/Root.strings
+new file mode 100644
+index 0000000000000000000000000000000000000000..8cd87b9d6b20c1fbf87bd4db3db267fca5ad4df9
+GIT binary patch
+literal 546
+zcmaixOHRW;5JYRuDMndFh#Ua1V1d}N;sVAV2TO?uC3a9aJn*VxFrY}tnon0(S66#J
+z-d9>G>6W!ur(SDqlp`9nn~*(m%iWnv?yq`Qfp6XbK1?+om~~#r)ZnhkYQU_VbfjuT
+zHNn`CX<0sd*m<h0(azec(iObNh^%?ujr&=v=s=H#N;|Sb!c#%F;_UPWVjneF55ql&
+z;1>1<hFx!9AHUHrospb<`X7`yGd%lD#4Y=Ob9s`bR=VI@=sx_8^jm=6uzq9L!Fr&_
+nmcBD*Mox@AX7QwJ{2yYbnSDNcs=Q<RN>A}>&5sU$akD=GTXJ1e
+
+literal 0
+HcmV?d00001
+
+-- 
+2.29.2
+
+
+From e0fcb21aebe4d1c733eccc183fabc68c658af75e Mon Sep 17 00:00:00 2001
+From: Jon Fawcett <jonfawcett10@gmail.com>
+Date: Wed, 16 Feb 2022 04:49:26 -0500
+Subject: [PATCH 2/4] Add setting a bundle
+
+---
+ Loop.xcodeproj/project.pbxproj | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/Loop.xcodeproj/project.pbxproj b/Loop.xcodeproj/project.pbxproj
+index 1e264baf..e9f2e580 100644
+--- a/Loop.xcodeproj/project.pbxproj
++++ b/Loop.xcodeproj/project.pbxproj
+@@ -581,6 +581,11 @@
+ 		E9C58A7F24DB529A00487A17 /* counteraction_effect_falling_glucose.json in Resources */ = {isa = PBXBuildFile; fileRef = E9C58A7A24DB529A00487A17 /* counteraction_effect_falling_glucose.json */; };
+ 		E9C58A8024DB529A00487A17 /* insulin_effect.json in Resources */ = {isa = PBXBuildFile; fileRef = E9C58A7B24DB529A00487A17 /* insulin_effect.json */; };
+ 		E9E5E56024D3519700B5DFFE /* far_future_high_bg_forecast_after_6_hours.json in Resources */ = {isa = PBXBuildFile; fileRef = E9E5E55F24D3519700B5DFFE /* far_future_high_bg_forecast_after_6_hours.json */; };
++		FCA6F02827BAA88B003CC11A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCA6F02727BAA88B003CC11A /* Settings.bundle */; };
++		FCA6F02927BAA88B003CC11A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCA6F02727BAA88B003CC11A /* Settings.bundle */; };
++		FCA6F02A27BAA88B003CC11A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCA6F02727BAA88B003CC11A /* Settings.bundle */; };
++		FCA6F02B27BAA88B003CC11A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCA6F02727BAA88B003CC11A /* Settings.bundle */; };
++		FCA6F02C27BAA88B003CC11A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCA6F02727BAA88B003CC11A /* Settings.bundle */; };
+ /* End PBXBuildFile section */
+ 
+ /* Begin PBXContainerItemProxy section */
+@@ -1485,6 +1490,7 @@
+ 		E9C58A7A24DB529A00487A17 /* counteraction_effect_falling_glucose.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = counteraction_effect_falling_glucose.json; sourceTree = "<group>"; };
+ 		E9C58A7B24DB529A00487A17 /* insulin_effect.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = insulin_effect.json; sourceTree = "<group>"; };
+ 		E9E5E55F24D3519700B5DFFE /* far_future_high_bg_forecast_after_6_hours.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = far_future_high_bg_forecast_after_6_hours.json; sourceTree = "<group>"; };
++		FCA6F02727BAA88B003CC11A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+ /* Begin PBXFrameworksBuildPhase section */
+@@ -1733,6 +1739,7 @@
+ 		43776F831B8022E90074EA36 = {
+ 			isa = PBXGroup;
+ 			children = (
++				FCA6F02727BAA88B003CC11A /* Settings.bundle */,
+ 				C18A491122FCC20B00FDA733 /* Scripts */,
+ 				4FF4D0FA1E1834BD00846527 /* Common */,
+ 				43776F8E1B8022E90074EA36 /* Loop */,
+@@ -3077,6 +3084,7 @@
+ 				A966152723EA5A26005D8B29 /* DerivedAssets.xcassets in Resources */,
+ 				7D70764F1FE06EE1004AC8EA /* InfoPlist.strings in Resources */,
+ 				7D7076631FE06EE4004AC8EA /* Localizable.strings in Resources */,
++				FCA6F02827BAA88B003CC11A /* Settings.bundle in Resources */,
+ 				43776F971B8022E90074EA36 /* Main.storyboard in Resources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+@@ -3087,6 +3095,7 @@
+ 			files = (
+ 				A966152B23EA5A37005D8B29 /* DerivedAssets.xcassets in Resources */,
+ 				C1C73F0D1DE3D0270022FC89 /* InfoPlist.strings in Resources */,
++				FCA6F02A27BAA88B003CC11A /* Settings.bundle in Resources */,
+ 				43A943761B926B7B0051FA24 /* Interface.storyboard in Resources */,
+ 				A966152A23EA5A37005D8B29 /* DefaultAssets.xcassets in Resources */,
+ 			);
+@@ -3096,6 +3105,7 @@
+ 			isa = PBXResourcesBuildPhase;
+ 			buildActionMask = 2147483647;
+ 			files = (
++				FCA6F02B27BAA88B003CC11A /* Settings.bundle in Resources */,
+ 				7D70765E1FE06EE3004AC8EA /* Localizable.strings in Resources */,
+ 				43A943901B926B7B0051FA24 /* Assets.xcassets in Resources */,
+ 				B405E35924D2A75B00DD058D /* DerivedAssets.xcassets in Resources */,
+@@ -3204,6 +3214,7 @@
+ 			files = (
+ 				B491B09E24D0B600004CBE8F /* DerivedAssets.xcassets in Resources */,
+ 				4F70C1E41DE8DCA7006380B7 /* MainInterface.storyboard in Resources */,
++				FCA6F02927BAA88B003CC11A /* Settings.bundle in Resources */,
+ 				B405E35B24D2E05600DD058D /* HUDAssets.xcassets in Resources */,
+ 				7D7076351FE06EDE004AC8EA /* Localizable.strings in Resources */,
+ 			);
+@@ -3226,6 +3237,7 @@
+ 			isa = PBXResourcesBuildPhase;
+ 			buildActionMask = 2147483647;
+ 			files = (
++				FCA6F02C27BAA88B003CC11A /* Settings.bundle in Resources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+-- 
+2.29.2
+
+
+From 31af6687410d5551f07c7133546810b759b4bf91 Mon Sep 17 00:00:00 2001
+From: Jon Fawcett <jonfawcett10@gmail.com>
+Date: Wed, 16 Feb 2022 13:40:27 -0500
+Subject: [PATCH 3/4] Dynamic PAF bug fix
+
+---
+ Loop/Managers/LoopDataManager.swift | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
+index 5720919e..9d3b2efc 100644
+--- a/Loop/Managers/LoopDataManager.swift
++++ b/Loop/Managers/LoopDataManager.swift
+@@ -1658,9 +1658,9 @@ extension LoopDataManager {
+                     glucose.quantity < HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)){
+                     dynamicApplicationFactor = ((glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter) - minPartialApplicationFactorBG) * ((maxPartialApplicationFactor - minPartialApplicationFactor)/(maxPartialApplicationFactorBG - minPartialApplicationFactorBG)) + minPartialApplicationFactor)
+                 } else if (glucose.quantity >= HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)) {
+-                    dynamicApplicationFactor = maxPartialApplicationFactorBG
++                    dynamicApplicationFactor = maxPartialApplicationFactor
+                 } else if (glucose.quantity <= HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: minPartialApplicationFactorBG)) {
+-                    dynamicApplicationFactor = minPartialApplicationFactorBG
++                    dynamicApplicationFactor = minPartialApplicationFactor
+                 }
+             }
+             
+-- 
+2.29.2
+
+
+From a7cfb1615a0bda18f48b90e7e6828c3c462476ac Mon Sep 17 00:00:00 2001
+From: Jon Fawcett <jonfawcett10@gmail.com>
+Date: Wed, 16 Feb 2022 14:06:17 -0500
+Subject: [PATCH 4/4] DAF Error checks
+
+---
+ Loop/Managers/LoopDataManager.swift | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
+index 9d3b2efc..fcc7fab5 100644
+--- a/Loop/Managers/LoopDataManager.swift
++++ b/Loop/Managers/LoopDataManager.swift
+@@ -1653,7 +1653,7 @@ extension LoopDataManager {
+             let dosingStrategyAutomationEnabled = UserDefaults.standard.bool(forKey: "dosingStrategyAutomationEnabled")
+             let dosingStrategyThreshold = UserDefaults.standard.double(forKey: "dosingStrategyThreshold")
+             
+-            if (dynamicPAFEnabled) {
++            if (dynamicPAFEnabled && (maxPartialApplicationFactorBG > minPartialApplicationFactorBG) && (maxPartialApplicationFactor > minPartialApplicationFactor) && (glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: 0.0)) ) {
+                 if (glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: minPartialApplicationFactorBG) &&
+                     glucose.quantity < HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)){
+                     dynamicApplicationFactor = ((glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter) - minPartialApplicationFactorBG) * ((maxPartialApplicationFactor - minPartialApplicationFactor)/(maxPartialApplicationFactorBG - minPartialApplicationFactorBG)) + minPartialApplicationFactor)
+-- 
+2.29.2
+
