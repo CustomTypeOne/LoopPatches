@@ -1,7 +1,7 @@
 From 3b54758fe74dc1d33e376ab73090423777c3b22f Mon Sep 17 00:00:00 2001
 From: Jon Fawcett <jonfawcett10@gmail.com>
 Date: Tue, 15 Feb 2022 15:41:28 -0500
-Subject: [PATCH 1/4] Added patches for Dynamic PAF, Auto Strategy Switching,
+Subject: [PATCH 1/6] Added patches for Dynamic PAF, Auto Strategy Switching,
  and Negative IOB Factor
 
 ---
@@ -366,7 +366,7 @@ HcmV?d00001
 From e0fcb21aebe4d1c733eccc183fabc68c658af75e Mon Sep 17 00:00:00 2001
 From: Jon Fawcett <jonfawcett10@gmail.com>
 Date: Wed, 16 Feb 2022 04:49:26 -0500
-Subject: [PATCH 2/4] Add setting a bundle
+Subject: [PATCH 2/6] Add setting a bundle
 
 ---
  Loop.xcodeproj/project.pbxproj | 12 ++++++++++++
@@ -451,7 +451,7 @@ index 1e264baf..e9f2e580 100644
 From 31af6687410d5551f07c7133546810b759b4bf91 Mon Sep 17 00:00:00 2001
 From: Jon Fawcett <jonfawcett10@gmail.com>
 Date: Wed, 16 Feb 2022 13:40:27 -0500
-Subject: [PATCH 3/4] Dynamic PAF bug fix
+Subject: [PATCH 3/6] Dynamic PAF bug fix
 
 ---
  Loop/Managers/LoopDataManager.swift | 4 ++--
@@ -480,7 +480,7 @@ index 5720919e..9d3b2efc 100644
 From a7cfb1615a0bda18f48b90e7e6828c3c462476ac Mon Sep 17 00:00:00 2001
 From: Jon Fawcett <jonfawcett10@gmail.com>
 Date: Wed, 16 Feb 2022 14:06:17 -0500
-Subject: [PATCH 4/4] DAF Error checks
+Subject: [PATCH 4/6] DAF Error checks
 
 ---
  Loop/Managers/LoopDataManager.swift | 2 +-
@@ -499,6 +499,182 @@ index 9d3b2efc..fcc7fab5 100644
                  if (glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: minPartialApplicationFactorBG) &&
                      glucose.quantity < HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)){
                      dynamicApplicationFactor = ((glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter) - minPartialApplicationFactorBG) * ((maxPartialApplicationFactor - minPartialApplicationFactor)/(maxPartialApplicationFactorBG - minPartialApplicationFactorBG)) + minPartialApplicationFactor)
+-- 
+2.29.2
+
+
+From 0943e0db37f1ea6675751ea1430796c89026da2d Mon Sep 17 00:00:00 2001
+From: Jon Fawcett <jonfawcett10@gmail.com>
+Date: Thu, 17 Feb 2022 11:48:27 -0500
+Subject: [PATCH 5/6] Change to single PAF setting
+
+---
+ Loop/Managers/LoopDataManager.swift | 25 ++++++++-----------------
+ 1 file changed, 8 insertions(+), 17 deletions(-)
+
+diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
+index fcc7fab5..ff76570d 100644
+--- a/Loop/Managers/LoopDataManager.swift
++++ b/Loop/Managers/LoopDataManager.swift
+@@ -1642,26 +1642,17 @@ extension LoopDataManager {
+             // Dynamic Application Factor and Strategy Switching
+         
+             // Set to the hard coded 0.4
+-            var dynamicApplicationFactor = LoopConstants.bolusPartialApplicationFactor;
++            var alternateApplicationFactor = LoopConstants.bolusPartialApplicationFactor;
++            
++            let alternatePAFEnabled = UserDefaults.standard.bool(forKey: "dynamicPAFEnabled")
++            let alternatePAFSetting = UserDefaults.standard.double(forKey: "alternatePAFSetting")
+             
+-            let dynamicPAFEnabled = UserDefaults.standard.bool(forKey: "dynamicPAFEnabled")
+-            let minPartialApplicationFactor = UserDefaults.standard.double(forKey: "minPAF")
+-            let minPartialApplicationFactorBG = UserDefaults.standard.double(forKey: "minPAFThreshold")
+-            let maxPartialApplicationFactor = UserDefaults.standard.double(forKey: "maxPAF")
+-            let maxPartialApplicationFactorBG = UserDefaults.standard.double(forKey: "maxPAFThreshold")
+             
+             let dosingStrategyAutomationEnabled = UserDefaults.standard.bool(forKey: "dosingStrategyAutomationEnabled")
+             let dosingStrategyThreshold = UserDefaults.standard.double(forKey: "dosingStrategyThreshold")
+             
+-            if (dynamicPAFEnabled && (maxPartialApplicationFactorBG > minPartialApplicationFactorBG) && (maxPartialApplicationFactor > minPartialApplicationFactor) && (glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: 0.0)) ) {
+-                if (glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: minPartialApplicationFactorBG) &&
+-                    glucose.quantity < HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)){
+-                    dynamicApplicationFactor = ((glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter) - minPartialApplicationFactorBG) * ((maxPartialApplicationFactor - minPartialApplicationFactor)/(maxPartialApplicationFactorBG - minPartialApplicationFactorBG)) + minPartialApplicationFactor)
+-                } else if (glucose.quantity >= HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: maxPartialApplicationFactorBG)) {
+-                    dynamicApplicationFactor = maxPartialApplicationFactor
+-                } else if (glucose.quantity <= HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: minPartialApplicationFactorBG)) {
+-                    dynamicApplicationFactor = minPartialApplicationFactor
+-                }
++            if (alternatePAFEnabled) {
++                alternateApplicationFactor = alternatePAFSetting
+             }
+             
+             var switcherIsAB = false;
+@@ -1690,8 +1681,8 @@ extension LoopDataManager {
+                     sensitivity: insulinSensitivity!,
+                     model: doseStore.insulinModelProvider.model(for: pumpInsulinType),
+                     basalRates: basalRates!,
+-                    maxAutomaticBolus: maxBolus! * dynamicApplicationFactor,
+-                    partialApplicationFactor: dynamicApplicationFactor,
++                    maxAutomaticBolus: maxBolus! * alternateApplicationFactor,
++                    partialApplicationFactor: alternateApplicationFactor,
+                     lastTempBasal: lastTempBasal,
+                     volumeRounder: volumeRounder,
+                     rateRounder: rateRounder,
+-- 
+2.29.2
+
+
+From 11bdf1f6b258c2680f0c2c1132d4f98b5ff84d3c Mon Sep 17 00:00:00 2001
+From: Jon Fawcett <jonfawcett10@gmail.com>
+Date: Fri, 18 Feb 2022 12:20:24 -0500
+Subject: [PATCH 6/6] Settings Update for PAF
+
+---
+ Settings.bundle/Root.plist | 82 ++------------------------------------
+ 1 file changed, 3 insertions(+), 79 deletions(-)
+
+diff --git a/Settings.bundle/Root.plist b/Settings.bundle/Root.plist
+index b3da12b6..dea9feda 100644
+--- a/Settings.bundle/Root.plist
++++ b/Settings.bundle/Root.plist
+@@ -30,11 +30,11 @@
+ 			<key>Type</key>
+ 			<string>PSMultiValueSpecifier</string>
+ 			<key>Title</key>
+-			<string>Min Factor</string>
++			<string>Alternate Application Factor</string>
+ 			<key>Key</key>
+-			<string>minPAF</string>
++			<string>alternatePAF</string>
+ 			<key>DefaultValue</key>
+-			<string>0.15</string>
++			<string>0.4</string>
+ 			<key>Values</key>
+ 			<array>
+ 				<real>0.05</real>
+@@ -82,82 +82,6 @@
+ 				<string>100%</string>
+ 			</array>
+ 		</dict>
+-		<dict>
+-			<key>Type</key>
+-			<string>PSTextFieldSpecifier</string>
+-			<key>Title</key>
+-			<string>BG Threshold for Min</string>
+-			<key>Key</key>
+-			<string>minPAFThreshold</string>
+-			<key>KeyboardType</key>
+-			<string>NumberPad</string>
+-		</dict>
+-		<dict>
+-			<key>Type</key>
+-			<string>PSMultiValueSpecifier</string>
+-			<key>Title</key>
+-			<string>Max Factor</string>
+-			<key>Key</key>
+-			<string>maxPAF</string>
+-			<key>DefaultValue</key>
+-			<string>0.5</string>
+-			<key>Values</key>
+-			<array>
+-				<real>0.05</real>
+-				<real>0.1</real>
+-				<real>0.15</real>
+-				<real>0.2</real>
+-				<real>0.25</real>
+-				<real>0.3</real>
+-				<real>0.35</real>
+-				<real>0.4</real>
+-				<real>0.45</real>
+-				<real>0.5</real>
+-				<real>0.55</real>
+-				<real>0.6</real>
+-				<real>0.65</real>
+-				<real>0.7</real>
+-				<real>0.75</real>
+-				<real>0.8</real>
+-				<real>0.85</real>
+-				<real>0.9</real>
+-				<real>0.95</real>
+-				<real>1</real>
+-			</array>
+-			<key>Titles</key>
+-			<array>
+-				<string>5%</string>
+-				<string>10%</string>
+-				<string>15%</string>
+-				<string>20%</string>
+-				<string>25%</string>
+-				<string>30%</string>
+-				<string>35%</string>
+-				<string>40%</string>
+-				<string>45%</string>
+-				<string>50%</string>
+-				<string>55%</string>
+-				<string>60%</string>
+-				<string>65%</string>
+-				<string>70%</string>
+-				<string>75%</string>
+-				<string>80%</string>
+-				<string>85%</string>
+-				<string>90%</string>
+-				<string>95%</string>
+-				<string>100%</string>
+-			</array>
+-		</dict>
+-		<dict>
+-			<key>Type</key>
+-			<string>PSTextFieldSpecifier</string>
+-			<key>Title</key>
+-			<string>BG Threshold for Max</string>
+-			<key>Key</key>
+-			<string>maxPAFThreshold</string>
+-			<key>KeyboardType</key>
+-			<string>NumberPad</string>
+-		</dict>
+ 		<dict>
+ 			<key>Type</key>
+ 			<string>PSGroupSpecifier</string>
 -- 
 2.29.2
 
