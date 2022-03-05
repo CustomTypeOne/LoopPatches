@@ -3,7 +3,7 @@
 These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this will make.
 
 ***
-# Patches tested with Loop Dev Only
+## Patches have only been tested using Loop Dev
 ***
 
 # PAF-Switcher-NegativeIOB Patch
