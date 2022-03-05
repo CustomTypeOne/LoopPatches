@@ -2,6 +2,10 @@
 
 These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this will make.
 
+***
+# Patches tested with Loop Dev Only
+***
+
 # PAF-Switcher-NegativeIOB Patch
 
 This patch modifies Loop for 3 new features. [Read more information here](https://www.notion.so/customtypeone/Loop-Patches-32a53bd5b48f4c2ea498ac6ab9efab06).
