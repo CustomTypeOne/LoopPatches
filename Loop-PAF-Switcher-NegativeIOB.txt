@@ -1,7 +1,7 @@
 From c3337bfa5bb50044c832ae84b5692e7b22e30437 Mon Sep 17 00:00:00 2001
 From: Jon Fawcett <jonfawcett10@gmail.com>
 Date: Wed, 2 Mar 2022 20:59:00 -0500
-Subject: [PATCH] Add alternate application factor, strategy switching,
+Subject: [PATCH 1/2] Add alternate application factor, strategy switching,
  negative iob factor
 
 ---
@@ -347,6 +347,70 @@ nmcBD*Mox@AX7QwJ{2yYbnSDNcs=Q<RN>A}>&5sU$akD=GTXJ1e
 literal 0
 HcmV?d00001
 
+-- 
+2.29.2
+
+
+From 0e6b1861b55bbf21ac4fe4e233f8aba686fdde30 Mon Sep 17 00:00:00 2001
+From: Jon Fawcett <jonfawcett10@gmail.com>
+Date: Sun, 6 Mar 2022 16:08:37 -0500
+Subject: [PATCH 2/2] Fix PAF
+
+---
+ Loop/Managers/LoopDataManager.swift | 6 +++---
+ Settings.bundle/Root.plist          | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
+index 01b09e7c..80eb0fdf 100644
+--- a/Loop/Managers/LoopDataManager.swift
++++ b/Loop/Managers/LoopDataManager.swift
+@@ -1596,20 +1596,20 @@ extension LoopDataManager {
+             // Set to the hard coded 0.4
+             var alternateApplicationFactor = LoopConstants.bolusPartialApplicationFactor;
+             
+-            let alternatePAFEnabled = UserDefaults.standard.bool(forKey: "dynamicPAFEnabled")
++            let alternatePAFEnabled = UserDefaults.standard.bool(forKey: "alternatePAFEnabled")
+             let alternatePAFSetting = UserDefaults.standard.double(forKey: "alternatePAFSetting")
+             
+             
+             let dosingStrategyAutomationEnabled = UserDefaults.standard.bool(forKey: "dosingStrategyAutomationEnabled")
+             let dosingStrategyThreshold = UserDefaults.standard.double(forKey: "dosingStrategyThreshold")
+             
+-            if (alternatePAFEnabled) {
++            if (alternatePAFEnabled && alternatePAFSetting != 0) {
+                 alternateApplicationFactor = alternatePAFSetting
+             }
+             
+             var switcherIsAB = false;
+             
+-            if (dosingStrategyAutomationEnabled) {
++            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != 0) {
+                 if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.dosingStrategy == .automaticBolus){
+                      switcherIsAB = true;
+                  } else {
+diff --git a/Settings.bundle/Root.plist b/Settings.bundle/Root.plist
+index c3173aba..cbcc2e4e 100644
+--- a/Settings.bundle/Root.plist
++++ b/Settings.bundle/Root.plist
+@@ -18,7 +18,7 @@
+ 			<key>Title</key>
+ 			<string>Enabled</string>
+ 			<key>Key</key>
+-			<string>dynamicPAFEnabled</string>
++			<string>alternatePAFEnabled</string>
+ 			<key>DefaultValue</key>
+ 			<false/>
+ 			<key>TrueValue</key>
+@@ -32,7 +32,7 @@
+ 			<key>Title</key>
+ 			<string>Alternate Application Factor</string>
+ 			<key>Key</key>
+-			<string>alternatePAF</string>
++			<string>alternatePAFSetting</string>
+ 			<key>DefaultValue</key>
+ 			<string>0.4</string>
+ 			<key>Values</key>
 -- 
 2.29.2
 
