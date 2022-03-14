@@ -3,16 +3,17 @@
 These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this will make.
 
 ***
-## Patches have only been tested using Loop Dev
+## Patches have only been tested using Loop Dev.
 ***
 
 ## To Apply
 
-1. Use the green button to download the files and unzip the downloaded file
-2. Inside the unzipped folder, you will also need to unzip the settings.bundle file
-3. Copy LoopPatch.txt into /LoopWorkspace/Loop/, open terminal to this folder, and run: git apply LoopPatch.txt
-4. Copy LoopkitPatch.txt into /LoopWorkspace/Loopkit/, open terminal to this folder, and run: git apply LoopkitPatch.txt
-5. Open xcode and drag the settings.bundle file just inside the Loop project folder and select the first 5 boxes when asked for targets
+1. Only apply to fresh a download of Loop. If you attempted to apply and it errored (only whitespace errors are acceptable), delete the download and start over.
+2. Use the green button to download the files and unzip the downloaded file
+3. Inside the unzipped folder, you will also need to unzip the settings.bundle file
+4. Copy LoopPatch.txt into /LoopWorkspace/Loop/, open terminal to this folder, and run: git apply LoopPatch.txt
+5. Copy LoopkitPatch.txt into /LoopWorkspace/Loopkit/, open terminal to this folder, and run: git apply LoopkitPatch.txt
+6. Open xcode and drag the settings.bundle file just inside the Loop project folder and select the first 5 boxes when asked for targets
 
 ![settingsbundle](https://user-images.githubusercontent.com/38429455/158242367-de24fa1b-9f4e-4082-9d9b-db6ad109a563.png)
 
