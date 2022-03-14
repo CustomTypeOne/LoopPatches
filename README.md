@@ -6,6 +6,14 @@ These patches are provided open source and it is your responsibility to review t
 ## Patches have only been tested using Loop Dev
 ***
 
+## To Apply
+
+1. Use the green button to download the files and unzip the downloaded file
+2. Inside the unzipped folder, you will also need to unzip the settings.bundle file
+3. Copy LoopPatch.txt into /LoopWorkspace/Loop/, open terminal to this folder, and run: git apply LoopPatch.txt
+4. Copy LoopkitPatch.txt into /LoopWorkspace/Loopkit/, open terminal to this folder, and run: git apply LoopkitPatch.txt
+5. Open xcode and drag the settings.bundle file just inside the Loop project folder and select the first 5 boxes when asked for targets
+
 # PAF-Switcher-NegativeIOB Patch
 
 This patch modifies Loop for 3 new features. [Read more information here](https://www.notion.so/customtypeone/Loop-Patches-32a53bd5b48f4c2ea498ac6ab9efab06).
