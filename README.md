@@ -31,3 +31,15 @@ To apply the patch, you MUST apply both files.
 
 To keep from needing to modify these patches frequently, the settings have been moved to iOS Settings App->Loop. This is the same location where you find Bluetooth, privacy, and similar settings.
 All 3 settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. I am unable to test MMOL for the switcher patch, but will report back here if someone confirms it works in MMOL.
+
+# To Test the switcher functionality
+
+1. Leave your phone plugged in with xcode running after building
+2. Set Loop to Automatic Bolus for the dosing strategy
+3. Set your BG threshold in iOS Settings/Loop
+4. Enable the switcher toggle in iOS Settings/Loop
+5. Open /Loop/Managers/LoopDataManager.swift in xcode and set breakpoints on lines 1614 and 1616
+6. At the next Loop cycle, it will pause running at one of these breakpoints. Line 1614 is if BG is over your threshold, Line 1616 is if BG is under your threshold.
+
+
+![IMG_0191](https://user-images.githubusercontent.com/38429455/161996907-9e81707a-cea7-421f-91d4-dc4c2e571a7e.jpeg)
