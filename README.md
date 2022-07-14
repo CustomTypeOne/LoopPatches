@@ -1,3 +1,7 @@
+***
+## Patch will not apply to dev code as of July 14th. I'm currently testing the fix. If you want to test this also, open Looppatch.txt and find/replace "settings.dosingStrategy" with "settings.automaticDosingStrategy".
+***
+
 # LoopPatches
 
 These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this will make.
