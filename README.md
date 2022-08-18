@@ -1,5 +1,5 @@
 ***
-## Patch will not apply to dev code as of July 14th. I'm currently testing the fix. If you want to test this also, open Looppatch.txt and find/replace "settings.dosingStrategy" with "settings.automaticDosingStrategy".
+## Patch needed changed for July 14th Lop Dev update. The latest commit modifies "settings.dosingStrategy" with "settings.automaticDosingStrategy" in Looppatch.txt.
 ***
 
 # LoopPatches
