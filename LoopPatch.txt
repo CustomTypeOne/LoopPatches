@@ -15,7 +15,7 @@ index 51235c41..63d2e551 100644
  
              let dosingRecommendation: AutomaticDoseRecommendation?
  
--            switch settings.dosingStrategy {
+-            switch settings.automaticDosingStrategy {
 -            case .automaticBolus:
 +            // Dynamic Application Factor and Strategy Switching
 +        
@@ -36,12 +36,12 @@ index 51235c41..63d2e551 100644
 +            var switcherIsAB = false;
 +            
 +            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != ) {
-+                if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.dosingStrategy == .automaticBolus){
++                if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.automaticDosingStrategy == .automaticBolus){
 +                     switcherIsAB = true;
 +                 } else {
 +                     switcherIsAB = false;
 +                 }
-+            } else if (settings.dosingStrategy == .automaticBolus) {
++            } else if (settings.automaticDosingStrategy == .automaticBolus) {
 +                switcherIsAB = true;
 +            }
 +            
@@ -92,7 +92,7 @@ index 63d2e551..6d3cfb12 100644
              
 -            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != ) {
 +            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != 0) {
-                 if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.dosingStrategy == .automaticBolus){
+                 if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.automaticDosingStrategy == .automaticBolus){
                       switcherIsAB = true;
                   } else {
 -- 
