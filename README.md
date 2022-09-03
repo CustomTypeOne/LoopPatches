@@ -1,5 +1,5 @@
 ***
-## Patch needed changed for July 14th Lop Dev update. The latest commit modifies "settings.dosingStrategy" with "settings.automaticDosingStrategy" in Looppatch.txt.
+## Patch has been updated for the July 14th Lop Dev update. The latest commit modifies "settings.dosingStrategy" with "settings.automaticDosingStrategy" in Looppatch.txt. This should not be applied against older Dev code.
 ***
 
 # LoopPatches
