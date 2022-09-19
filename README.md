@@ -4,11 +4,8 @@
 
 # LoopPatches
 
-These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this will make.
+These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this makes. You should also run tests in a simulator before attempting to use to ensure you are properly configuring the settings.
 
-***
-## Patches have only been tested using Loop Dev.
-***
 
 ## To Apply
 
