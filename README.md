@@ -1,5 +1,6 @@
 ***
 ## Patch cannot be applied to Dev code older than July 14th
+Tested with Loop Dev on 09 Sept 2022
 ***
 
 # LoopPatches
