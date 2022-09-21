@@ -16,7 +16,7 @@ DO NOT attempt to use this patch until you have read and understood the function
 - Basal Lock can be used to prevent Loop from reducing or suspending insulin when over a set BG value to assist with stubborn highs. Do not use unless you understand the risks. The BG value should be checked everytime you rebuild Loop and confirmed that it is set at a high enough value to be used safely. Loop will not be allowed to automatically reduce or suspend basal in any circumstance until the BG value drops below the threshold you have entered.
 
 To keep from needing to modify these patches frequently, the settings have been moved to iOS Settings App->Loop. This is the same location where you find Bluetooth, privacy, and similar settings.
-All 3 settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. I am unable to test MMOL for the switcher patch, but will report here if anyone reports it works or does not work with mmol.
+All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. I am unable to test MMOL but will report here if anyone reports it works or does not work with mmol.
 
 ## To Apply
 
