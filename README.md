@@ -7,12 +7,13 @@ Tested with Loop Dev on 09 Sept 2022
 
 These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this makes. You should also run tests in a simulator before attempting to use to ensure you are properly configuring the settings.
 
-# PAF-Switcher-NegativeIOB Patch
+# Automatic Strategy Switcher, Alternate Partial Application Factor, Negative IOB Factor, and Basal Lock Patch
 
 DO NOT attempt to use this patch until you have read and understood the functionality that this adds and changes. [Read more information here](https://www.craft.do/s/pakv8NO1oYpDgh).
-- Alternate Partial Bolus Application Factor (PAF) allows you to adjust the 40% default used when determining what percentage of the calculated AB dose that Loop delivers.
 - Automatic Strategy Switcher allows you to configure a threshold where Loop automatically switches between TB (<= threshold) and AB (> threshold). You must set Loop to AB mode and enable this setting for it to function. If you are in TB only, it will not auto switch you to AB and it also will not switch the setting within Loop.
+- Alternate Partial Bolus Application Factor (PAF) allows you to adjust the 40% default used when determining what percentage of the calculated AB dose that Loop delivers.
 - Negative IOB Factor is a percentage you can use to adjust the effect of negative IOB. During stubborn lows, Loop will frequently try to dose too much of the negative IOB as a recovery. This restricts Loop to only use this percentage of the negative IOB in a dose. Credit goes to Kenneth Stack for this. I just integrated his brilliant solution.
+- Basal Lock can be used to prevent Loop from reducing or suspending insulin when over a set BG value to assist with stubborn highs. Do not use unless you understand the risks. The BG value should be checked everytime you rebuild Loop and confirmed that it is set at a high enough value to be used safely. Loop will not be allowed to automatically reduce or suspend basal in any circumstance until the BG value drops below the threshold you have entered.
 
 To keep from needing to modify these patches frequently, the settings have been moved to iOS Settings App->Loop. This is the same location where you find Bluetooth, privacy, and similar settings.
 All 3 settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. I am unable to test MMOL for the switcher patch, but will report here if anyone reports it works or does not work with mmol.
