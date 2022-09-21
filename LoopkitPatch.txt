@@ -1,15 +1,14 @@
-From 3af74b1dbc7e888de53b7dbc5a20e5ec91641e0f Mon Sep 17 00:00:00 2001
-From: Jon Fawcett <jonfawcett10@gmail.com>
-Date: Wed, 2 Mar 2022 20:59:01 -0500
-Subject: [PATCH] Add alternate application factor, strategy switching,
- negative iob factor
+From 941bea15c681ca3d60399507e07084e7e6901dae Mon Sep 17 00:00:00 2001
+From: jonfawcett <38429455+jonfawcett@users.noreply.github.com>
+Date: Tue, 13 Sep 2022 14:19:03 -0400
+Subject: [PATCH] Patches
 
 ---
  LoopKit/InsulinKit/InsulinMath.swift | 32 ++++++++++++++++++++++------
  1 file changed, 25 insertions(+), 7 deletions(-)
 
 diff --git a/LoopKit/InsulinKit/InsulinMath.swift b/LoopKit/InsulinKit/InsulinMath.swift
-index e2d0f74..b57dcd3 100644
+index abd5d70..ba3d697 100644
 --- a/LoopKit/InsulinKit/InsulinMath.swift
 +++ b/LoopKit/InsulinKit/InsulinMath.swift
 @@ -40,10 +40,18 @@ extension DoseEntry {
@@ -61,5 +60,5 @@ index e2d0f74..b57dcd3 100644
  
      func trimmed(from start: Date? = nil, to end: Date? = nil, syncIdentifier: String? = nil) -> DoseEntry {
 -- 
-2.29.2
+2.37.0 (Apple Git-136)
 

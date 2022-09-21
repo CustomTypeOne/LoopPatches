@@ -1,17 +1,77 @@
-From 40791b9928c8b0998e2330fb32da109cc5b97c54 Mon Sep 17 00:00:00 2001
-From: Jon Fawcett <jonfawcett10@gmail.com>
-Date: Mon, 14 Mar 2022 14:44:24 -0400
-Subject: [PATCH 1/2] Switcher, PAF
+From 47665cbf516659215cdaf4eb361b1d5099b3212c Mon Sep 17 00:00:00 2001
+From: jonfawcett <38429455+jonfawcett@users.noreply.github.com>
+Date: Tue, 13 Sep 2022 14:19:03 -0400
+Subject: [PATCH 1/2] Patches
 
 ---
+ Loop/Managers/DoseMath.swift        | 36 ++++++++++++++++++++++++--
  Loop/Managers/LoopDataManager.swift | 39 +++++++++++++++++++++++++----
- 1 file changed, 34 insertions(+), 5 deletions(-)
+ 2 files changed, 68 insertions(+), 7 deletions(-)
 
+diff --git a/Loop/Managers/DoseMath.swift b/Loop/Managers/DoseMath.swift
+index 01c9bedf..a5b0d98f 100644
+--- a/Loop/Managers/DoseMath.swift
++++ b/Loop/Managers/DoseMath.swift
+@@ -391,13 +391,28 @@ extension Collection where Element: GlucoseValue {
+             maxBasalRate = scheduledBasalRate
+         }
+ 
+-        let temp = correction?.asTempBasal(
++        var temp = correction?.asTempBasal(
+             scheduledBasalRate: scheduledBasalRate,
+             maxBasalRate: maxBasalRate,
+             duration: duration,
+             rateRounder: rateRounder
+         )
+-
++        
++        // Basal Lock threshold - Jon Fawcett
++        let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
++        let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
++        
++        if (basalLockEnabled && basalLockThreshold != 0) {
++            if (( temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate  ||
++                 lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
++                 ) &&
++                 self[0 as! Self.Index].quantity > HKQuantity(unit : .milligramsPerDeciliter, doubleValue: basalLockThreshold))
++            {
++                print("####### Temp Basal Lock On #########")
++                temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
++            }
++        }
++        
+         return temp?.ifNecessary(
+             at: date,
+             scheduledBasalRate: scheduledBasalRate,
+@@ -480,6 +495,23 @@ extension Collection where Element: GlucoseValue {
+             maxBolusUnits: maxAutomaticBolus,
+             volumeRounder: volumeRounder
+         )
++        
++        // Basal Lock threshold - Jon Fawcett
++        let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
++        let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
++        
++        print("####### Basal Lock Start Code #######")
++        print(temp?.unitsPerHour)
++        if (basalLockEnabled && basalLockThreshold != 0) {
++            if ( (temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate ||
++                  lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
++                  ) &&
++                 self[0 as! Self.Index].quantity > HKQuantity(unit : .milligramsPerDeciliter, doubleValue: basalLockThreshold))
++            {
++                temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
++                print("####### Temp Basal Lock On #########")
++            }
++        }
+ 
+         if temp != nil || bolusUnits > 0 {
+             return AutomaticDoseRecommendation(basalAdjustment: temp, bolusUnits: bolusUnits)
 diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
-index 51235c41..63d2e551 100644
+index c0e2f890..4745a5e7 100644
 --- a/Loop/Managers/LoopDataManager.swift
 +++ b/Loop/Managers/LoopDataManager.swift
-@@ -1591,8 +1591,37 @@ extension LoopDataManager {
+@@ -1582,8 +1582,37 @@ extension LoopDataManager {
  
              let dosingRecommendation: AutomaticDoseRecommendation?
  
@@ -35,7 +95,7 @@ index 51235c41..63d2e551 100644
 +            
 +            var switcherIsAB = false;
 +            
-+            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != ) {
++            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != 0) {
 +                if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.automaticDosingStrategy == .automaticBolus){
 +                     switcherIsAB = true;
 +                 } else {
@@ -51,7 +111,7 @@ index 51235c41..63d2e551 100644
                  let volumeRounder = { (_ units: Double) in
                      return self.delegate?.loopDataManager(self, roundBolusVolume: units) ?? units
                  }
-@@ -1604,14 +1633,14 @@ extension LoopDataManager {
+@@ -1595,14 +1624,14 @@ extension LoopDataManager {
                      sensitivity: insulinSensitivity!,
                      model: doseStore.insulinModelProvider.model(for: pumpInsulinType),
                      basalRates: basalRates!,
@@ -70,31 +130,78 @@ index 51235c41..63d2e551 100644
                      to: glucoseTargetRange!,
                      at: predictedGlucose[0].startDate,
 -- 
-2.29.2
+2.37.0 (Apple Git-136)
 
 
-From 872d07cb2c954809f91b9562d0fd3a771b4606d7 Mon Sep 17 00:00:00 2001
-From: Jon Fawcett <jonfawcett10@gmail.com>
-Date: Mon, 14 Mar 2022 14:50:27 -0400
+From 573920fd35219ee3953a960fbbebc4d9d3cd9f2c Mon Sep 17 00:00:00 2001
+From: jonfawcett <38429455+jonfawcett@users.noreply.github.com>
+Date: Wed, 21 Sep 2022 14:59:00 -0400
 Subject: [PATCH 2/2] patch
 
 ---
- Loop/Managers/LoopDataManager.swift | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Loop/Managers/DoseMath.swift        | 10 ++++++++--
+ Loop/Managers/LoopDataManager.swift |  1 +
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
+diff --git a/Loop/Managers/DoseMath.swift b/Loop/Managers/DoseMath.swift
+index a5b0d98f..30d5a2bb 100644
+--- a/Loop/Managers/DoseMath.swift
++++ b/Loop/Managers/DoseMath.swift
+@@ -9,6 +9,7 @@
+ import Foundation
+ import HealthKit
+ import LoopKit
++import LoopCore
+ 
+ 
+ private enum InsulinCorrection {
+@@ -401,12 +402,15 @@ extension Collection where Element: GlucoseValue {
+         // Basal Lock threshold - Jon Fawcett
+         let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
+         let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
++        let basalLockIgnoreSuspend = UserDefaults.standard.bool(forKey: "basalLockIgnoreSuspend")
++        let glucoseUnit = UserDefaults.standard.string(forKey: "settingsGlucoseUnit")
++        let hkUnit = glucoseUnit == HKUnit.millimolesPerLiter.unitString ? HKUnit.millimolesPerLiter : HKUnit.milligramsPerDeciliter
+         
+         if (basalLockEnabled && basalLockThreshold != 0) {
+             if (( temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate  ||
+                  lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
+                  ) &&
+-                 self[0 as! Self.Index].quantity > HKQuantity(unit : .milligramsPerDeciliter, doubleValue: basalLockThreshold))
++                 self[0 as! Self.Index].quantity > HKQuantity(unit : hkUnit, doubleValue: basalLockThreshold))
+             {
+                 print("####### Temp Basal Lock On #########")
+                 temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
+@@ -499,6 +503,8 @@ extension Collection where Element: GlucoseValue {
+         // Basal Lock threshold - Jon Fawcett
+         let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
+         let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
++        let glucoseUnit = UserDefaults.standard.string(forKey: "settingsGlucoseUnit")
++        let hkUnit = glucoseUnit == HKUnit.millimolesPerLiter.unitString ? HKUnit.millimolesPerLiter : HKUnit.milligramsPerDeciliter
+         
+         print("####### Basal Lock Start Code #######")
+         print(temp?.unitsPerHour)
+@@ -506,7 +512,7 @@ extension Collection where Element: GlucoseValue {
+             if ( (temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate ||
+                   lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
+                   ) &&
+-                 self[0 as! Self.Index].quantity > HKQuantity(unit : .milligramsPerDeciliter, doubleValue: basalLockThreshold))
++                 self[0 as! Self.Index].quantity > HKQuantity(unit : hkUnit, doubleValue: basalLockThreshold))
+             {
+                 temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
+                 print("####### Temp Basal Lock On #########")
 diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
-index 63d2e551..6d3cfb12 100644
+index 4745a5e7..0eeba1c6 100644
 --- a/Loop/Managers/LoopDataManager.swift
 +++ b/Loop/Managers/LoopDataManager.swift
-@@ -1609,7 +1609,7 @@ extension LoopDataManager {
+@@ -1610,6 +1610,7 @@ extension LoopDataManager {
+                 switcherIsAB = true;
+             }
              
-             var switcherIsAB = false;
-             
--            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != ) {
-+            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != 0) {
-                 if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.automaticDosingStrategy == .automaticBolus){
-                      switcherIsAB = true;
-                  } else {
++            UserDefaults.standard.set(settings.glucoseUnit?.unitString ?? HKUnit.milligramsPerDeciliter.unitString, forKey: "settingsGlucoseUnit")
+ 
+             switch switcherIsAB {
+             case true:
 -- 
-2.29.2
+2.37.0 (Apple Git-136)
 
