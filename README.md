@@ -5,7 +5,7 @@ Tested with Loop Dev on 09 Sept 2022
 
 # LoopPatches
 
-These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental and not approved for therapy. It is your responsibility to review the code and understand the changes using this makes. You should also run tests in a simulator before attempting to use to ensure you are properly configuring the settings.
+These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental for testing, research, and education and are not approved for therapy. It is your responsibility to review the code and understand the changes using this makes. You should also run tests in an xcode simulator to review the effect they have on Loop behavior and settings.
 
 # Automatic Strategy Switcher, Alternate Partial Application Factor, Negative IOB Factor, and Basal Lock Patch
 
