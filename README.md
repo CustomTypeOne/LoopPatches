@@ -29,6 +29,10 @@ All settings can be enabled or disabled individually. Be certain that you enter 
 
 ![settingsbundle](https://user-images.githubusercontent.com/38429455/158242367-de24fa1b-9f4e-4082-9d9b-db6ad109a563.png)
 
+## MMOL Users - you need to make a the modification to "numbers and punctuation" for the 2 items shown below before you build.
+
+<img width="1209" alt="mmolChange" src="https://user-images.githubusercontent.com/38429455/192881728-272f1672-7889-4a63-9a4c-2d0e4736b0a7.png">
+
 # To Test the switcher functionality
 
 1. Leave your phone plugged in with xcode running after building
