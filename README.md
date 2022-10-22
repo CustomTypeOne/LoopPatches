@@ -86,6 +86,7 @@ Now that you have a terminal window opened in the LoopWorkspace folder, you can 
 Copy the lines below that starts with `cd Loop` by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
 ```
+cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 cd Loop
 git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
 cd ..
@@ -99,31 +100,44 @@ After the text is copied, click in the terminal window and paste the text. (Ways
 
 Notice you will see messages talking about trailing `whitespace errors`, but those lines begin with the word `warning`. Those can all be ignored. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
-Return to the `LoopPatches-main` folder in Finder and locate the Settings.bundle folder.
+If you see this message:
+    `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
+
+That means you did not double click the `Settings.bundle.zip` file.  Do it now and then copy and paste just this one line. (Hit return after pasting).
+
+```
+cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
+
+```
+
+Return to the LoopWorkspace folder in Finder you used to open the terminal window.
+
+* Double click on LoopWorkspace to open the LoopWorkspace folder
+* Double click on Loop to open the Loop folder
+* Locate the Settings.bundle file - you will use that next
 
 Return to the Xcode that was used to build Loop-dev to a simulator.
 
 * Click on the folder icon in the left pane of Xcode
 * Click on the icon to the left of the Loop folder to open it (you should see Scripts, Common, etc)
 
-You need to be able to see both Finder and Xcode for this next step.
+You need to arrange your screen to see both the Finder folder and Xcode for this next step.
 
-* From Finder `LoopPatches-main` folder, drag the Settings.bundle into Xcode (using these directions)
+* From Finder, drag the Settings.bundle into Xcode (using these directions)
     * Click on Settings.bundle and hold the mouse button down
     * Drag into the Xcode left pane (as shown in the graphic below)
-    * Move the mouse (while holding the button) until the blue line (see graphic below) is immediately under Loop and above Scripts
+    * Move the mouse (while holding down the button) until the blue line (see graphic below) is immediately under Loop and above Scripts
     * Let go of the mouse button
 * A new window will appear in Xcode as shown in the graphic below
     * Add a check mark (if not there) by Copy Items if needed
     * Add a check mark, in Add to Targets, to left of Loop
-    * The other add to targets boxes (from older graphic) can be left unchecked
 
-<a href="/img/settingsbundle.png"><img src="/img/settingsbundle.png?raw=true" alt="Image showing the Xcode window as user drags Settings.bundle into place" width="1209"></a>
+<a href="/img/looppatches-settings-bundle.svg"><img src="/img/looppatches-settings-bundle.svg?raw=true" alt="Image showing the Xcode window as user drags Settings.bundle into place" width="750"></a>
 
-* If you use mmol - follow the directions for MMOL users
+* If you use mmol - follow the directions below for MMOL users before building with LoopPatches
 * Optional, check the modified files inside Xcode (instructions below)
 
-Ready to build with the patches:
+### Ready to build with LoopPatches:
 
 1. Click on Square Block to the left of the Build arrow in Xcode if it exists
     * The Square Block just means Xcode is connected to the Simulator and the simulator is running
