@@ -118,7 +118,7 @@ You need to be able to see both Finder and Xcode for this next step.
     * Add a check mark, in Add to Targets, to left of Loop
     * The other add to targets boxes (from older graphic) can be left unchecked
 
-![settingsbundle](https://user-images.githubusercontent.com/38429455/158242367-de24fa1b-9f4e-4082-9d9b-db6ad109a563.png)
+<a href="/img/settingsbundle.png"><img src="/img/settingsbundle.png?raw=true" alt="Image showing the Xcode window as user drags Settings.bundle into place" width="500"></a>
 
 * If you use mmol - follow the directions for MMOL users
 * Optional, check the modified files inside Xcode (instructions below)
@@ -138,7 +138,7 @@ Ready to build with the patches:
 
 You need to make a modification to select "numbers and punctuation" for the 2 items shown below before you build.
 
-<img width="1209" alt="mmolChange" src="https://user-images.githubusercontent.com/38429455/192881728-272f1672-7889-4a63-9a4c-2d0e4736b0a7.png">
+<a href="/img/mmolChange.png"><img src="/img/mmolChange.png?raw=true" alt="Image showing the Xcode window as user modifies for using mmol/L units" width="500"></a>
 
 ## To Confirm the Patches were Applied
 
