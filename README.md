@@ -32,12 +32,14 @@ Use caution with these features and adjust conservatively and slowly for safety.
 
 ## Feature Details
 
-**DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches link in a new tab or window and read the documentation.**
+**DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches Documentation link (below) in a new tab or window and read the documentation.**
 
-* Hold down the control key and click (or right click) on the link for [Loop Patches](https://www.craft.do/s/pakv8NO1oYpDgh)
-* Select open in a new window or new tab of your browser
+* Hold down the control key and click (or right click) on the link for [Loop Patches Documentation](https://www.craft.do/s/pakv8NO1oYpDgh)
+* Select open in a new window or new tab of your browser and read about each patch.
 
-Each patch is enabled or modified using the phone iOS settings.
+## Feature Selection After Installation
+
+After installation, each patch will be enabled or modified using the phone iOS settings.
 
 Tap on the phone settings icon
 
