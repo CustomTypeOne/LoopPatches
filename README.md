@@ -81,7 +81,7 @@ It is now time to open a terminal window in your new Loop-dev download.
 
 Please follow these instructions from LoopDocs: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
 
-Now that you have a terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error`, stop and review the instructions. **DO NOT CONTINUE after an error is observed.**
+Now that you have a terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
 
 Copy the lines below that starts with `cd Loop` by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
@@ -92,9 +92,10 @@ cd ..
 cd LoopKit
 git apply ~/Downloads/LoopPatches-main/LoopKitPatch.txt
 cd ..
+
 ```
 
-After the text is copied, click in the terminal window and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the beginning lines with execute. Finish the process by hitting return one more time.
+After the text is copied, click in the terminal window and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the beginning lines will execute but the last one waits for you to finish the process by hitting return one more time.
 
 Notice you will see messages talking about trailing `whitespace errors`, but those lines begin with the word `warning`. Those can all be ignored. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
