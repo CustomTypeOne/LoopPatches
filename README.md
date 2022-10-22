@@ -95,14 +95,14 @@ cd ..
 
 ```
 
-After the text is copied, click in the terminal window and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the beginning lines will execute but the last one waits for you to finish the process by hitting return one more time.
+After the text is copied, click in the terminal window and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute.
 
 Notice you will see messages talking about trailing `whitespace errors`, but those lines begin with the word `warning`. Those can all be ignored. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
 If you see this message:
     `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
 
-* That means you did not double click the `Settings.bundle.zip` file.  Do it now and then copy and paste just this one line. (Hit return after pasting).
+* That means you did not double click the `Settings.bundle.zip` file.  Do it now and then copy and paste just this one line.
 
 ```
 cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
