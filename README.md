@@ -23,7 +23,7 @@ Loop Patches offer several adjustments to Loop. Each is found under the iOS Loop
 
 Use caution with these features and adjust conservatively and slowly for safety.
 
-**WARNING: These patches are provided open source, are highly experimental and not approved for therapy by any governmental organization.**
+**WARNING: These patches are open source, experimental and not approved for therapy by any governmental organization.**
 
 * Do not use LoopPatches if you are not an experienced Looper who has previously built Loop and understands how to customize the code.
 * It is your responsibility to review the code and understand the changes made.
@@ -34,7 +34,7 @@ Use caution with these features and adjust conservatively and slowly for safety.
 
 **DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches link in a new tab or window and read the documentation.**
 
-* Hold down the control key and click (or right click) on the [Loop Patches](https://www.craft.do/s/pakv8NO1oYpDgh)
+* Hold down the control key and click (or right click) on the link for [Loop Patches](https://www.craft.do/s/pakv8NO1oYpDgh)
 * Select open in a new window or new tab of your browser
 
 Each patch is enabled or modified using the phone iOS settings.
@@ -75,15 +75,14 @@ Then follow these directions carefully.
     * Double click on `LoopPatches-main.zip`
     * This creates the `LoopPatches-main` folder, double click on it to open the folder
     * Inside the folder is a file called `Settings.bundle.zip`, double click on that file
-    * You will need to return to this `LoopPatches-main` folder later - so remember how to get here
 
-It is now time to open a terminal window in your new Loop-dev download.
+It is now time to open a terminal window associated with your new Loop-dev download.
 
 Please follow these instructions from LoopDocs: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
 
 Now that you have a terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
 
-Copy the lines below that starts with `cd Loop` by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
+Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
 ```
 cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
@@ -103,20 +102,20 @@ Notice you will see messages talking about trailing `whitespace errors`, but tho
 If you see this message:
     `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
 
-That means you did not double click the `Settings.bundle.zip` file.  Do it now and then copy and paste just this one line. (Hit return after pasting).
+* That means you did not double click the `Settings.bundle.zip` file.  Do it now and then copy and paste just this one line. (Hit return after pasting).
 
 ```
 cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 
 ```
 
-Return to the LoopWorkspace folder in Finder you used to open the terminal window.
+Return to the LoopWorkspace folder in Finder that you used to open the terminal window.
 
 * Double click on LoopWorkspace to open the LoopWorkspace folder
 * Double click on Loop to open the Loop folder
 * Locate the Settings.bundle file - you will use that next
 
-Return to the Xcode that was used to build Loop-dev to a simulator.
+Return to Xcode, which was used to build the fresh Loop-dev download to a simulator.
 
 * Click on the folder icon in the left pane of Xcode
 * Click on the icon to the left of the Loop folder to open it (you should see Scripts, Common, etc)
