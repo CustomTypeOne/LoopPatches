@@ -14,10 +14,12 @@ Loop Patches offer several adjustments to Loop. Each is found under the iOS Loop
     * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
 1. Negative IOB Factor
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
+    * Unlike the other patches, this one is enabled by default using a 50% setting for negative IOB
+    * To Disable this factor, modify the picker wheel to 100%
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
     * **Use with care; meant for high glucose >250 mg/dL, 14 mmol/L**
-        * **When used improperly, this will cause lows**
+        * **When used improperly, this can cause lows**
 
 Use caution with these features and adjust conservatively and slowly for safety.
 
@@ -45,13 +47,13 @@ Tap on the phone settings icon
 
 <a href="/img/looppatches-loop-settings.svg"><img src="/img/looppatches-loop-settings.svg?raw=true" alt="Image showing the iOS settings screen before and after applying Settings.bundle" width="500"></a>
 
-Note: If you observe the settings screen as shown on the right side of the graphic above, this means you dragged the Settings Bundle into the correct location as described in the installation instructions. You must also perform the two `git apply` actions described below with no errors reported for the patches to actually be "connected".
+Note: If you observe the settings screen as shown on the right side of the graphic above, this means you dragged the Settings Bundle into the correct location as described in the installation instructions. You must also perform the `git apply` action described below, where you copy and paste text into the appropriate terminal location, with no errors reported for the patches to actually be "connected" to these iOS settings.
 
 All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. I am unable to test MMOL but will report here if anyone reports it works or does not work with mmol.
 
 ## To Apply
 
-Warning: Only apply LoopPatches to fresh a download of Loop-dev.
+Warning: Only apply LoopPatches to fresh a download of Loop-dev. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
 
 For each link below - remember to control-click (or right click) so you can return to these instructions easily.
 
