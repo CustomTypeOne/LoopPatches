@@ -1,23 +1,19 @@
-From 941bea15c681ca3d60399507e07084e7e6901dae Mon Sep 17 00:00:00 2001
-From: jonfawcett <38429455+jonfawcett@users.noreply.github.com>
-Date: Tue, 13 Sep 2022 14:19:03 -0400
-Subject: [PATCH] Patches
-
----
- LoopKit/InsulinKit/InsulinMath.swift | 32 ++++++++++++++++++++++------
- 1 file changed, 25 insertions(+), 7 deletions(-)
-
 diff --git a/LoopKit/InsulinKit/InsulinMath.swift b/LoopKit/InsulinKit/InsulinMath.swift
-index abd5d70..ba3d697 100644
+index 6efd2bd..094fee4 100644
 --- a/LoopKit/InsulinKit/InsulinMath.swift
 +++ b/LoopKit/InsulinKit/InsulinMath.swift
-@@ -40,10 +40,18 @@ extension DoseEntry {
+@@ -40,10 +40,23 @@ extension DoseEntry {
          }
  
          // Consider doses within the delta time window as momentary
 +        //ken changes
 +        //implement user set negative basal multiplier
-+        let negativeBasalMultiplier = UserDefaults.standard.double(forKey: "negativeBasalMultiplier")
++        var negativeBasalMultiplier = UserDefaults.standard.double(forKey: "negativeBasalMultiplier")
++        // if user has not modified settings, this value reports as 0 initially
++        // Default shows as 100%, aka, same as unmodified code
++        if negativeBasalMultiplier == 0 {
++            negativeBasalMultiplier = 1
++        }
 +        var modifiednetBasalUnits = netBasalUnits
 +        if netBasalUnits < 0.0 {
 +            modifiednetBasalUnits = netBasalUnits * negativeBasalMultiplier
@@ -32,7 +28,7 @@ index abd5d70..ba3d697 100644
          }
      }
  
-@@ -77,11 +85,21 @@ extension DoseEntry {
+@@ -77,11 +90,23 @@ extension DoseEntry {
          }
  
          // Consider doses within the delta time window as momentary
@@ -44,8 +40,10 @@ index abd5d70..ba3d697 100644
 +        //ken changes
 +            //if net basal is negative use a mulitplier (0-1)
 +            //modified in user settings
-+            
-+            let negativeBasalMultiplier = UserDefaults.standard.double(forKey: "negativeBasalMultiplier")
++            var negativeBasalMultiplier = UserDefaults.standard.double(forKey: "negativeBasalMultiplier")
++            if negativeBasalMultiplier == 0 {
++                negativeBasalMultiplier = 1
++            }
 +            var modifiednetBasalUnits = netBasalUnits
 +            if netBasalUnits < 0.0 {
 +                modifiednetBasalUnits = netBasalUnits * negativeBasalMultiplier
@@ -59,6 +57,3 @@ index abd5d70..ba3d697 100644
      }
  
      func trimmed(from start: Date? = nil, to end: Date? = nil, syncIdentifier: String? = nil) -> DoseEntry {
--- 
-2.37.0 (Apple Git-136)
-
