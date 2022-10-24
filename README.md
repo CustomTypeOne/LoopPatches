@@ -14,8 +14,8 @@ Loop Patches offer several adjustments to Loop. Each is found under the iOS Loop
     * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
 1. Negative IOB Factor
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
-    * Unlike the other patches, this one is enabled by default using a 50% setting for negative IOB
-    * To Disable this factor, modify the picker wheel to 100%
+    * This feature is disabled by selecting a factor of 100% (default setting)
+    * Note - this modifies what Loop records as IOB whenever IOB is negative
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
     * **Use with care; meant for high glucose >250 mg/dL, 14 mmol/L**
@@ -52,9 +52,18 @@ Tap on the phone settings icon
 
 Note: If you observe the settings screen as shown on the right side of the graphic above, this means you dragged the Settings Bundle into the correct location as described in the installation instructions. You must also perform the `git apply` action described below, where you copy and paste text into the appropriate terminal location, with no errors reported for the patches to actually be "connected" to these iOS settings.
 
-All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. I am unable to test MMOL but will report here if anyone reports it works or does not work with mmol.
+All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if there are problems with mmol/L units.
 
-## To Apply
+For the Automatic Switching Strategy or Basal Lock features:
+
+* Tap (or double-tap) on the "value" row to bring up a keyboard and enter a value
+    * There is no "done" button on the keyboard for these entries
+    * Click on the <Settings button at upper left to dismiss the keyboard
+    * Tap on Loop again to view the value
+* Make sure that value is reasonable **before** sliding the switch to Enabled
+* When modifying a value, be sure to disable the switch, modify and then enable
+
+## Apply the Patches to a Fresh Download
 
 Warning: Only apply LoopPatches to fresh a download of Loop-dev. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
 
@@ -88,19 +97,19 @@ Now that you have a terminal window opened in the LoopWorkspace folder, you can 
 Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
 ```
-cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 cd Loop
 git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
 cd ..
 cd LoopKit
 git apply ~/Downloads/LoopPatches-main/LoopKitPatch.txt
 cd ..
+cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 
 ```
 
 After the text is copied, click in the terminal window and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute.
 
-Notice you will see messages talking about trailing `whitespace errors`, but those lines begin with the word `warning`. Those can all be ignored. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
+Notice you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
 If you see this message:
     `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
@@ -164,10 +173,10 @@ These files should be modified. If they are not, you did not apply the patches s
 
 1. Under the Loop folder icon (left side of Xcode pane)
     * Loop/Managers/DoseMath.swift
-        * line 9, near 392, near 499
+        * line 12, near 395, near 503
     * Loop/Managers/LoopDataManager.swift
-        * near line 1596, near 1639
+        * near line 1599, near 1641
 1. Under the LoopKit folder icon (left side of Xcode pane)
     * LoopKit/InsulinKit/InsulinMath.swift
-        * near line 40 and 85
-1. If you are comfortable with git command line tools and happen to type git status in the Loop folder, you will notice that `Loop.xcodeproj/project.pbxproj` has been modified. All the changes have to do with incorporating the Settings.bundle.
+        * near line 43 and 93
+1. If you are comfortable with git command line tools and happen to type git status in the Loop folder, you will notice that `Loop.xcodeproj/project.pbxproj` has been modified. All the changes in that file have to do with incorporating the Settings.bundle.
