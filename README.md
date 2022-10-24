@@ -63,7 +63,9 @@ For the Automatic Switching Strategy or Basal Lock features:
 * Make sure that value is reasonable **before** sliding the switch to Enabled
 * When modifying a value, be sure to disable the switch, modify and then enable
 
-## Apply the Patches to a Fresh Download
+## Apply the Patches
+
+### Fresh Download of Loop-dev
 
 Warning: Only apply LoopPatches to fresh a download of Loop-dev. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
 
@@ -72,6 +74,8 @@ For each link below - remember to control-click (or right click) so you can retu
 * Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop-dev
 * When building, choose to build to a simulator (not your phone) to insure build succeeds before applying LoopPatches
 * Keep Xcode open - you will use it again after applying LoopPatches
+
+### Download LoopPatches
 
 Then follow these directions carefully.
 
@@ -88,11 +92,22 @@ Then follow these directions carefully.
     * This creates the `LoopPatches-main` folder, double click on it to open the folder
     * Inside the folder is a file called `Settings.bundle.zip`, double click on that file
 
-It is now time to open a terminal window associated with your new Loop-dev download.
+### Open New Terminal at LoopWorkspace
 
-Please follow these instructions from LoopDocs: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
+It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download.
 
-Now that you have a terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
+For full directions, with graphics refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
+
+* Open Finder
+* Navigate to Downloads / BuildLoop
+* Find the version of Loop-dev you just downloaded
+* Open the folder to view LoopWorkspace
+* Hold down the CTRL key and click (or right-click) LoopWorkspace
+* A menu appears - select New Terminal at Folder (near the bottom of the list)
+
+### Copy and Paste Commands
+
+Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
 
 Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
@@ -120,6 +135,8 @@ If you see this message:
 cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 
 ```
+
+### Configure Xcode with Settings Bundle
 
 Return to the LoopWorkspace folder in Finder that you used to open the terminal window.
 
