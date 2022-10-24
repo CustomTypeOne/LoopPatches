@@ -1,46 +1,182 @@
 ***
-## Patch cannot be applied to Dev code older than July 14th
-Tested with Loop Dev on 09 Sept 2022
-***
+## LoopPatches cannot be applied to Dev code that is older than 14 July 2022.
 
-# LoopPatches
+Tested with Loop Dev version: 26 Sep 2022, commit ca8a374
 
-These patches are provided open source and it is your responsibility to review the code. These patches are highly experimental for testing, research, and education and are not approved for therapy. It is your responsibility to review the code and understand the changes using this makes. You should also run tests in an xcode simulator to review the effect they have on Loop behavior and settings.
+# Custom Type One: LoopPatches
 
-# Automatic Strategy Switcher, Alternate Partial Application Factor, Negative IOB Factor, and Basal Lock Patch
+Loop Patches offer several adjustments to Loop. Each is found under the iOS Loop settings (after patch installation) in this order with these names:
 
-DO NOT attempt to use this patch until you have read and understood the functionality that this adds and changes. [Read more information here](https://www.craft.do/s/pakv8NO1oYpDgh).
-- Automatic Strategy Switcher allows you to configure a threshold where Loop automatically switches between TB (<= threshold) and AB (> threshold). You must set Loop to AB mode and enable this setting for it to function. If you are in TB only, it will not auto switch you to AB and it also will not switch the setting within Loop.
-- Alternate Partial Bolus Application Factor (PAF) allows you to adjust the 40% default used when determining what percentage of the calculated AB dose that Loop delivers.
-- Negative IOB Factor is a percentage you can use to adjust the effect of negative IOB. During stubborn lows, Loop will frequently try to dose too much of the negative IOB as a recovery. This restricts Loop to only use this percentage of the negative IOB in a dose. Credit goes to Kenneth Stack for this. I just integrated his brilliant solution.
-- Basal Lock can be used to prevent Loop from reducing or suspending insulin when over a set BG value to assist with stubborn highs. Do not use unless you understand the risks. The BG value should be checked everytime you rebuild Loop and confirmed that it is set at a high enough value to be used safely. Loop will not be allowed to automatically reduce or suspend basal in any circumstance until the BG value drops below the threshold you have entered.
+1. Partial Bolus Application Factor
+    * Adjust the percentage of recommended insulin that Loop delivers for each Automatic Bolus when that Dosing Strategy is selected
+    * **NOT RECOMMENDED, added for convenience of people returning from FreeAPS**
+1. Automatic Strategy Switching
+    * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
+1. Negative IOB Factor
+    * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
+    * This feature is disabled by selecting a factor of 100% (default setting)
+    * Note - this modifies what Loop records as IOB whenever IOB is negative
+1. Basal Lock
+    * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
+    * **Use with care; meant for high glucose >250 mg/dL, 14 mmol/L**
+        * **When used improperly, this can cause lows**
 
-To keep from needing to modify these patches frequently, the settings have been moved to iOS Settings App->Loop. This is the same location where you find Bluetooth, privacy, and similar settings.
-All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. I am unable to test MMOL but will report here if anyone reports it works or does not work with mmol.
+Use caution with these features and adjust conservatively and slowly for safety.
 
-## To Apply
+**WARNING: These patches are open source, experimental and not approved for therapy by any governmental organization.**
 
-1. Only apply to fresh a download of Loop. If you attempted to apply and it errored (only whitespace errors are acceptable), delete the download and start over.
-2. Use the green button to download the files and unzip the downloaded file
-3. Inside the unzipped folder, you will also need to unzip the settings.bundle file
-4. Copy LoopPatch.txt into /LoopWorkspace/Loop/, open terminal to this folder, and run: git apply LoopPatch.txt
-5. Copy LoopkitPatch.txt into /LoopWorkspace/Loopkit/, open terminal to this folder, and run: git apply LoopkitPatch.txt
-6. Open xcode and drag the settings.bundle file just inside the Loop project folder and select the first 5 boxes when asked for targets
+* Do not use LoopPatches if you are not an experienced Looper who has previously built Loop and understands how to customize the code.
+* It is your responsibility to review the code and understand the changes made.
+* You take full responsibility for building and running Loop Dev with the patches and do so at your own risk.
+* Please consult with your health care professional regarding your diabetes management.
 
-![settingsbundle](https://user-images.githubusercontent.com/38429455/158242367-de24fa1b-9f4e-4082-9d9b-db6ad109a563.png)
+## Feature Details
 
-## MMOL Users - you need to make a modification to select "numbers and punctuation" for the 2 items shown below before you build.
+**DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches Documentation link (below) in a new tab or window and read the documentation.**
 
-<img width="1209" alt="mmolChange" src="https://user-images.githubusercontent.com/38429455/192881728-272f1672-7889-4a63-9a4c-2d0e4736b0a7.png">
+* Hold down the control key and click (or right click) on the link for [Loop Patches Documentation](https://www.craft.do/s/pakv8NO1oYpDgh)
+* Select open in a new window or new tab of your browser and read about each patch
+* Then return to this page before continuing (because the documentation page does not have the patch code)
 
-# To Test the switcher functionality
+## Feature Selection After Installation
 
-1. Leave your phone plugged in with xcode running after building
-2. Set Loop to Automatic Bolus for the dosing strategy
-3. Set your BG threshold in iOS Settings/Loop
-4. Enable the switcher toggle in iOS Settings/Loop
-5. Open /Loop/Managers/LoopDataManager.swift in xcode and set breakpoints on lines 1614 and 1616
-6. At the next Loop cycle, it will pause running at one of these breakpoints. Line 1614 is if BG is over your threshold, Line 1616 is if BG is under your threshold.
+After installation, each patch will be enabled or modified using the phone iOS settings.
 
+Tap on the phone settings icon
 
-![IMG_0191](https://user-images.githubusercontent.com/38429455/161996907-9e81707a-cea7-421f-91d4-dc4c2e571a7e.jpeg)
+* Scroll down until you find the Loop app
+* Tap on Loop
+* The graphic below shows phone (Loop) settings: Left before the Patch, Right after the Patch
+
+<a href="/img/looppatches-loop-settings.svg"><img src="/img/looppatches-loop-settings.svg?raw=true" alt="Image showing the iOS settings screen before and after applying Settings.bundle" width="500"></a>
+
+Note: If you observe the settings screen as shown on the right side of the graphic above, this means you dragged the Settings Bundle into the correct location as described in the installation instructions. You must also perform the `git apply` action described below, where you copy and paste text into the appropriate terminal location, with no errors reported for the patches to actually be "connected" to these iOS settings.
+
+All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if there are problems with mmol/L units.
+
+For the Automatic Switching Strategy or Basal Lock features:
+
+* Tap (or double-tap) on the "value" row to bring up a keyboard and enter a value
+    * There is no "done" button on the keyboard for these entries
+    * Click on the <Settings button at upper left to dismiss the keyboard
+    * Tap on Loop again to view the value
+* Make sure that value is reasonable **before** sliding the switch to Enabled
+* When modifying a value, be sure to disable the switch, modify and then enable
+
+## Apply the Patches to a Fresh Download
+
+Warning: Only apply LoopPatches to fresh a download of Loop-dev. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
+
+For each link below - remember to control-click (or right click) so you can return to these instructions easily.
+
+* Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop-dev
+* When building, choose to build to a simulator (not your phone) to insure build succeeds before applying LoopPatches
+* Keep Xcode open - you will use it again after applying LoopPatches
+
+Then follow these directions carefully.
+
+1. Open Finder on your computer and examine the Downloads folder
+    * If a folder called `LoopPatches-main` exists, delete it
+        * Hold down the Control Key and click on the folder name and select `Move to Trash`
+    * If a file called `LoopPatches-main.zip` exists, delete it using the same method
+    * Examine Finder to make sure there are no LoopPatches-main folders or zip files in Downloads
+1. Use the green button at the top of this page that says `Code`
+    * Click on `Code`
+    * Select Download ZIP
+1. Return to Finder and examine the Downloads folder
+    * Double click on `LoopPatches-main.zip`
+    * This creates the `LoopPatches-main` folder, double click on it to open the folder
+    * Inside the folder is a file called `Settings.bundle.zip`, double click on that file
+
+It is now time to open a terminal window associated with your new Loop-dev download.
+
+Please follow these instructions from LoopDocs: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
+
+Now that you have a terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
+
+Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
+
+```
+cd Loop
+git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
+cd ..
+cd LoopKit
+git apply ~/Downloads/LoopPatches-main/LoopKitPatch.txt
+cd ..
+cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
+
+```
+
+After the text is copied, click in the terminal window and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute.
+
+Notice you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
+
+If you see this message:
+    `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
+
+* That means you did not double click the `Settings.bundle.zip` file.  Do it now and then copy and paste just this one line.
+
+```
+cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
+
+```
+
+Return to the LoopWorkspace folder in Finder that you used to open the terminal window.
+
+* Double click on LoopWorkspace to open the LoopWorkspace folder
+* Double click on Loop to open the Loop folder
+* Locate the Settings.bundle file - you will use that next
+
+Return to Xcode, which was used to build the fresh Loop-dev download to a simulator.
+
+* Click on the folder icon in the left pane of Xcode
+* Click on the icon to the left of the Loop folder to open it (you should see Scripts, Common, etc)
+
+You need to arrange your screen to see both the Finder folder and Xcode for this next step.
+
+* From Finder, drag the Settings.bundle into Xcode (using these directions)
+    * Click on Settings.bundle and hold the mouse button down
+    * Drag into the Xcode left pane (as shown in the graphic below)
+    * Move the mouse (while holding down the button) until the blue line (see graphic below) is immediately under Loop and above Scripts
+    * Let go of the mouse button
+* A new window will appear in Xcode as shown in the graphic below
+    * Add a check mark (if not there) by Copy Items if needed
+    * Add a check mark, in Add to Targets, to left of Loop
+
+<a href="/img/looppatches-settings-bundle.svg"><img src="/img/looppatches-settings-bundle.svg?raw=true" alt="Image showing the Xcode window as user drags Settings.bundle into place" width="750"></a>
+
+* If you use mmol - follow the directions below for MMOL users before building with LoopPatches
+* Optional, check the modified files inside Xcode (instructions below)
+
+### Ready to build with LoopPatches:
+
+1. Click on Square Block to the left of the Build arrow in Xcode if it exists
+    * The Square Block just means Xcode is connected to the Simulator and the simulator is running
+    * Clicking on the square block, stops the simulator
+1. Click on the Build Arrow to build to the simulator again
+1. Confirm the build succeeded without errors
+1. (Optional) If you want other customizations, add them now and test build to the simulator again
+1. Click on Square Block to stop the simulator
+1. Plug in your phone, select your phone and build to your phone
+
+### MMOL Users
+
+You need to make a modification to select "numbers and punctuation" for the 2 items shown below before you build.
+
+<a href="/img/mmolChange.png"><img src="/img/mmolChange.png?raw=true" alt="Image showing the Xcode window as user modifies for using mmol/L units" width="1209"></a>
+
+## To Confirm the Patches were Applied
+
+In the Xcode window, left pane, you will notice the letter M appears by modified files.
+
+These files should be modified. If they are not, you did not apply the patches successfully. There will be indications in Xcode that the files have been modified at the lines indicated. Note the line numbers are all after the patch has been applied.
+
+1. Under the Loop folder icon (left side of Xcode pane)
+    * Loop/Managers/DoseMath.swift
+        * line 12, near 395, near 503
+    * Loop/Managers/LoopDataManager.swift
+        * near line 1599, near 1641
+1. Under the LoopKit folder icon (left side of Xcode pane)
+    * LoopKit/InsulinKit/InsulinMath.swift
+        * near line 43 and 93
+1. If you are comfortable with git command line tools and happen to type git status in the Loop folder, you will notice that `Loop.xcodeproj/project.pbxproj` has been modified. All the changes in that file have to do with incorporating the Settings.bundle.
