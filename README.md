@@ -1,8 +1,10 @@
 ***
 ## LoopPatches cannot be applied to Dev code that is older than 14 July 2022.
 
-Tested with Loop Dev version: 26 Sep 2022, commit ca8a374
-Tested using mg/dL
+Tested with
+
+* Loop Dev version: 26 Sep 2022, commit ca8a374
+* Using mg/dL
 
 # Custom Type One: LoopPatches
 
@@ -39,7 +41,7 @@ Use caution with these features and adjust conservatively and slowly for safety.
 
 **DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches Documentation link (below) in a new tab or window and read the documentation.**
 
-* Hold down the control key and click (or right click) on the link for [Loop Patches Documentation](https://www.craft.do/s/pakv8NO1oYpDgh)
+* Hold down the control key and click (or right click) on the link for Loop Patches Documentation: https://www.craft.do/s/pakv8NO1oYpDgh
 * Select open in a new window or new tab of your browser and read about each patch
 * Then return to this page before continuing (the documentation page does not have the patch code)
 
@@ -81,7 +83,7 @@ For the Automatic Switching Strategy or Basal Lock features:
 1. Follow directions to drag over Settings bundle inside Xcode
     * Build to a simulator; ensure it builds without error
 1. Build Loop-dev with LoopPatches to your phone
-1. Review the LoopPatches documentation: https://www.craft.do/s/pakv8NO1oYpDgh
+1. Choose the feature(s) to enable and test each one
 
 ### Fresh Download of Loop-dev
 
@@ -90,7 +92,7 @@ Warning: Only apply LoopPatches to fresh a download of Loop-dev. If you have oth
 For each link below - remember to control-click (or right click) so you can return to these instructions easily.
 
 * Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop-dev
-* When building, choose to build to a simulator (not your phone) to insure build succeeds before applying LoopPatches
+* When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
 * Keep Xcode open - you will use it again after applying LoopPatches
 
 ### Download LoopPatches
@@ -172,6 +174,8 @@ Return to the LoopWorkspace folder in Finder that you used to open the terminal 
 
 * Double click on LoopWorkspace to open the LoopWorkspace folder
 * Double click on Loop to open the Loop folder
+    * Do not double click on the next Loop Folder
+    * You want to be in LoopWorkspace/Loop NOT LoopWorkspace/Loop/Loop
 * Locate the Settings.bundle file - you will use that next
 
 Return to Xcode, which was used to build the fresh Loop-dev download to a simulator.
