@@ -115,7 +115,7 @@ Then follow these directions carefully.
 
 ### Open New Terminal at LoopWorkspace
 
-It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download.
+It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal you might have open.
 
 For full directions, with graphics refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
 
@@ -150,7 +150,7 @@ cd ..
 
 ```
 
-After the text is copied, click in the terminal window and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute - with some computers the lines only execute after hitting return.
+After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute - with some computers the lines only execute after hitting return.
 
 Notice you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
@@ -163,10 +163,14 @@ cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 
 ```
 
+After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute - with some computers the lines only execute after hitting return.
+
 If you see this message:
     `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
 
 * That means you did not double click the `Settings.bundle.zip` file to unzip it.  Do it now try the one command again.
+
+If there is no response to the command (make sure you hit return), then it worked.
 
 ### Configure Xcode with Settings Bundle
 
