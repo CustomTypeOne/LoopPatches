@@ -20,7 +20,7 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for these setting**
 1. Negative IOB Factor
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
-    * This feature is disabled by selecting a factor of 100% (default setting)
+    * This feature is disabled by selecting a factor of 100% (default setting is 1.0, same as 100%)
     * Note - this modifies what Loop records as IOB whenever IOB is negative
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
