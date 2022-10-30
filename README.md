@@ -1,6 +1,8 @@
 ***
 ## LoopPatches cannot be applied to Dev code that is older than 14 July 2022.
 
+The new feature: Add Now Marker, Main Charts: requires dev code later than Aug 1, 2022
+
 Tested with
 
 * Loop Dev version: 26 Sep 2022, commit ca8a374
@@ -8,13 +10,16 @@ Tested with
 
 # Custom Type One: LoopPatches
 
-LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds. Only enable the feature(s) you want to use and test. Leave the rest disabled.
+LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
+
+Note: for prior users of LoopPatches - the order of options has been modified and new features are available. In rough order, features near the bottom of the list are not recommended or are new and require more care. The order of patches displayed under Settings does not affect the values saved from previous builds. Those values are remembered (by name) for a given phone.
 
 The configuration for each patch is found under the iOS Loop settings (after patch installation) in this order with these names:
 
-1. Partial Bolus Application Factor
-    * Adjust the percentage of recommended insulin that Loop delivers for each Automatic Bolus when that Dosing Strategy is selected
-    * **NOT RECOMMENDED, added for convenience of people returning from FreeAPS**
+1. Add Now Marker, Main Charts
+    * Display Feature
+    * A vertical line is presented on each of the 4 main charts on the main Loop screen
+    * This can be enabled or disabled (default)
 1. Automatic Strategy Switching
     * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
     * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for these setting**
@@ -22,6 +27,9 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
     * This feature is disabled by selecting a factor of 100% (default setting is 1.0, same as 100%)
     * Note - this modifies what Loop records as IOB whenever IOB is negative
+1. Partial Bolus Application Factor
+    * Adjust the percentage of recommended insulin that Loop delivers for each Automatic Bolus when that Dosing Strategy is selected
+    * **NOT RECOMMENDED, added for convenience of people returning from FreeAPS**
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
     * **Use with care; meant for high glucose >250 mg/dL**
@@ -41,8 +49,10 @@ Use caution with these features and adjust conservatively and slowly for safety.
 
 **DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches Documentation link (below) in a new tab or window and read the documentation.**
 
-* Hold down the control key and click (or right click) on the link for Loop Patches Documentation: https://www.craft.do/s/pakv8NO1oYpDgh
-* Select open in a new window or new tab of your browser and read about each patch
+* Hold down the control key and click (or right click) on the link for Loop Patches Documentation : https://www.craft.do/s/pakv8NO1oYpDgh
+* Select open in a new window or new tab of your browser and read about each patch provided by Jon Fawcett
+* New additions to the LoopPatches - provided by Marion Barker
+    * Add Now Marker, Main Charts: No documentation required
 * Then return to this page before continuing (the documentation page does not have the patch code)
 
 ## Feature Selection After Installation
