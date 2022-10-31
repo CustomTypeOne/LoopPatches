@@ -1,18 +1,18 @@
 ***
 ## LoopPatches cannot be applied to Dev code that is older than 14 July 2022.
 
-The new feature: Add Now Marker, Main Charts: requires dev code later than Aug 1, 2022
+The new feature: Add Now Marker, Main Charts: requires dev code later than 1 Aug 2022
 
 Tested with
 
 * Loop Dev version: 26 Sep 2022, commit ca8a374
-* Using mg/dL
+* Tested using mg/dL
 
 # Custom Type One: LoopPatches
 
 LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
-Note: for prior users of LoopPatches - the order of options has been modified and new features are available. In rough order, features near the bottom of the list are not recommended or are new and require more care. The order of patches displayed under Settings does not affect the values saved from previous builds. Those values are remembered (by name) for a given phone.
+Note: for prior users of LoopPatches - the order of features has been modified and new features are available. In rough order, features near the bottom of the list are not recommended or are new and require more care. The order of patches displayed under Settings does not affect the values saved from previous builds. Those values are remembered (by name) for a given phone.
 
 The configuration for each patch is found under the iOS Loop settings (after patch installation) in this order with these names:
 
@@ -146,7 +146,7 @@ If the response is wrong, quit out of that terminal and try again.
 
 ### Copy and Paste Commands
 
-Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
+Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. Each patch must be applied to the correct folder, so you will see change directory (`cd`) commands as well as `git apply` commands. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
 
 Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
@@ -160,11 +160,11 @@ cd ..
 
 ```
 
-After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute - with some computers the lines only execute after hitting return.
+After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
 Notice you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
-Now it is time to copy over the Settings bundle. **Do not continue if you got an error above.**
+Now it is time to copy (`cp`) the Settings bundle to the correct folder. **Do not continue if you got an error above.**
 
 Copy the line below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
@@ -173,12 +173,12 @@ cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 
 ```
 
-After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, the lines will execute - with some computers the lines only execute after hitting return.
+After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.)  Once the line is pasted, hit return.
 
 If you see this message:
     `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
 
-* That means you did not double click the `Settings.bundle.zip` file to unzip it.  Do it now try the one command again.
+* That means you did not double click the `Settings.bundle.zip` file to unzip it.  Do it now, and then try the last command again.
 
 If there is no response to the command (make sure you hit return), then it worked.
 
@@ -192,7 +192,7 @@ Return to the LoopWorkspace folder in Finder that you used to open the terminal 
     * You want to be in LoopWorkspace/Loop NOT LoopWorkspace/Loop/Loop
 * Locate the Settings.bundle file - you will use that next
 
-Return to Xcode, which was used to build the fresh Loop-dev download to a simulator.
+Return to Xcode, which was used to build the fresh Loop-dev download to a simulator. Refer to the graphic below to see the arrangement for Xcode needed for this next step.
 
 * Click on the folder icon in the left pane of Xcode
 * Click on the icon to the left of the Loop folder to open it (you should see Scripts, Common, etc)
@@ -223,11 +223,15 @@ You need to arrange your screen to see both the Finder folder and Xcode for this
     * Confirm the build succeeded without errors
 1. Plug in your phone, select your phone and build to your phone
 
+### Congratulations
+
+So long as you did not get any errors, you have now applied the LoopPatches customization to your Loop app. Remember, these are configured under iOS -> Settings -> Loop. Not inside the Loop app.
+
 Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
 ### MMOL Users
 
-No patch changes are required for mmol/L users. Not sure about conversion of units - might need to enter values in mg/dL regardless of the units selected in Apple Health. Try multiplying value in mmol/L by 18.
+No patch changes are required for mmol/L users. Not sure about conversion of units - might need to enter values in mg/dL regardless of the units selected in Apple Health. Start by multiplying value in mmol/L by 18 when setting a Threshold.
 
 ## To Confirm the Patches were Applied Before Building
 
@@ -240,6 +244,9 @@ These files should be modified. If they are not, you did not apply the patches s
         * line 12, near 395, near 503
     * Loop/Managers/LoopDataManager.swift
         * near line 1599, near 1641
+    * LoopUI/Charts
+        * These 4 files contain code for the "now" marker
+        * COBChart.swift, DoseChart.swift, IOBChart.swift and PredictedGlucoseChart.swift
 1. Under the LoopKit folder icon (left side of Xcode pane)
     * LoopKit/InsulinKit/InsulinMath.swift
         * near line 43 and 93
