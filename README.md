@@ -216,9 +216,9 @@ You need to arrange your screen to see both the Finder folder and Xcode for this
 
 <a href="/img/looppatches-settings-bundle.svg"><img src="/img/looppatches-settings-bundle.svg?raw=true" alt="Image showing the Xcode window as user drags Settings.bundle into place" width="750"></a>
 
-* Optional, check the modified files inside Xcode (instructions below)
+* Optional, check the modified files inside Xcode using [Confirm the Patch Code Before Building](#confirm-the-patch-code-before-building)
 
-### Ready to build with LoopPatches:
+### Build with LoopPatches
 
 1. Click on Square Block to the left of the Build arrow in Xcode if it exists
     * The Square Block just means Xcode is connected to the Simulator and the simulator is running
@@ -239,7 +239,7 @@ Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
 No patch changes are required for mmol/L users. Not sure about conversion of units - might need to enter values in mg/dL regardless of the units selected in Apple Health. Start by multiplying value in mmol/L by 18 when setting a Threshold.
 
-## To Confirm the Patches were Applied Before Building
+## Confirm the Patch Code Before Building
 
 In the Xcode window, left pane, you will notice the letter M appears by modified files.
 
