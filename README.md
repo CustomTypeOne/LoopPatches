@@ -8,6 +8,26 @@ Tested with
 * Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
 
+Table of Contents for **Custom Type One: LoopPatches**
+
+* [Feature Details](#feature-details)
+* [Feature Selection](#feature-selection)
+    * [All Features](#all-features)
+    * [Automatic Switching Strategy or Basal Lock](#automatic-switching-strategy-or-basal-lock)
+    * [mmol/L Users](#mmolL-users)
+* [Apply LoopPatches](#apply-looppatches)
+    * [Summary of Steps](#summary-of-steps)
+    * [Fresh Download of Loop-dev](#fresh-download of loop-dev)
+    * [Download LoopPatches](#download-looppatches)
+    * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
+    * [Copy and Paste Commands](#copy-and-paste-commands)
+    * [Configure Xcode with Settings Bundle](#configure-xcode-with-settings-bundle)
+    * [Build with LoopPatches](#build-with-looppatches)
+    * [Congratulations](#congratulations)
+* [Confirm Patches Work](#confirm-patches-work)
+    * [Example for Switcher Patch](#example-for-switcher-patch)
+* [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
+
 # Custom Type One: LoopPatches
 
 LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
@@ -55,7 +75,7 @@ Use caution with these features and adjust conservatively and slowly for safety.
     * Add Now Marker, Main Charts: No documentation required
 * Then return to this page before continuing (the documentation page does not have the patch code)
 
-## Feature Selection After Installation
+## Feature Selection
 
 After installation, each patch will be enabled or modified using the phone iOS settings.
 
@@ -71,20 +91,24 @@ Note: If you observe the settings screen as shown on the right side of the graph
 
 All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if there are problems with mmol/L units.
 
-### For the Automatic Switching Strategy or Basal Lock features:
+### All Features:
+
+* To make sure your modification of a setting is updated in Loop immediately, quit the Loop app (swipe up) and then restart
+    * If you do not do this, then within one Loop cycle, the values should be updated anyway
+    * Do not guess, make sure the feature you just changed is behaving the way you want
+
+### Automatic Switching Strategy or Basal Lock:
 
 * Tap (or double-tap) on the "value" row to bring up a keyboard and enter a value, return when done
 * Make sure that value is reasonable **before** sliding the switch to Enabled
     * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for these setting**
 * When modifying a value, be sure to disable the switch, modify and then enable
 
-### For all Features:
+### mmol/L Users
 
-* To make sure your modification of a setting is updated in Loop immediately, quit the Loop app (swipe up) and then restart
-    * If you do not do this, then within one Loop cycle, the values should be updated anyway
-    * Do not guess, make sure the feature you just changed is behaving the way you want
+No patch changes are required for mmol/L users. Not sure about conversion of units - might need to enter values in mg/dL regardless of the units selected in Apple Health. Start by multiplying value in mmol/L by 18 when setting a Threshold.
 
-## Apply the Patches
+## Apply LoopPatches
 
 ### Summary of Steps
 
@@ -216,7 +240,7 @@ You need to arrange your screen to see both the Finder folder and Xcode for this
 
 <a href="/img/looppatches-settings-bundle.svg"><img src="/img/looppatches-settings-bundle.svg?raw=true" alt="Image showing the Xcode window as user drags Settings.bundle into place" width="750"></a>
 
-* Optional, check the modified files inside Xcode using [Confirm the Patch Code Before Building](#confirm-the-patch-code-before-building)
+* Optional, check the modified files inside Xcode using [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
 
 ### Build with LoopPatches
 
@@ -234,29 +258,6 @@ You need to arrange your screen to see both the Finder folder and Xcode for this
 So long as you did not get any errors, you have now applied the LoopPatches customization to your Loop app. Remember, these are configured under iOS -> Settings -> Loop. Not inside the Loop app.
 
 Only enable the feature(s) you want to use and test. Leave the rest disabled.
-
-### MMOL Users
-
-No patch changes are required for mmol/L users. Not sure about conversion of units - might need to enter values in mg/dL regardless of the units selected in Apple Health. Start by multiplying value in mmol/L by 18 when setting a Threshold.
-
-## Confirm the Patch Code Before Building
-
-In the Xcode window, left pane, you will notice the letter M appears by modified files.
-
-These files should be modified. If they are not, you did not apply the patches successfully. There will be indications in Xcode that the files have been modified at the lines indicated. Note the line numbers are all after the patch has been applied.
-
-1. Under the Loop folder icon (left side of Xcode pane)
-    * Loop/Managers/DoseMath.swift
-        * line 12, near 395, near 503
-    * Loop/Managers/LoopDataManager.swift
-        * near line 1599, near 1641
-    * LoopUI/Charts
-        * These 4 files contain code for the "now" marker
-        * COBChart.swift, DoseChart.swift, IOBChart.swift and PredictedGlucoseChart.swift
-1. Under the LoopKit folder icon (left side of Xcode pane)
-    * LoopKit/InsulinKit/InsulinMath.swift
-        * near line 43 and 93
-1. If you are comfortable with git command line tools and happen to type git status in the Loop folder, you will notice that `Loop.xcodeproj/project.pbxproj` has been modified. All the changes in that file have to do with incorporating the Settings.bundle.
 
 ## Confirm Patches Work
 
@@ -281,3 +282,22 @@ Now that you've confirmed the patch is working as desired:
 * Enable the feature
 
 Loop will now automatically switch between Dosing Strategy of Temp Basal (less aggressive) when below that level to a Dosing Strategy of Automatic Bolus (more aggressive) when above that level.
+
+## (Optional) Examine Code Before Building
+
+In the Xcode window, left pane, you will notice the letter M appears by modified files.
+
+These files should be modified. If they are not, you did not apply the patches successfully. There will be indications in Xcode that the files have been modified at the lines indicated. Note the line numbers are all after the patch has been applied.
+
+1. Under the Loop folder icon (left side of Xcode pane)
+    * Loop/Managers/DoseMath.swift
+        * line 12, near 395, near 503
+    * Loop/Managers/LoopDataManager.swift
+        * near line 1599, near 1641
+    * LoopUI/Charts
+        * These 4 files contain code for the "now" marker
+        * COBChart.swift, DoseChart.swift, IOBChart.swift and PredictedGlucoseChart.swift
+1. Under the LoopKit folder icon (left side of Xcode pane)
+    * LoopKit/InsulinKit/InsulinMath.swift
+        * near line 43 and 93
+1. If you are comfortable with git command line tools and happen to type git status in the Loop folder, you will notice that `Loop.xcodeproj/project.pbxproj` has been modified. All the changes in that file have to do with incorporating the Settings.bundle.
