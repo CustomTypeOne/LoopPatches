@@ -71,12 +71,18 @@ Note: If you observe the settings screen as shown on the right side of the graph
 
 All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if there are problems with mmol/L units.
 
-For the Automatic Switching Strategy or Basal Lock features:
+### For the Automatic Switching Strategy or Basal Lock features:
 
 * Tap (or double-tap) on the "value" row to bring up a keyboard and enter a value, return when done
 * Make sure that value is reasonable **before** sliding the switch to Enabled
     * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for these setting**
 * When modifying a value, be sure to disable the switch, modify and then enable
+
+### For all Features:
+
+* To make sure your modification of a setting is updated in Loop immediately, quit the Loop app (swipe up) and then restart
+    * If you do not do this, then within one Loop cycle, the values should be updated anyway
+    * Do not guess, make sure the feature you just changed is behaving the way you want
 
 ## Apply the Patches
 
