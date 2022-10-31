@@ -13,6 +13,7 @@ Tested with
 * [Custom Type One: LoopPatches Overview](#custom-type-one-looppatches)
 * [Feature Details](#feature-details)
 * [Feature Selection](#feature-selection)
+    * [Use iOS Settings](#use-ios-settings)
     * [All Features](#all-features)
     * [Automatic Switching Strategy or Basal Lock](#automatic-switching-strategy-or-basal-lock)
     * [mmol/L Users](#mmolL-users)
@@ -77,6 +78,8 @@ Use caution with these features and adjust conservatively and slowly for safety.
 * Then return to this page before continuing (the documentation page does not have the patch code)
 
 ## Feature Selection
+
+### Use iOS Settings
 
 After installation, each patch will be enabled or modified using the phone iOS settings.
 
