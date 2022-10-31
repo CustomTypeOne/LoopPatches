@@ -8,8 +8,9 @@ Tested with
 * Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
 
-Table of Contents for **Custom Type One: LoopPatches**
+## **Table of Contents**
 
+* [Custom Type One: LoopPatches Overview](#custom-type-one-looppatches)
 * [Feature Details](#feature-details)
 * [Feature Selection](#feature-selection)
     * [All Features](#all-features)
@@ -17,7 +18,7 @@ Table of Contents for **Custom Type One: LoopPatches**
     * [mmol/L Users](#mmolL-users)
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
-    * [Fresh Download of Loop-dev](#fresh-download of loop-dev)
+    * [Fresh Download of Loop-dev](#fresh-download-of-loop-dev)
     * [Download LoopPatches](#download-looppatches)
     * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
     * [Copy and Paste Commands](#copy-and-paste-commands)
