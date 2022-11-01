@@ -1,9 +1,9 @@
 ***
-## LoopPatches cannot be applied to Dev code that is older than 14 July 2022.
+## This branch of LoopPatches is a test of applying a binary patch
 
-The new feature: Add Now Marker, Main Charts: requires dev code later than 1 Aug 2022
+(this will be updated after the release, but in the interim, you can apply to it fresh build of Loop-dev)
 
-Tested with
+Tested with 
 
 * Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
@@ -19,11 +19,10 @@ Tested with
     * [mmol/L Users](#mmolL-users)
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
-    * [Fresh Download of Loop-dev](#fresh-download-of-loop-dev)
+    * [Fresh Download of Loop](#fresh-download-of-loop)
     * [Download LoopPatches](#download-looppatches)
     * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
     * [Copy and Paste Commands](#copy-and-paste-commands)
-    * [Configure Xcode with Settings Bundle](#configure-xcode-with-settings-bundle)
     * [Build with LoopPatches](#build-with-looppatches)
     * [Congratulations](#congratulations)
 * [Confirm Patches Work](#confirm-patches-work)
@@ -116,26 +115,26 @@ No patch changes are required for mmol/L users. Not sure about conversion of uni
 
 ### Summary of Steps
 
-1. Obtain a fresh download of Loop-dev
+1. Obtain a fresh download of Loop
     * Build to a simulator; ensure it builds without error
 1. Delete any prior copies of LoopPatches from Downloads folder
 1. Download fresh zip of LoopPatches
     * Find in Downloads, unzip using directions
 1. Open a NEW terminal in new LoopWorkspace
-1. Follow directions to install patches and copy Settings bundle
+1. Follow directions to install patches
     * STOP IMMEDIATELY if you get an error
-1. Follow directions to drag over Settings bundle inside Xcode
-    * Build to a simulator; ensure it builds without error
-1. Build Loop-dev with LoopPatches to your phone
+1. Build Loop with LoopPatches to your phone
 1. Choose the feature(s) to enable and test each one
 
-### Fresh Download of Loop-dev
+### Fresh Download of Loop
 
-Warning: Only apply LoopPatches to fresh a download of Loop-dev. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
+Warning: Only apply LoopPatches to fresh a download of Loop. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
 
 For each link below - remember to control-click (or right click) so you can return to these instructions easily.
 
-* Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop-dev
+**AFTER RELEASE - these instructions will be modified to get a fresh build of released code**
+
+* Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
 * Keep Xcode open - you will use it again after applying LoopPatches
 
@@ -143,23 +142,23 @@ For each link below - remember to control-click (or right click) so you can retu
 
 Then follow these directions carefully.
 
+**Note - after the release, the commands will be updated - but set up to match the branch name so testers do not need to rename the folder**
+
 1. Open Finder on your computer and examine the Downloads folder
-    * If a folder called `LoopPatches-main` exists, delete it
+    * If a folder called `LoopPatches-test_binary` exists, delete it
         * Hold down the Control Key and click on the folder name and select `Move to Trash`
-    * If a file called `LoopPatches-main.zip` exists, delete it using the same method
+    * If a file called `LoopPatches-test_binary.zip` exists, delete it using the same method
     * Examine Finder to make sure there are no folders or files that begin with LoopPatches in Downloads, there may be others with the number 2 or 3 appended to the name if you downloaded without deleting old copies or unzipped more than one time
 1. Use the green button at the top of this page that says `Code`
     * Click on `Code`
     * Select Download ZIP (wait to find it in finder before unzipping)
 1. Return to Finder and examine the Downloads folder
-    * Double click on `LoopPatches-main.zip`
-    * This creates the `LoopPatches-main` folder, double click on it to open the folder
-    * Inside the folder is a file called `Settings.bundle.zip`, double click on that file
-    * If you see extra folders with 2 or 3 appended to the name - you unzipped more than one time - only do it once (delete extraneous folders)
+    * Double click on `LoopPatches-test_binary.zip`
+    * This creates the `LoopPatches-test_binary` folder, double click on it to open the folder
 
 ### Open New Terminal at LoopWorkspace
 
-It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal you might have open.
+It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
 For full directions, with graphics refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
 
@@ -176,6 +175,10 @@ The response must end in LoopWorkspace and the date-time should match the fresh 
 
 `/Users/marion/Downloads/BuildLoop/Loop-dev-221020-1353_ca8a374/LoopWorkspace`
 
+**after the release, this line will be:**
+
+`/Users/marion/Downloads/BuildLoop/Loop-221020-1353/LoopWorkspace`
+
 If the response is wrong, quit out of that terminal and try again.
 
 ### Copy and Paste Commands
@@ -186,10 +189,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
+git apply ~/Downloads/LoopPatches-test_binary/LoopPatch.txt
 cd ..
 cd LoopKit
-git apply ~/Downloads/LoopPatches-main/LoopKitPatch.txt
+git apply ~/Downloads/LoopPatches-test_binary/LoopKitPatch.txt
 cd ..
 
 ```
@@ -198,60 +201,19 @@ After the text is copied, click in the **LoopWorkspace Terminal Window** and pas
 
 Notice you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
-Now it is time to copy (`cp`) the Settings bundle to the correct folder. **Do not continue if you got an error above.**
-
-Copy the line below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
+Copy and paste the next line into the same **LoopWorkspace Terminal Window** in order to open Xcode so you can build the code with LoopPatches applied.
 
 ```
-cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
+xed .
 
 ```
-
-After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.)  Once the line is pasted, hit return.
-
-If you see this message:
-    `cp: /Users/<your name>/Downloads/LoopPatches-main/Settings.bundle: No such file or directory`
-
-* That means you did not double click the `Settings.bundle.zip` file to unzip it.  Do it now, and then try the last command again.
-
-If there is no response to the command (make sure you hit return), then it worked.
-
-### Configure Xcode with Settings Bundle
-
-Return to the LoopWorkspace folder in Finder that you used to open the terminal window.
-
-* Double click on LoopWorkspace to open the LoopWorkspace folder
-* Double click on Loop to open the Loop folder
-    * Do not double click on the next Loop Folder
-    * You want to be in LoopWorkspace/Loop NOT LoopWorkspace/Loop/Loop
-* Locate the Settings.bundle file - you will use that next
-
-Return to Xcode, which was used to build the fresh Loop-dev download to a simulator. Refer to the graphic below to see the arrangement for Xcode needed for this next step.
-
-* Click on the folder icon in the left pane of Xcode
-* Click on the icon to the left of the Loop folder to open it (you should see Scripts, Common, etc)
-
-You need to arrange your screen to see both the Finder folder and Xcode for this next step.
-
-* From Finder, drag the Settings.bundle into Xcode (using these directions)
-    * Click on Settings.bundle and hold the mouse button down
-    * Drag into the Xcode left pane (as shown in the graphic below)
-    * Move the mouse (while holding down the button) until the blue line (see graphic below) is immediately under Loop and above Scripts
-    * Let go of the mouse button
-* A new window will appear in Xcode as shown in the graphic below
-    * Add a check mark (if not there) by Copy Items if needed
-    * Add a check mark, in Add to Targets, to left of Loop
-
-<a href="/img/looppatches-settings-bundle.svg"><img src="/img/looppatches-settings-bundle.svg?raw=true" alt="Image showing the Xcode window as user drags Settings.bundle into place" width="750"></a>
 
 * Optional, check the modified files inside Xcode using [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
 
 ### Build with LoopPatches
 
-1. Click on Square Block to the left of the Build arrow in Xcode if it exists
-    * The Square Block just means Xcode is connected to the Simulator and the simulator is running
-    * Clicking on the square block, stops the simulator
 1. Click on the Build Arrow to build to the simulator again
+    * If a window pops up asking if you want to Replace "Loop"?, click on Replace
     * Confirm the build succeeded without errors
 1. (Optional) If you want other customizations, add them now and test build to the simulator again
     * Confirm the build succeeded without errors
@@ -304,4 +266,4 @@ These files should be modified. If they are not, you did not apply the patches s
 1. Under the LoopKit folder icon (left side of Xcode pane)
     * LoopKit/InsulinKit/InsulinMath.swift
         * near line 43 and 93
-1. If you are comfortable with git command line tools and happen to type git status in the Loop folder, you will notice that `Loop.xcodeproj/project.pbxproj` has been modified. All the changes in that file have to do with incorporating the Settings.bundle.
+1. If you are comfortable with git command line tools and happen to type git status in the Loop folder, you will notice that `Loop.xcodeproj/project.pbxproj` has been modified and a new Settings.bundle folder with files inside it has been added to the Loop folder.
