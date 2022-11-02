@@ -90,9 +90,9 @@ Tap on the phone settings icon
 
 <a href="/img/looppatches-loop-settings.svg"><img src="/img/looppatches-loop-settings.svg?raw=true" alt="Image showing the iOS settings screen before and after applying Settings.bundle" width="500"></a>
 
-Note: If you observe the settings screen as shown on the right side of the graphic above, this means you dragged the Settings Bundle into the correct location as described in the installation instructions. You must also perform the `git apply` action described below, where you copy and paste text into the appropriate terminal location, with no errors reported for the patches to actually be "connected" to these iOS settings.
-
 All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if there are problems with mmol/L units.
+
+After each fresh build, check all the values and check behavior for any enabled patches.
 
 ### All Features:
 
@@ -142,7 +142,7 @@ For each link below - remember to control-click (or right click) so you can retu
 
 Then follow these directions carefully.
 
-**Note - after the release, the commands will be updated - but set up to match the branch name so testers do not need to rename the folder**
+**Note - after the release, the commands will be updated - but for the test_binary branch, they are configured to match the branch name so testers do not need to rename the folder that is downloaded**
 
 1. Open Finder on your computer and examine the Downloads folder
     * If a folder called `LoopPatches-test_binary` exists, delete it
@@ -154,7 +154,9 @@ Then follow these directions carefully.
     * Select Download ZIP (wait to find it in finder before unzipping)
 1. Return to Finder and examine the Downloads folder
     * Double click on `LoopPatches-test_binary.zip`
-    * This creates the `LoopPatches-test_binary` folder, double click on it to open the folder
+    * You will notice this creates the `LoopPatches-test_binary` folder
+        * No further action is required
+    * You can use the same finder window for the next step - you won't need this location again
 
 ### Open New Terminal at LoopWorkspace
 
@@ -162,8 +164,7 @@ It is now time to open a terminal window associated with the LoopWorkspace folde
 
 For full directions, with graphics refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
 
-* Open Finder
-* Navigate to Downloads / BuildLoop
+* Use Finder to navigate to Downloads / BuildLoop
 * Find the version of Loop-dev you just downloaded
 * Open the folder to view LoopWorkspace
 * Hold down the CTRL key and click (or right-click) LoopWorkspace
