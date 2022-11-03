@@ -116,7 +116,7 @@ cd Loop
 git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
 cd ..
 cd LoopKit
-git apply ~/Downloads/LoopPatches-main/LoopKitPatch.txt
+git apply ~/Downloads/LoopPatches-main/LoopkitPatch.txt
 cd ..
 cp -pr ~/Downloads/LoopPatches-main/Settings.bundle Loop
 
