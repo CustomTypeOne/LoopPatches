@@ -193,7 +193,7 @@ cd Loop
 git apply ~/Downloads/LoopPatches-test_binary/LoopPatch.txt
 cd ..
 cd LoopKit
-git apply ~/Downloads/LoopPatches-test_binary/LoopKitPatch.txt
+git apply ~/Downloads/LoopPatches-test_binary/LoopkitPatch.txt
 cd ..
 
 ```
