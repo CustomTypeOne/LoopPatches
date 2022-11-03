@@ -162,7 +162,8 @@ Option 2:
     * Double click on `LoopPatches-main.zip`
     * You will notice this creates the `LoopPatches-main` folder
         * No further action is required
-    * You can use the same finder window for the next step - you won't need this location again
+
+You can use the same finder window for the next step - you won't need this location again.
 
 ### Open New Terminal at LoopWorkspace
 
