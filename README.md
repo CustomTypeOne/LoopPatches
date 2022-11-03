@@ -150,8 +150,15 @@ Then follow these directions carefully.
     * Examine Finder to make sure there are no folders or files that begin with LoopPatches in Downloads, there may be others with the number 2 or 3 appended to the name if you downloaded without deleting old copies or unzipped more than one time
 1. Use the green button at the top of this page that says `Code`
     * Click on `Code`
-    * Select Download ZIP (wait to find it in finder before unzipping)
-1. Return to Finder and examine the Downloads folder
+    * Select Download ZIP
+
+#### To unzip the folder:
+
+Option 1:
+* Double click on the LoopPatches-main.zip indicator at the bottom of your browser
+
+Option 2:
+* Return to Finder and examine the Downloads folder
     * Double click on `LoopPatches-main.zip`
     * You will notice this creates the `LoopPatches-main` folder
         * No further action is required
