@@ -229,7 +229,7 @@ So long as you did not get any errors, you have now applied the LoopPatches cust
 
 Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
-Every time you build, please check the settings: refer to [Use iOS Setting](#use-ios-setting).
+Every time you build, please check the settings: refer to [Use iOS Settings](#use-ios-settings).
 
 ## Confirm Patches Work
 
