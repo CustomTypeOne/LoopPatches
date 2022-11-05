@@ -31,7 +31,7 @@ For mmol/L, pretty sure you need to enter thresholds in mg/dL under iOS Settings
 
 LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
-Note: for **prior users of LoopPatches** - the order of features has been modified and new features are available. There is no longer a drag and drop required to added Settings to the build.
+Note: for **prior users of LoopPatches** - the order of features has been modified and new features are available. There is no longer a drag and drop action required to add Settings to Xcode.
 
 * Features near the bottom of the list are either not recommended or are new and require more care
 * The order of patches displayed under Settings does not affect the values saved from previous builds
@@ -45,7 +45,7 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * This can be enabled or disabled (default)
 1. Automatic Strategy Switching
     * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
-    * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for these setting**
+    * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL**
 1. Negative IOB Factor
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
     * This feature is disabled by selecting a factor of 100% (default setting is 1.0, same as 100%)
@@ -57,7 +57,7 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
     * **Use with care; meant for high glucose >250 mg/dL**
         * **When used improperly, this can cause lows**
-        * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for this setting**
+        * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL**
 
 Use caution with these features and adjust conservatively and slowly for safety.
 
@@ -132,7 +132,7 @@ No patch changes are required for mmol/L users. Not sure about conversion of uni
 
 ### Fresh Download of Loop
 
-Warning: Only apply LoopPatches to fresh a download of Loop. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
+Warning: Only apply LoopPatches to a fresh download of Loop. Once patches are applied, you cannot apply them again without taking steps that are not included in these instructions. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
 
 For each link below - remember to control-click (or right click) so you can return to these instructions easily.
 
@@ -169,7 +169,7 @@ You can use the same finder window for the next step - you won't need this locat
 
 It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
-For full directions, with graphics refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
+For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
 
 * Use Finder to navigate to Downloads / BuildLoop
 * Find the version of Loop-dev you just downloaded
@@ -203,16 +203,16 @@ cd ..
 
 After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
-Notice you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
+Notice that you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
-Copy and paste the next line into the same **LoopWorkspace Terminal Window**. This will open (or bring to front) Xcode so you can build the code with LoopPatches applied.
+Copy and paste the next line into the same **LoopWorkspace Terminal Window**. This command (`xed`) will open (or bring to front if already open) Xcode so you can build the code with LoopPatches applied. The `.` just means to open Xcode in the current LoopWorkspace location.
 
 ```
 xed .
 
 ```
 
-* Optional, check the modified files inside Xcode using [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
+* Optional, you can check the modified files inside Xcode using [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
 
 ### Build with LoopPatches
 
@@ -223,19 +223,21 @@ xed .
     * Confirm the build succeeded without errors
 1. Plug in your phone, select your phone and build to your phone
 
-### Congratulations
+### Congratulations!
 
-So long as you did not get any errors, you have now applied the LoopPatches customization to your Loop app. Remember, these are configured under iOS -> Settings -> Loop. Not inside the Loop app.
+So long as you did not get any errors, you have now applied the LoopPatches customization to your Loop app. Remember, these are configured under iOS -> Settings -> Loop screen. Do not look for these settings inside the Loop app settings screen.
 
 Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
+Every time you build, please check the settings: refer to [Use iOS Setting](use-ios-setting).
+
 ## Confirm Patches Work
 
-For each patch you enable, please confirm it works the way you expect it to work before allowing it to run "unattended". You should check this each time you build. Too easy to miss a step and have something not operating the way you expect.
+For each patch you enable, please confirm it works the way you expect it to work before allowing it to run "unattended". You should check this each time you build. It is too easy to miss a step and have something not operating the way you expect.
+
+If you do not know how to confirm a feature is working, **do not enable** that feature.
 
 There are no guardrails to check values in the patch settings. Please be careful.
-
-Make sure the patch is working as expected - if you don't know how to do that, do not enable that patch.
 
 ### Example for Switcher Patch
 
