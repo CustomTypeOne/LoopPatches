@@ -225,7 +225,7 @@ xed .
 
 ### Congratulations!
 
-So long as you did not get any errors, you have now applied the LoopPatches customization to your Loop app. Remember, these are configured under iOS -> Settings -> Loop screen. Do not look for these settings inside the Loop app settings screen.
+So long as you did not get any errors, you have now applied the LoopPatches customization to your Loop app. Remember, these are configured under iOS -> Settings -> Loop screen. These features cannot be adjusted inside the Loop app settings screen.
 
 Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
