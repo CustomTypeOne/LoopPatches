@@ -55,6 +55,7 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * **NOT RECOMMENDED, added for convenience of people returning from FreeAPS**
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
+    * Basal is "locked" to be no lower than the scheduled rate (overrides are ignored)
     * **Use with care; meant for high glucose >250 mg/dL (13.9 mmol/L)**
         * **When used improperly, this can cause lows**
 
@@ -257,23 +258,23 @@ Pay attention next time glucose is Below the threshold to ensure that only Temp 
 
 **Be very careful with this one. If you set the Basal Lock Threshold too low, it will prevent Loop from restricting basal and can cause low glucose.**
 
-**Look for an opportunity, plan on focusing on your phone for 15 to 30 minutes.**
+**Look for an opportunity when glucose is high, plan on focusing on your phone for 15 to 30 minutes.**
 
 1. Confirm that Closed Loop is enabled and Basal Lock is disabled
 1. Next time glucose has been elevated for a while and Loop has given enough insulin that a Temp Basal of 0 U/hr is being provided (raising your correction range can make this happen sooner but be sure to restore it when done testing)
 1. Type a value under iOS -> Settings -> Loop -> BASAL LOCK -> Basal Lock Threshold that is less than your current glucose
-1. Enable the BASAL LOCK feature
-1. Next CGM reading should indicate Loop restored scheduled basal
-1. Immediately, disable the feature and confirm that next CGM reading restores temp basal less than your scheduled basal
-    * If next CGM does not restore a low temp basal, you need to repeat the test (you can try raising your correction range temporarily, but then you have to remember to restore it)
+    * Enable the BASAL LOCK feature
+    * Next CGM reading should indicate Loop restored scheduled basal
+1. Immediately after that Loop cycle, raise the Basal Lock Threshold to be above your current glucose
+    * Next CGM reading should indicate Loop restored lower basal
 
 Now that you've confirmed the patch is working as desired:
 
 * Disable the feature
 * Modify the Basal Lock Threshold to the desired value
-* Enable the feature
+* Enable the feature (if desired)
 
-Loop will not longer restrict basal when your glucose is higher than this threshold. Pay attention over the next few meals.
+Loop will no longer restrict basal when your glucose is higher than this threshold. Pay attention over the next few meals.
 
 * **Start with 250 mg/dL (13.9 mmol/L) or higher**
 * **Do not go below 200 mg/dL (11.1 mmol/L) without careful thought and observation**
