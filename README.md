@@ -270,7 +270,7 @@ Pay attention next time glucose is Below the threshold to ensure that only Temp 
 Now that you've confirmed the patch is working as desired:
 
 * Disable the feature
-* Modify the Switching BG Threshold to the desired value
+* Modify the Basal Lock Threshold to the desired value
 * Enable the feature
 
 Loop will not longer restrict basal when your glucose is higher than this threshold. Pay attention over the next few meals.
