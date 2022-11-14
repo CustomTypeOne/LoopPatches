@@ -275,9 +275,9 @@ Now that you've confirmed the patch is working as desired:
 
 Loop will not longer restrict basal when your glucose is higher than this threshold. Pay attention over the next few meals.
 
-**Start with 250 mg/dL (13.9 mmol/L) or higher**
-**Do not go below 200 mg/dL (11.1 mmol/L) without careful thought and observation**
-**If you notice an increase in lows, raise the threshold or disable the feature**
+* **Start with 250 mg/dL (13.9 mmol/L) or higher**
+* **Do not go below 200 mg/dL (11.1 mmol/L) without careful thought and observation**
+* **If you notice an increase in lows, raise the threshold or disable the feature**
 
 ## (Optional) Examine Code Before Building
 
