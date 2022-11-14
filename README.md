@@ -4,7 +4,7 @@
 * Tested with Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
 
-For mmol/L, pretty sure you need to enter thresholds in mg/dL under iOS Settings - please test carefully and report back.
+For mmol/L, pretty sure you enter thresholds in mmol/L under iOS Settings - please test carefully.
 
 ## **Table of Contents**
 
@@ -25,6 +25,7 @@ For mmol/L, pretty sure you need to enter thresholds in mg/dL under iOS Settings
     * [Congratulations](#congratulations)
 * [Confirm Patches Work](#confirm-patches-work)
     * [Example for Switcher Patch](#example-for-switcher-patch)
+    * [Example for Basal Lock](#example-for-basal-lock)
 * [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
 
 # Custom Type One: LoopPatches
@@ -45,7 +46,6 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * This can be enabled or disabled (default)
 1. Automatic Strategy Switching
     * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
-    * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL**
 1. Negative IOB Factor
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
     * This feature is disabled by selecting a factor of 100% (default setting is 1.0, same as 100%)
@@ -55,9 +55,8 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * **NOT RECOMMENDED, added for convenience of people returning from FreeAPS**
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
-    * **Use with care; meant for high glucose >250 mg/dL**
+    * **Use with care; meant for high glucose >250 mg/dL (13.9 mmol/L)**
         * **When used improperly, this can cause lows**
-        * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL**
 
 Use caution with these features and adjust conservatively and slowly for safety.
 
@@ -106,14 +105,11 @@ After each fresh build, check all the values and check behavior for any enabled 
 
 * Tap (or double-tap) on the "value" row to bring up a keyboard and enter a value, return when done
 * Make sure that value is reasonable **before** sliding the switch to Enabled
-    * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for these setting**
 * When modifying a value, be sure to disable the switch, modify and then enable
 
 ### mmol/L Users
 
-No patch changes are required for mmol/L users. Not sure about conversion of units - might need to enter values in mg/dL regardless of the units selected in Apple Health.
-
-**Start by multiplying value in mmol/L by 18 when setting a Threshold, otherwise the enabled patches may be active at too small of a glucose value.**
+No patch changes are required for mmol/L users. Pretty sure you enter values in mmol/L, but please check carefully.
 
 ## Apply LoopPatches
 
@@ -203,7 +199,7 @@ cd ..
 
 After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
-Notice that you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
+After you paste and hit return. There should be no messages in response (unless there is an error). Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
 Copy and paste the next line into the same **LoopWorkspace Terminal Window**. This command (`xed`) will open (or bring to front if already open) Xcode so you can build the code with LoopPatches applied. The `.` just means to open Xcode in the current LoopWorkspace location.
 
@@ -254,6 +250,34 @@ Now that you've confirmed the patch is working as desired:
 * Enable the feature
 
 Loop will now automatically switch between Dosing Strategy of Temp Basal (less aggressive) when below that level to a Dosing Strategy of Automatic Bolus (more aggressive) when above that level.
+
+Pay attention next time glucose is Below the threshold to ensure that only Temp Basal increases are provided.
+
+### Example for Basal Lock
+
+**Be very careful with this one. If you set the Basal Lock Threshold too low, it will prevent Loop from restricting basal and can cause low glucose.**
+
+**Look for an opportunity, plan on focusing on your phone for 15 to 30 minutes.**
+
+1. Confirm that Closed Loop is enabled and Basal Lock is disabled
+1. Next time glucose has been elevated for a while and Loop has given enough insulin that a Temp Basal of 0 U/hr is being provided (raising your correction range can make this happen sooner but be sure to restore it when done testing)
+1. Type a value under iOS -> Settings -> Loop -> BASAL LOCK -> Basal Lock Threshold that is less than your current glucose
+1. Enable the BASAL LOCK feature
+1. Next CGM reading should indicate Loop restored scheduled basal
+1. Immediately, disable the feature and confirm that next CGM reading restores temp basal less than your scheduled basal
+    * If next CGM does not restore a low temp basal, you need to repeat the test (you can try raising your correction range temporarily, but then you have to remember to restore it)
+
+Now that you've confirmed the patch is working as desired:
+
+* Disable the feature
+* Modify the Switching BG Threshold to the desired value
+* Enable the feature
+
+Loop will not longer restrict basal when your glucose is higher than this threshold. Pay attention over the next few meals.
+
+**Start with 250 mg/dL (13.9 mmol/L) or higher**
+**Do not go below 200 mg/dL (11.1 mmol/L) without careful thought and observation**
+**If you notice an increase in lows, raise the threshold or disable the feature**
 
 ## (Optional) Examine Code Before Building
 
