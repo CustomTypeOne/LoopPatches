@@ -4,7 +4,7 @@
 * Tested with Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
 
-For mmol/L, pretty sure you need to enter thresholds in mg/dL under iOS Settings - please test carefully and report back.
+Several mmol/L users confirmed it works for them when entering thresholds using mmol/L under iOS Settings.
 
 ## **Table of Contents**
 
@@ -25,13 +25,14 @@ For mmol/L, pretty sure you need to enter thresholds in mg/dL under iOS Settings
     * [Congratulations](#congratulations)
 * [Confirm Patches Work](#confirm-patches-work)
     * [Example for Switcher Patch](#example-for-switcher-patch)
+    * [Example for Basal Lock](#example-for-basal-lock)
 * [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
 
 # Custom Type One: LoopPatches
 
 LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
-Note: for **prior users of LoopPatches** - the order of features has been modified and new features are available. There is no longer a drag and drop action required to add Settings to Xcode.
+Note: for **prior users of LoopPatches**: _The order of features has been modified and new features are available. There is no longer a drag and drop action required to add Settings to Xcode._
 
 * Features near the bottom of the list are either not recommended or are new and require more care
 * The order of patches displayed under Settings does not affect the values saved from previous builds
@@ -45,7 +46,6 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * This can be enabled or disabled (default)
 1. Automatic Strategy Switching
     * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
-    * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL**
 1. Negative IOB Factor
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
     * This feature is disabled by selecting a factor of 100% (default setting is 1.0, same as 100%)
@@ -55,9 +55,9 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * **NOT RECOMMENDED, added for convenience of people returning from FreeAPS**
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
-    * **Use with care; meant for high glucose >250 mg/dL**
+    * Basal is "locked" to be no lower than the scheduled rate (overrides are ignored)
+    * **Use with care; meant for high glucose >250 mg/dL (13.9 mmol/L)**
         * **When used improperly, this can cause lows**
-        * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL**
 
 Use caution with these features and adjust conservatively and slowly for safety.
 
@@ -92,7 +92,7 @@ Tap on the phone settings icon
 
 <a href="/img/looppatches-loop-settings.svg"><img src="/img/looppatches-loop-settings.svg?raw=true" alt="Image showing the iOS settings screen before and after applying Settings.bundle" width="500"></a>
 
-All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if there are problems with mmol/L units.
+All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if you experience problems or have a question.
 
 After each fresh build, check all the values and check behavior for any enabled patches.
 
@@ -104,16 +104,13 @@ After each fresh build, check all the values and check behavior for any enabled 
 
 ### Automatic Switching Strategy or Basal Lock:
 
-* Tap (or double-tap) on the "value" row to bring up a keyboard and enter a value, return when done
+* When modifying a threshold value: disable the feature, modify threshold and then enable
+* Tap on the "Threshold" row to bring up a keyboard and enter or edit a value, return when done
 * Make sure that value is reasonable **before** sliding the switch to Enabled
-    * **If using mmol/L, might need to multiply by 18 to enter threshold in mg/dL for these setting**
-* When modifying a value, be sure to disable the switch, modify and then enable
 
 ### mmol/L Users
 
-No patch changes are required for mmol/L users. Not sure about conversion of units - might need to enter values in mg/dL regardless of the units selected in Apple Health.
-
-**Start by multiplying value in mmol/L by 18 when setting a Threshold, otherwise the enabled patches may be active at too small of a glucose value.**
+No patch changes are required for mmol/L users. Several users confirmed threshold values are entered in mmol/L, but please check carefully on your device.
 
 ## Apply LoopPatches
 
@@ -134,14 +131,14 @@ No patch changes are required for mmol/L users. Not sure about conversion of uni
 
 Warning: Only apply LoopPatches to a fresh download of Loop. Once patches are applied, you cannot apply them again without taking steps that are not included in these instructions. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
 
-For each link below - remember to control-click (or right click) so you can return to these instructions easily.
+For each link below - remember to control-click (or right click) to open link in a new tab or window so you can return to these instructions easily.
 
 * Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
 
 ### Download LoopPatches
 
-Then follow these directions carefully.
+Follow these directions carefully to remove any old copies of LoopPatches and then download a fresh copy.
 
 1. Open Finder on your computer and examine the Downloads folder
     * If a folder called `LoopPatches-main` exists, delete it
@@ -170,6 +167,8 @@ You can use the same finder window for the next step - you won't need this locat
 It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
 For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
+
+The short bullet list is provided here (if you don't need the instructions linked above)
 
 * Use Finder to navigate to Downloads / BuildLoop
 * Find the version of Loop-dev you just downloaded
@@ -203,7 +202,7 @@ cd ..
 
 After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
-Notice that you will see the text (in the block above) repeated in the terminal display. There should be no other messages. Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
+After you paste and hit return. There should be no messages in response (unless there is an error). Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
 
 Copy and paste the next line into the same **LoopWorkspace Terminal Window**. This command (`xed`) will open (or bring to front if already open) Xcode so you can build the code with LoopPatches applied. The `.` just means to open Xcode in the current LoopWorkspace location.
 
@@ -237,7 +236,7 @@ For each patch you enable, please confirm it works the way you expect it to work
 
 If you do not know how to confirm a feature is working, **do not enable** that feature.
 
-There are no guardrails to check values in the patch settings. Please be careful.
+There are no guardrails to check Threshold values entered in the patch settings. Please check entries carefully and confirm expected behavior after making a change in patch settings.
 
 ### Example for Switcher Patch
 
@@ -253,13 +252,41 @@ Now that you've confirmed the patch is working as desired:
 * Modify the Switching BG Threshold to the desired value
 * Enable the feature
 
-Loop will now automatically switch between Dosing Strategy of Temp Basal (less aggressive) when below that level to a Dosing Strategy of Automatic Bolus (more aggressive) when above that level.
+Loop will now automatically switch between Dosing Strategy of Temp Basal (less aggressive) when glucose is below that threshold level to a Dosing Strategy of Automatic Bolus (more aggressive) when glucose is above that threshold level.
+
+Pay attention next time glucose is Below the threshold to ensure that only Temp Basal increases are provided.
+
+### Example for Basal Lock
+
+**Be very careful with this one. If you set the Basal Lock Threshold too low, it will prevent Loop from restricting basal and can cause low glucose.**
+
+**Look for an opportunity when glucose is high, plan on focusing on your phone for 15 to 30 minutes.**
+
+1. Confirm that Closed Loop is enabled and Basal Lock is disabled
+1. Next time glucose has been elevated for a while and Loop has given enough insulin that a Temp Basal of 0 U/hr is being provided (raising your correction range can make this happen sooner but be sure to restore it when done testing)
+1. Type a value under iOS -> Settings -> Loop -> BASAL LOCK -> Basal Lock Threshold that is less than your current glucose
+    * Enable the BASAL LOCK feature
+    * Next CGM reading should indicate Loop restored scheduled basal
+1. Immediately after that Loop cycle, raise the Basal Lock Threshold to be above your current glucose
+    * Next CGM reading should indicate Loop restored lower basal
+
+Now that you've confirmed the patch is working as desired:
+
+* Disable the feature
+* Modify the Basal Lock Threshold to the desired value
+* Enable the feature (if desired)
+
+Loop will no longer restrict basal when your glucose is higher than this threshold. Pay attention over the next few meals.
+
+* **Start with 250 mg/dL (13.9 mmol/L) or higher**
+* **Do not go below 200 mg/dL (11.1 mmol/L) without careful thought and observation**
+* **If you notice an increase in lows, raise the threshold or disable the feature**
 
 ## (Optional) Examine Code Before Building
 
 In the Xcode window, left pane, you will notice the letter M appears by modified files.
 
-These files should be modified. If they are not, you did not apply the patches successfully. There will be indications in Xcode that the files have been modified at the lines indicated. Note the line numbers are all after the patch has been applied.
+These files should be modified. If they are not, you did not apply the patches successfully. Note the line numbers are all after the patch has been applied. In your Xcode display, when viewing that file, you will see a vertical blue bar left of the code indicating a line has been modified.
 
 1. Under the Loop folder icon (left side of Xcode pane)
     * Loop/Managers/DoseMath.swift
