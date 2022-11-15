@@ -104,9 +104,9 @@ After each fresh build, check all the values and check behavior for any enabled 
 
 ### Automatic Switching Strategy or Basal Lock:
 
-* Tap on the "Threshold" row to bring up a keyboard and enter a value, return when done
+* When modifying a threshold value: disable the feature, modify threshold and then enable
+* Tap on the "Threshold" row to bring up a keyboard and enter or edit a value, return when done
 * Make sure that value is reasonable **before** sliding the switch to Enabled
-* When modifying a value, be sure to disable the switch, modify and then enable
 
 ### mmol/L Users
 
@@ -138,7 +138,7 @@ For each link below - remember to control-click (or right click) to open link in
 
 ### Download LoopPatches
 
-Then follow these directions carefully.
+Follow these directions carefully to remove any old copies of LoopPatches and then download a fresh copy.
 
 1. Open Finder on your computer and examine the Downloads folder
     * If a folder called `LoopPatches-main` exists, delete it
@@ -167,6 +167,8 @@ You can use the same finder window for the next step - you won't need this locat
 It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
 For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
+
+The short bullet list is provided here (if you don't need the instructions linked above)
 
 * Use Finder to navigate to Downloads / BuildLoop
 * Find the version of Loop-dev you just downloaded
@@ -234,7 +236,7 @@ For each patch you enable, please confirm it works the way you expect it to work
 
 If you do not know how to confirm a feature is working, **do not enable** that feature.
 
-There are no guardrails to check values in the patch settings. Please check entries carefully and confirm expected behavior after making a change in patch settings.
+There are no guardrails to check Threshold values entered in the patch settings. Please check entries carefully and confirm expected behavior after making a change in patch settings.
 
 ### Example for Switcher Patch
 
@@ -284,7 +286,7 @@ Loop will no longer restrict basal when your glucose is higher than this thresho
 
 In the Xcode window, left pane, you will notice the letter M appears by modified files.
 
-These files should be modified. If they are not, you did not apply the patches successfully. There will be indications in Xcode that the files have been modified at the lines indicated. Note the line numbers are all after the patch has been applied. In your Xcode display when viewing that file, you will see a vertical blue bar indicating a line has been modified.
+These files should be modified. If they are not, you did not apply the patches successfully. Note the line numbers are all after the patch has been applied. In your Xcode display, when viewing that file, you will see a vertical blue bar left of the code indicating a line has been modified.
 
 1. Under the Loop folder icon (left side of Xcode pane)
     * Loop/Managers/DoseMath.swift
