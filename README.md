@@ -4,7 +4,7 @@
 * Tested with Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
 
-For mmol/L, pretty sure you enter thresholds in mmol/L under iOS Settings - please test carefully.
+Several mmol/L users confirmed it works for them when entering thresholds using mmol/L under iOS Settings.
 
 ## **Table of Contents**
 
@@ -32,7 +32,7 @@ For mmol/L, pretty sure you enter thresholds in mmol/L under iOS Settings - plea
 
 LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
-Note: for **prior users of LoopPatches** - the order of features has been modified and new features are available. There is no longer a drag and drop action required to add Settings to Xcode.
+Note: for **prior users of LoopPatches**: _The order of features has been modified and new features are available. There is no longer a drag and drop action required to add Settings to Xcode._
 
 * Features near the bottom of the list are either not recommended or are new and require more care
 * The order of patches displayed under Settings does not affect the values saved from previous builds
@@ -92,7 +92,7 @@ Tap on the phone settings icon
 
 <a href="/img/looppatches-loop-settings.svg"><img src="/img/looppatches-loop-settings.svg?raw=true" alt="Image showing the iOS settings screen before and after applying Settings.bundle" width="500"></a>
 
-All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if there are problems with mmol/L units.
+All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if you experience problems or have a question.
 
 After each fresh build, check all the values and check behavior for any enabled patches.
 
@@ -104,13 +104,13 @@ After each fresh build, check all the values and check behavior for any enabled 
 
 ### Automatic Switching Strategy or Basal Lock:
 
-* Tap (or double-tap) on the "value" row to bring up a keyboard and enter a value, return when done
+* Tap on the "Threshold" row to bring up a keyboard and enter a value, return when done
 * Make sure that value is reasonable **before** sliding the switch to Enabled
 * When modifying a value, be sure to disable the switch, modify and then enable
 
 ### mmol/L Users
 
-No patch changes are required for mmol/L users. Pretty sure you enter values in mmol/L, but please check carefully.
+No patch changes are required for mmol/L users. Several users confirmed threshold values are entered in mmol/L, but please check carefully on your device.
 
 ## Apply LoopPatches
 
@@ -131,7 +131,7 @@ No patch changes are required for mmol/L users. Pretty sure you enter values in 
 
 Warning: Only apply LoopPatches to a fresh download of Loop. Once patches are applied, you cannot apply them again without taking steps that are not included in these instructions. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
 
-For each link below - remember to control-click (or right click) so you can return to these instructions easily.
+For each link below - remember to control-click (or right click) to open link in a new tab or window so you can return to these instructions easily.
 
 * Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
@@ -234,7 +234,7 @@ For each patch you enable, please confirm it works the way you expect it to work
 
 If you do not know how to confirm a feature is working, **do not enable** that feature.
 
-There are no guardrails to check values in the patch settings. Please be careful.
+There are no guardrails to check values in the patch settings. Please check entries carefully and confirm expected behavior after making a change in patch settings.
 
 ### Example for Switcher Patch
 
@@ -250,7 +250,7 @@ Now that you've confirmed the patch is working as desired:
 * Modify the Switching BG Threshold to the desired value
 * Enable the feature
 
-Loop will now automatically switch between Dosing Strategy of Temp Basal (less aggressive) when below that level to a Dosing Strategy of Automatic Bolus (more aggressive) when above that level.
+Loop will now automatically switch between Dosing Strategy of Temp Basal (less aggressive) when glucose is below that threshold level to a Dosing Strategy of Automatic Bolus (more aggressive) when glucose is above that threshold level.
 
 Pay attention next time glucose is Below the threshold to ensure that only Temp Basal increases are provided.
 
@@ -284,7 +284,7 @@ Loop will no longer restrict basal when your glucose is higher than this thresho
 
 In the Xcode window, left pane, you will notice the letter M appears by modified files.
 
-These files should be modified. If they are not, you did not apply the patches successfully. There will be indications in Xcode that the files have been modified at the lines indicated. Note the line numbers are all after the patch has been applied.
+These files should be modified. If they are not, you did not apply the patches successfully. There will be indications in Xcode that the files have been modified at the lines indicated. Note the line numbers are all after the patch has been applied. In your Xcode display when viewing that file, you will see a vertical blue bar indicating a line has been modified.
 
 1. Under the Loop folder icon (left side of Xcode pane)
     * Loop/Managers/DoseMath.swift
