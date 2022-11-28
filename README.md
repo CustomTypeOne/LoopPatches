@@ -4,6 +4,14 @@
 * Tested with Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
 
+**THE LAST commit tested was ca8a374**
+
+**Do NOT just update to the latest version of dev and expect LoopPatches to keep working**
+
+* **As of 27 Nov 2022, LoopPatches no longer work with the more recent commits for Loop dev**
+* **The last LoopWorkspace commit that works with this version is f245588, one of at least 4 commits on 27 Nov 2022**
+* **The commit f245588 can be applied and built but has NOT been tested.**
+
 Several mmol/L users confirmed it works for them when entering thresholds using mmol/L under iOS Settings.
 
 ## **Table of Contents**
