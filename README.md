@@ -5,9 +5,9 @@ The LoopPatches in this branch are **NOT** ready for use - please be patient.
 
 ### Loop-dev to LoopPatches Branch Map
 
-The version found in the BuildLoopFixedDev script works with the LoopPatches found in the main branch. However, there are some user who are using more recent commits in the LoopWorkspace dev tree. Those users may find the LoopPatches dev branch useful - but use at your own risk. This has not been tested against recent LoopWorkspace dev commits.
+The version found in the BuildLoopFixedDev script works with the LoopPatches found in the main branch of LoopPatches. However, there are some users who are using more recent commits in the LoopWorkspace dev tree. Those users may find the dev branch of LoopPatches useful - but use at your own risk. This has not been tested against recent LoopWorkspace dev commits.
 
-this branch is **NOT** ready for use - just getting it ready
+This branch is **NOT** ready yet for use - status : updating README file and preparing to test
 
 If your Loop-dev code was downloaded or updated earlier than
 
