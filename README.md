@@ -1,18 +1,16 @@
 ***
-## LoopPatches cannot be applied to Dev code that is older than 1 Aug 2022.
+## LoopPatches for Loop-dev will change as commits are merged into Loop-dev.
+
+The LoopPatches in this branch were:
 
 * Tested with Loop Dev version: 26 Sep 2022, commit ca8a374
 * Tested using mg/dL
+* Last Loop Dev version for this branch of LoopPatches: 27 Nov 2022, commit f245588
+* If you have a later commit, please use the dev branch
 
-**THE LAST commit tested was ca8a374**
+### Last Loop-dev commit for this branch
 
-**Do NOT just update to the latest version of dev and expect LoopPatches to keep working**
-
-* **As of 27 Nov 2022, LoopPatches no longer work with the more recent commits for Loop dev**
-* **The last LoopWorkspace commit that works with this version is f245588, one of at least 4 commits on 27 Nov 2022**
-* **The commit f245588 can be applied and built but has NOT been tested.**
-
-Several mmol/L users confirmed it works for them when entering thresholds using mmol/L under iOS Settings.
+The branch was renamed to dev-f245588 to indicate this is the last commit for which the patches, as found in this branch, can be applied.
 
 ## **Table of Contents**
 
@@ -149,9 +147,9 @@ For each link below - remember to control-click (or right click) to open link in
 Follow these directions carefully to remove any old copies of LoopPatches and then download a fresh copy.
 
 1. Open Finder on your computer and examine the Downloads folder
-    * If a folder called `LoopPatches-main` exists, delete it
+    * If a folder called `LoopPatches-dev-f245588` exists, delete it
         * Hold down the Control Key and click on the folder name and select `Move to Trash`
-    * If a file called `LoopPatches-main.zip` exists, delete it using the same method
+    * If a file called `LoopPatches-dev-f245588.zip` exists, delete it using the same method
     * Examine Finder to make sure there are no folders or files that begin with LoopPatches in Downloads, there may be others with the number 2 or 3 appended to the name if you downloaded without deleting old copies or unzipped more than one time
 1. Use the green button at the top of this page that says `Code`
     * Click on `Code`
@@ -160,12 +158,12 @@ Follow these directions carefully to remove any old copies of LoopPatches and th
 #### To unzip the folder:
 
 Option 1:
-* Double click on the LoopPatches-main.zip indicator at the bottom of your browser
+* Double click on the LoopPatches-dev-f245588.zip indicator at the bottom of your browser
 
 Option 2:
 * Return to Finder and examine the Downloads folder
-    * Double click on `LoopPatches-main.zip`
-    * You will notice this creates the `LoopPatches-main` folder
+    * Double click on `LoopPatches-dev-f245588.zip`
+    * You will notice this creates the `LoopPatches-dev-f245588` folder
         * No further action is required
 
 You can use the same finder window for the next step - you won't need this location again.
@@ -200,10 +198,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
+git apply ~/Downloads/LoopPatches-dev-f245588/LoopPatch.txt
 cd ..
 cd LoopKit
-git apply ~/Downloads/LoopPatches-main/LoopkitPatch.txt
+git apply ~/Downloads/LoopPatches-dev-f245588/LoopkitPatch.txt
 cd ..
 
 ```
