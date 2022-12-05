@@ -1,18 +1,21 @@
 ***
-## LoopPatches for Loop-dev will change as commits are merged into Loop-dev.
+## LoopPatches for Loop-dev might stop working as commits are merged into Loop-dev.
 
-The LoopPatches in this branch are **NOT** ready for use - please be patient.
+The LoopPatches code in this branch is **NOT** tested with every update of the Loop dev branch tree. Use this branch of LoopPatches at your own risk.
 
-### Loop-dev to LoopPatches Branch Map
+### Loop-dev vs LoopPatches Branch Status
 
-The version found in the BuildLoopFixedDev script works with the LoopPatches found in the main branch of LoopPatches. However, there are some users who are using more recent commits in the LoopWorkspace dev tree. Those users may find the dev branch of LoopPatches useful - but use at your own risk. This has not been tested against recent LoopWorkspace dev commits.
+The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version built using the **BuildLoopFixedDev** script.
 
-This branch is **NOT** ready yet for use - status : updating README file and preparing to test
+User who are updating their version of Loop-dev independent of the script may have more recent commits in the LoopWorkspace dev tree.
 
-If your Loop-dev code was downloaded or updated earlier than
+* Those users may find the dev branch of LoopPatches useful
+* Use this branch at your own risk
+* This branch is not tested with every commit made to Loop-dev
 
-* 27 Nov 2022, commit f245588; use branch: dev-f245588
-* 1 Aug 2022, please download Loop-dev code using the script
+You probably want to try the dev branch of LoopPatches if your Loop-dev code was downloaded or updated on or after:
+
+* 27 Nov 2022, commit d8205fe
 
 ## **Table of Contents**
 

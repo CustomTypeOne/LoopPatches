@@ -1,8 +1,8 @@
 diff --git a/Loop.xcodeproj/project.pbxproj b/Loop.xcodeproj/project.pbxproj
-index fa42fed9..883f7480 100644
+index 153db141..96f53a46 100644
 --- a/Loop.xcodeproj/project.pbxproj
 +++ b/Loop.xcodeproj/project.pbxproj
-@@ -425,6 +425,7 @@
+@@ -455,6 +455,7 @@
  		B4E96D5D248A82A2002DABAD /* StatusBarHUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E96D5C248A82A2002DABAD /* StatusBarHUDView.xib */; };
  		B4F3D25124AF890C0095CE44 /* BluetoothStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3D25024AF890C0095CE44 /* BluetoothStateManager.swift */; };
  		B4FEEF7D24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FEEF7C24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift */; };
@@ -10,7 +10,7 @@ index fa42fed9..883f7480 100644
  		C10B28461EA9BA5E006EA1FC /* far_future_high_bg_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = C10B28451EA9BA5E006EA1FC /* far_future_high_bg_forecast.json */; };
  		C11B9D5B286778A800500CF8 /* SwiftCharts in Frameworks */ = {isa = PBXBuildFile; productRef = C11B9D5A286778A800500CF8 /* SwiftCharts */; };
  		C11B9D5E286778D000500CF8 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11B9D5D286778D000500CF8 /* LoopKitUI.framework */; };
-@@ -1378,6 +1379,7 @@
+@@ -1437,6 +1438,7 @@
  		B4E96D5C248A82A2002DABAD /* StatusBarHUDView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusBarHUDView.xib; sourceTree = "<group>"; };
  		B4F3D25024AF890C0095CE44 /* BluetoothStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothStateManager.swift; sourceTree = "<group>"; };
  		B4FEEF7C24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDataManager+DeviceStatus.swift"; sourceTree = "<group>"; };
@@ -18,7 +18,7 @@ index fa42fed9..883f7480 100644
  		C101947127DD473C004E7EB8 /* MockKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
  		C10B28451EA9BA5E006EA1FC /* far_future_high_bg_forecast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = far_future_high_bg_forecast.json; sourceTree = "<group>"; };
  		C11AA5C7258736CF00BDE12F /* DerivedAssetsBase.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DerivedAssetsBase.xcassets; sourceTree = "<group>"; };
-@@ -1792,6 +1794,7 @@
+@@ -1881,6 +1883,7 @@
  		43776F831B8022E90074EA36 = {
  			isa = PBXGroup;
  			children = (
@@ -26,7 +26,7 @@ index fa42fed9..883f7480 100644
  				C18A491122FCC20B00FDA733 /* Scripts */,
  				4FF4D0FA1E1834BD00846527 /* Common */,
  				43776F8E1B8022E90074EA36 /* Loop */,
-@@ -3174,6 +3177,7 @@
+@@ -3292,6 +3295,7 @@
  				A966152723EA5A26005D8B29 /* DerivedAssets.xcassets in Resources */,
  				7D70764F1FE06EE1004AC8EA /* InfoPlist.strings in Resources */,
  				7D7076631FE06EE4004AC8EA /* Localizable.strings in Resources */,
@@ -106,10 +106,10 @@ index 01c9bedf..f178c849 100644
              return AutomaticDoseRecommendation(basalAdjustment: temp, bolusUnits: bolusUnits)
          }
 diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
-index 5fd31fa5..0ca034af 100644
+index f5b0bb02..e8fea8ac 100644
 --- a/Loop/Managers/LoopDataManager.swift
 +++ b/Loop/Managers/LoopDataManager.swift
-@@ -1596,8 +1596,37 @@ extension LoopDataManager {
+@@ -1607,8 +1607,37 @@ extension LoopDataManager {
  
              let dosingRecommendation: AutomaticDoseRecommendation?
  
@@ -147,16 +147,16 @@ index 5fd31fa5..0ca034af 100644
 +            switch switcherIsAB {
 +            case true:
                  let volumeRounder = { (_ units: Double) in
-                     return self.delegate?.loopDataManager(self, roundBolusVolume: units) ?? units
+                     return self.delegate?.roundBolusVolume(units: units) ?? units
                  }
-@@ -1609,14 +1638,14 @@ extension LoopDataManager {
+@@ -1620,14 +1649,14 @@ extension LoopDataManager {
                      sensitivity: insulinSensitivity!,
                      model: doseStore.insulinModelProvider.model(for: pumpInsulinType),
                      basalRates: basalRates!,
 -                    maxAutomaticBolus: maxBolus! * LoopConstants.bolusPartialApplicationFactor,
--                    partialApplicationFactor: LoopConstants.bolusPartialApplicationFactor,
+-                    partialApplicationFactor: LoopConstants.bolusPartialApplicationFactor * self.timeBasedDoseApplicationFactor,
 +                    maxAutomaticBolus: maxBolus! * alternateApplicationFactor,
-+                    partialApplicationFactor: alternateApplicationFactor,
++                    partialApplicationFactor: alternateApplicationFactor * self.timeBasedDoseApplicationFactor,
                      lastTempBasal: lastTempBasal,
                      volumeRounder: volumeRounder,
                      rateRounder: rateRounder,
@@ -255,10 +255,10 @@ index 256d2685..745161c8 100644
              yAxisLayer,
              zeroGuidelineLayer,
 diff --git a/LoopUI/Charts/PredictedGlucoseChart.swift b/LoopUI/Charts/PredictedGlucoseChart.swift
-index 509302a8..cb90bd62 100644
+index 01a343d0..c77ac0bc 100644
 --- a/LoopUI/Charts/PredictedGlucoseChart.swift
 +++ b/LoopUI/Charts/PredictedGlucoseChart.swift
-@@ -167,6 +167,16 @@ extension PredictedGlucoseChart {
+@@ -170,6 +170,16 @@ extension PredictedGlucoseChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
  
@@ -275,7 +275,7 @@ index 509302a8..cb90bd62 100644
          let circles = ChartPointsScatterCirclesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: glucosePoints, displayDelay: 0, itemSize: CGSize(width: 4, height: 4), itemFillColor: colors.glucoseTint, optimized: true)
  
          var alternatePrediction: ChartLayer?
-@@ -205,6 +215,7 @@ extension PredictedGlucoseChart {
+@@ -208,6 +218,7 @@ extension PredictedGlucoseChart {
  
          let layers: [ChartLayer?] = [
              gridLayer,
