@@ -13,9 +13,7 @@ User who are updating their version of Loop-dev independent of the script may ha
 * Use this branch at your own risk
 * This branch is not tested with every commit made to Loop-dev
 
-You probably want to try the dev branch of LoopPatches if your Loop-dev code was downloaded or updated on or after:
-
-* 27 Nov 2022, commit d8205fe
+As of 15-Dec-2022, the patch code from dev was merged into main and the Loop-dev build script was updated. So until the next time - the main and dev branches of LoopPatches provide the same patch code.
 
 ## **Table of Contents**
 
