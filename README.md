@@ -10,13 +10,13 @@ The LoopPatches code in this branch have been lightly tested, but you use them a
 
 The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version built using the **BuildLoopFixedDev** script.
 
-* Before an update is added to **BuildLoopFixedDev** script
+* Before an update is added to [**BuildLoopFixedDev**](https://loopkit.github.io/loopdocs/build/step13/#download-loop-dev) script
     * LoopPatches main branch is tested to make sure patches can be applied
     * As long as the patches apply, no change is required to LoopPatches main branch
 * On 27-Nov-2022, the patches required modification
-    * The older version is saved in the branch named: dev-f245588
+    * The older version of LoopPatches is saved in the branch named: dev-f245588
     * If LoopWorkspace commit is f245588 or older, that branch can be used
-    * In the interim, branch dev could be used with newer commits until both the build script and LoopPatches were ready for update
+    * In the interim, LoopPatches branch dev was modified to work with newer commits until both the build script and LoopPatches were ready for update
 * As of 15-Dec-2022, the main branch of LoopPatches and **BuildLoopFixedDev** script were updated at the same time
 
 
