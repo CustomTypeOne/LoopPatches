@@ -1,21 +1,24 @@
 ***
-## LoopPatches for Loop-dev might stop working as commits are merged into Loop-dev.
+## LoopPatches main branch updated 15-Dec-2022
 
-The LoopPatches code in this branch is **NOT** tested with every update of the Loop dev branch tree. Use this branch of LoopPatches at your own risk.
+The LoopPatches code in this branch have been lightly tested, but you use them at your own risk.
+
+* Tested with Loop Dev version: 15 Dec 2022, commit 290211f
+* Tested using mg/dL
 
 ### Loop-dev vs LoopPatches Branch Status
 
 The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version built using the **BuildLoopFixedDev** script.
 
-User who are updating their version of Loop-dev independent of the script may have more recent commits in the LoopWorkspace dev tree.
+* Before an update is added to **BuildLoopFixedDev** script
+    * LoopPatches main branch is tested to make sure patches can be applied
+    * As long as the patches apply, no change is required to LoopPatches main branch
+* On 27-Nov-2022, the patches required modification
+    * The older version is saved in the branch named: dev-f245588
+    * If LoopWorkspace commit is f245588 or older, that branch can be used
+    * In the interim, branch dev could be used with newer commits until both the build script and LoopPatches were ready for update
+* As of 15-Dec-2022, the main branch of LoopPatches and **BuildLoopFixedDev** script were updated at the same time
 
-* Those users may find the dev branch of LoopPatches useful
-* Use this branch at your own risk
-* This branch is not tested with every commit made to Loop-dev
-
-You probably want to try the dev branch of LoopPatches if your Loop-dev code was downloaded or updated on or after:
-
-* 27 Nov 2022, commit d8205fe
 
 ## **Table of Contents**
 
@@ -152,23 +155,24 @@ For each link below - remember to control-click (or right click) to open link in
 Follow these directions carefully to remove any old copies of LoopPatches and then download a fresh copy.
 
 1. Open Finder on your computer and examine the Downloads folder
-    * If a folder called `LoopPatches-dev` exists, delete it
+    * If a folder called `LoopPatches-main` exists, delete it
         * Hold down the Control Key and click on the folder name and select `Move to Trash`
-    * If a file called `LoopPatches-dev.zip` exists, delete it using the same method
+    * If a file called `LoopPatches-main.zip` exists, delete it using the same method
     * Examine Finder to make sure there are no folders or files that begin with LoopPatches in Downloads, there may be others with the number 2 or 3 appended to the name if you downloaded without deleting old copies or unzipped more than one time
-1. Use the green button at the top of this page that says `Code`
-    * Click on `Code`
+1.  Open this [link](https://github.com/CustomTypeOne/LoopPatches) in a separate tab to download the code without loosing your place in these instructions.(You can scroll up and down on this webpage if you prefer.)
+    * Click on the green button that says `Code`
     * Select Download ZIP
+    * Return to these instructions
 
 #### To unzip the folder:
 
 Option 1:
-* Double click on the LoopPatches-dev.zip indicator at the bottom of your browser
+* Double click on the LoopPatches-main.zip indicator at the bottom of your browser
 
 Option 2:
 * Return to Finder and examine the Downloads folder
-    * Double click on `LoopPatches-dev.zip`
-    * You will notice this creates the `LoopPatches-dev` folder
+    * Double click on `LoopPatches-main.zip`
+    * You will notice this creates the `LoopPatches-main` folder
         * No further action is required
 
 You can use the same finder window for the next step - you won't need this location again.
@@ -191,7 +195,7 @@ The short bullet list is provided here (if you don't need the instructions linke
 
 The response must end in LoopWorkspace and the date-time should match the fresh download. For example:
 
-`/Users/marion/Downloads/BuildLoop/Loop-dev-221020-1353_ca8a374/LoopWorkspace`
+`/Users/marion/Downloads/BuildLoop/Loop-dev-221215-0924_290211f/LoopWorkspace`
 
 If the response is wrong, quit out of that terminal and try again.
 
@@ -203,10 +207,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-git apply ~/Downloads/LoopPatches-dev/LoopPatch.txt
+git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
 cd ..
 cd LoopKit
-git apply ~/Downloads/LoopPatches-dev/LoopkitPatch.txt
+git apply ~/Downloads/LoopPatches-main/LoopkitPatch.txt
 cd ..
 
 ```
