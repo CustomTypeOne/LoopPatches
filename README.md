@@ -5,6 +5,7 @@ The LoopPatches code in this branch have been lightly tested, but you use them a
 
 * Tested with Loop Dev version: 15 Dec 2022, commit 290211f
 * Tested using mg/dL
+* Verified LoopPatches can be applied with commit 3770f56, 23 Dec 2022
 
 ### Loop-dev vs LoopPatches Branch Status
 
