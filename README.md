@@ -133,9 +133,6 @@ No patch changes are required for mmol/L users. Several users confirmed threshol
 
 1. Obtain a fresh download of Loop
     * Build to a simulator; ensure it builds without error
-1. Delete any prior copies of LoopPatches from Downloads folder
-1. Download fresh zip of LoopPatches
-    * Find in Downloads, unzip using directions
 1. Open a NEW terminal in new LoopWorkspace
 1. Follow directions to install patches
     * STOP IMMEDIATELY if you get an error
