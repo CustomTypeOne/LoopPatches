@@ -34,7 +34,6 @@ The LoopPatches found in the **main** branch of LoopPatches can be applied to th
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
     * [Fresh Download of Loop](#fresh-download-of-loop)
-    * [Download LoopPatches](#download-looppatches)
     * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
     * [Copy and Paste Commands](#copy-and-paste-commands)
     * [Build with LoopPatches](#build-with-looppatches)
