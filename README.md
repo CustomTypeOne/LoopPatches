@@ -34,7 +34,6 @@ The LoopPatches found in the **main** branch of LoopPatches can be applied to th
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
     * [Fresh Download of Loop](#fresh-download-of-loop)
-    * [Download LoopPatches](#download-looppatches)
     * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
     * [Copy and Paste Commands](#copy-and-paste-commands)
     * [Build with LoopPatches](#build-with-looppatches)
@@ -134,9 +133,6 @@ No patch changes are required for mmol/L users. Several users confirmed threshol
 
 1. Obtain a fresh download of Loop
     * Build to a simulator; ensure it builds without error
-1. Delete any prior copies of LoopPatches from Downloads folder
-1. Download fresh zip of LoopPatches
-    * Find in Downloads, unzip using directions
 1. Open a NEW terminal in new LoopWorkspace
 1. Follow directions to install patches
     * STOP IMMEDIATELY if you get an error
@@ -151,33 +147,6 @@ For each link below - remember to control-click (or right click) to open link in
 
 * Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
-
-### Download LoopPatches
-
-Follow these directions carefully to remove any old copies of LoopPatches and then download a fresh copy.
-
-1. Open Finder on your computer and examine the Downloads folder
-    * If a folder called `LoopPatches-main` exists, delete it
-        * Hold down the Control Key and click on the folder name and select `Move to Trash`
-    * If a file called `LoopPatches-main.zip` exists, delete it using the same method
-    * Examine Finder to make sure there are no folders or files that begin with LoopPatches in Downloads, there may be others with the number 2 or 3 appended to the name if you downloaded without deleting old copies or unzipped more than one time
-1.  Open this [link](https://github.com/CustomTypeOne/LoopPatches) in a separate tab to download the code without loosing your place in these instructions.(You can scroll up and down on this webpage if you prefer.)
-    * Click on the green button that says `Code`
-    * Select Download ZIP
-    * Return to these instructions
-
-#### To unzip the folder:
-
-Option 1:
-* Double click on the LoopPatches-main.zip indicator at the bottom of your browser
-
-Option 2:
-* Return to Finder and examine the Downloads folder
-    * Double click on `LoopPatches-main.zip`
-    * You will notice this creates the `LoopPatches-main` folder
-        * No further action is required
-
-You can use the same finder window for the next step - you won't need this location again.
 
 ### Open New Terminal at LoopWorkspace
 
@@ -209,10 +178,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-git apply ~/Downloads/LoopPatches-main/LoopPatch.txt
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt|git apply
 cd ..
 cd LoopKit
-git apply ~/Downloads/LoopPatches-main/LoopkitPatch.txt
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt|git apply
 cd ..
 
 ```
