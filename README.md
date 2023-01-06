@@ -1,12 +1,19 @@
 ***
 ## LoopPatches main branch updated 15-Dec-2022
 
+### README instructions updated (simplified) 06-Jan-2023
+
+Thanks to community member (bjorkert), the instructions have been simplified.
+
+* There is no longer need to manually download and check state of prior patches that might be on your system.
+
 The LoopPatches code in this branch have been lightly tested, but you use them at your own risk.
 
 * Tested with Loop Dev version: 15 Dec 2022, commit 290211f
 * Tested using mg/dL
 * Verified LoopPatches can be applied with commit 3770f56, 23 Dec 2022
 * Verified LoopPatches can be applied with commit 84afcfb, 01 Jan 2023
+* Verified LoopPatches can be applied with commit ec9faeb, 06 Jan 2023
 
 ### Loop-dev vs LoopPatches Branch Status
 
@@ -178,10 +185,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt|git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt | git apply
 cd ..
 cd LoopKit
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt|git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt | git apply
 cd ..
 
 ```
