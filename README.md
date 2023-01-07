@@ -11,9 +11,11 @@ The LoopPatches code in this branch have been lightly tested, but you use them a
 
 * Tested with Loop Dev version: 15 Dec 2022, commit 290211f
 * Tested using mg/dL
-* Verified LoopPatches can be applied with commit 3770f56, 23 Dec 2022
-* Verified LoopPatches can be applied with commit 84afcfb, 01 Jan 2023
-* Verified LoopPatches can be applied with commit ec9faeb, 06 Jan 2023
+* As updates happen with the Loop Dev branch, I make sure patches can still be applied
+    * Verified LoopPatches can be applied with commit 3770f56, 23 Dec 2022
+    * Verified LoopPatches can be applied with commit 84afcfb, 01 Jan 2023
+    * Verified LoopPatches can be applied with commit ec9faeb, 06 Jan 2023
+* The updates to BuildLoopFixedDev may lag these checks, which are provided for the convenience of those not relying on the build script.
 
 ### Loop-dev vs LoopPatches Branch Status
 
