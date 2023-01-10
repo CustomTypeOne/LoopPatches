@@ -3,9 +3,10 @@
 
 ### README instructions updated (simplified) 06-Jan-2023
 
-Thanks to community member (bjorkert), the instructions have been simplified. The information that will show up when you apply paste the patch commands will also look different - this is normal.
+Thanks to community member (bjorkert), the instructions have been simplified.
 
 * There is no longer need to manually download and check state of prior patches that might be on your system.
+* The information that will show up when you apply paste the patch commands will also look different - this is normal.
 
 The LoopPatches code in this branch have been lightly tested, but you use them at your own risk.
 
@@ -181,7 +182,7 @@ If the response is wrong, quit out of that terminal and try again.
 
 ### Copy and Paste Commands
 
-Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. Each patch must be applied to the correct folder, so you will see change directory (`cd`) commands as well as `git apply` commands. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
+Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. Each patch must be applied to the correct folder, so you will see change directory (`cd`) commands, copy from a URL (`curl`) that is then piped (`|`) into `git apply` commands. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.**
 
 Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
@@ -199,7 +200,7 @@ After the text is copied, click in the **LoopWorkspace Terminal Window** and pas
 
 After you paste and hit return. The patches will be automatically applied and your screen should be similar to the graphic below.
 
-<a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="500"></a>
+<a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="600"></a>
 
 There should be no error messages in response (unless there is an error). Make sure you do not see `error: patch failed` at the beginning of a line with various details afterwords. Be sure to only paste one time to a fresh download. A second paste will show errors.
 
