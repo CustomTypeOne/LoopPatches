@@ -5,8 +5,8 @@
 
 Thanks to community member (bjorkert), the instructions have been simplified.
 
-* There is no longer need to manually download and check state of prior patches that might be on your system.
-* The information that will show up when you apply paste the patch commands will also look different - this is normal.
+* You do not need to manually download LoopPatches - it is automatic
+* The terminal display when you paste the commands will look different
 
 The LoopPatches code in this branch have been lightly tested, but you use them at your own risk.
 
