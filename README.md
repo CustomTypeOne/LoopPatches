@@ -3,7 +3,7 @@
 
 ### README instructions updated (simplified) 06-Jan-2023
 
-Thanks to community member (bjorkert), the instructions have been simplified.
+Thanks to community member (bjorkert), the instructions have been simplified. The information that will show up when you apply paste the patch commands will also look different - this is normal.
 
 * There is no longer need to manually download and check state of prior patches that might be on your system.
 
@@ -197,7 +197,11 @@ cd ..
 
 After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
-After you paste and hit return. There should be no messages in response (unless there is an error). Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
+After you paste and hit return. The patches will be automatically applied and your screen should be similar to the graphic below.
+
+<a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="500"></a>
+
+There should be no error messages in response (unless there is an error). Make sure you do not see `error: patch failed` at the beginning of a line with various details afterwords. Be sure to only paste one time to a fresh download. A second paste will show errors.
 
 Copy and paste the next line into the same **LoopWorkspace Terminal Window**. This command (`xed`) will open (or bring to front if already open) Xcode so you can build the code with LoopPatches applied. The `.` just means to open Xcode in the current LoopWorkspace location.
 
