@@ -1,13 +1,35 @@
 ***
-## LoopPatches for Loop-dev might stop working as commits are merged into Loop-dev.
+## LoopPatches main branch updated 15-Dec-2022
 
-The LoopPatches code in this branch is **NOT** tested with every update of the Loop dev branch tree. Use this branch of LoopPatches at your own risk.
+### README instructions updated (simplified) 06-Jan-2023
+
+Thanks to community member (bjorkert), the instructions have been simplified.
+
+* You do not need to manually download LoopPatches - it is automatic
+* The terminal display when you paste the commands will look different
+
+The LoopPatches code in this branch have been lightly tested, but you use them at your own risk.
+
+* Tested with Loop Dev version: 15 Dec 2022, commit 290211f
+* Tested using mg/dL
+* As updates happen with the Loop Dev branch, I make sure patches can still be applied
+    * Verified LoopPatches can be applied with commit 3770f56, 23 Dec 2022
+    * Verified LoopPatches can be applied with commit 84afcfb, 01 Jan 2023
+    * Verified LoopPatches can be applied with commit ec9faeb, 06 Jan 2023
+* The updates to BuildLoopFixedDev may lag these checks, which are provided for the convenience of those not relying on the build script.
 
 ### Loop-dev vs LoopPatches Branch Status
 
 The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version built using the **BuildLoopFixedDev** script.
 
-User who are updating their version of Loop-dev independent of the script may have more recent commits in the LoopWorkspace dev tree.
+* Before an update is added to [**BuildLoopFixedDev**](https://loopkit.github.io/loopdocs/build/step13/#download-loop-dev) script
+    * LoopPatches main branch is tested to make sure patches can be applied
+    * As long as the patches apply, no change is required to LoopPatches main branch
+* On 27-Nov-2022, the patches required modification
+    * The older version of LoopPatches is saved in the branch named: dev-f245588
+    * If LoopWorkspace commit is f245588 or older, that branch can be used
+    * In the interim, LoopPatches branch dev was modified to work with newer commits until both the build script and LoopPatches were ready for update
+* As of 15-Dec-2022, the main branch of LoopPatches and **BuildLoopFixedDev** script were updated at the same time
 
 * Those users may find the dev branch of LoopPatches useful
 * Use this branch at your own risk
@@ -27,7 +49,6 @@ As of 15-Dec-2022, the patch code from dev was merged into main and the Loop-dev
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
     * [Fresh Download of Loop](#fresh-download-of-loop)
-    * [Download LoopPatches](#download-looppatches)
     * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
     * [Copy and Paste Commands](#copy-and-paste-commands)
     * [Build with LoopPatches](#build-with-looppatches)
@@ -127,9 +148,6 @@ No patch changes are required for mmol/L users. Several users confirmed threshol
 
 1. Obtain a fresh download of Loop
     * Build to a simulator; ensure it builds without error
-1. Delete any prior copies of LoopPatches from Downloads folder
-1. Download fresh zip of LoopPatches
-    * Find in Downloads, unzip using directions
 1. Open a NEW terminal in new LoopWorkspace
 1. Follow directions to install patches
     * STOP IMMEDIATELY if you get an error
@@ -144,32 +162,6 @@ For each link below - remember to control-click (or right click) to open link in
 
 * Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
-
-### Download LoopPatches
-
-Follow these directions carefully to remove any old copies of LoopPatches and then download a fresh copy.
-
-1. Open Finder on your computer and examine the Downloads folder
-    * If a folder called `LoopPatches-dev` exists, delete it
-        * Hold down the Control Key and click on the folder name and select `Move to Trash`
-    * If a file called `LoopPatches-dev.zip` exists, delete it using the same method
-    * Examine Finder to make sure there are no folders or files that begin with LoopPatches in Downloads, there may be others with the number 2 or 3 appended to the name if you downloaded without deleting old copies or unzipped more than one time
-1. Use the green button at the top of this page that says `Code`
-    * Click on `Code`
-    * Select Download ZIP
-
-#### To unzip the folder:
-
-Option 1:
-* Double click on the LoopPatches-dev.zip indicator at the bottom of your browser
-
-Option 2:
-* Return to Finder and examine the Downloads folder
-    * Double click on `LoopPatches-dev.zip`
-    * You will notice this creates the `LoopPatches-dev` folder
-        * No further action is required
-
-You can use the same finder window for the next step - you won't need this location again.
 
 ### Open New Terminal at LoopWorkspace
 
@@ -189,29 +181,33 @@ The short bullet list is provided here (if you don't need the instructions linke
 
 The response must end in LoopWorkspace and the date-time should match the fresh download. For example:
 
-`/Users/marion/Downloads/BuildLoop/Loop-dev-221020-1353_ca8a374/LoopWorkspace`
+`/Users/marion/Downloads/BuildLoop/Loop-dev-221215-0924_290211f/LoopWorkspace`
 
 If the response is wrong, quit out of that terminal and try again.
 
 ### Copy and Paste Commands
 
-Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. Each patch must be applied to the correct folder, so you will see change directory (`cd`) commands as well as `git apply` commands. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.** (A whitespace error is a warning and can be ignored.)
+Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. Each patch must be applied to the correct folder, so you will see change directory (`cd`) commands, copy from a URL (`curl`) that is then piped (`|`) into `git apply` commands. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.**
 
 Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
 ```
 cd Loop
-git apply ~/Downloads/LoopPatches-dev/LoopPatch.txt
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev/LoopPatch.txt | git apply
 cd ..
 cd LoopKit
-git apply ~/Downloads/LoopPatches-dev/LoopkitPatch.txt
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev/LoopkitPatch.txt | git apply
 cd ..
 
 ```
 
 After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
-After you paste and hit return. There should be no messages in response (unless there is an error). Make sure you do not see the word `error` at the beginning of a line with the phrase `patch does not apply`.
+After you paste and hit return. The patches will be automatically applied and your screen should be similar to the graphic below.
+
+<a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="600"></a>
+
+There should be no error messages in response (unless there is an error). Make sure you do not see `error: patch failed` at the beginning of a line with various details afterwords. Be sure to only paste one time to a fresh download. A second paste will show errors.
 
 Copy and paste the next line into the same **LoopWorkspace Terminal Window**. This command (`xed`) will open (or bring to front if already open) Xcode so you can build the code with LoopPatches applied. The `.` just means to open Xcode in the current LoopWorkspace location.
 
