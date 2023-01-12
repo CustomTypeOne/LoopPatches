@@ -192,12 +192,11 @@ Now you can skip ahead to [Copy and Paste Commands](#copy-and-paste-commands).
 
 If the terminal from your download is still open, you'll notice the final message says something similar to this:
 
-|  |
+| Terminal Display: |
 |---|
 |To configure this terminal to LoopWorkspace folder of new download;<br>
- copy and paste the following line into the terminal|
-| |
-|cd /Users/your-name-here/Downloads/BuildLoop/Loop-230106-0845/LoopWorkspace|
+ copy and paste the following line into the terminal<br><br>
+cd /Users/your-name-here/Downloads/BuildLoop/Loop-230106-0845/LoopWorkspace|
 
 Simply highlight the one line that starts with `cd` in your terminal (do **not** use the cd line above) and ends with `LoopWorkspace`; copy it (CMD-c) and then paste it (CMD-v) and hit return. Next issue the command `pwd` for print working directory and it should match the directory (the part that starts with `/Users` and ends with `LoopWorkspace`) in your terminal.
 
