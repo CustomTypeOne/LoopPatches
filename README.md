@@ -45,8 +45,8 @@ The LoopPatches found in the **main** branch of LoopPatches can be applied to th
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
     * [Fresh Download of Loop](#fresh-download-of-loop)
-    * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
-    * [LoopWorkspace Quick Access](#loopworkspace-quick-access)
+        * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
+        * [LoopWorkspace Quick Access](#loopworkspace-quick-access)
     * [Copy and Paste Commands](#copy-and-paste-commands)
     * [Build with LoopPatches](#build-with-looppatches)
     * [Congratulations](#congratulations)
@@ -160,9 +160,11 @@ For each link below - remember to control-click (or right click) to open link in
 * Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
 
-If you close your terminal after the download - you need to follow the [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace) steps before applying patches. Otherwise, skip ahead to the [LoopWorkspace Quick Access](#loopworkspace-quick-access) instructions.
+If you closed your terminal after the download - you need to follow the [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace) steps before applying patches. 
 
-### Open New Terminal at LoopWorkspace
+Otherwise, skip ahead to the [LoopWorkspace Quick Access](#loopworkspace-quick-access) instructions.
+
+#### Open New Terminal at LoopWorkspace
 
 If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
@@ -184,18 +186,18 @@ The response must end in LoopWorkspace and the date-time should match the fresh 
 
 If the response is wrong, quit out of that terminal and try again.
 
-### LoopWorkspace Quick Access
+Now you can skip ahead to [Copy and Paste Commands](#copy-and-paste-commands).
+
+#### LoopWorkspace Quick Access
 
 If the terminal from your download is still open, you'll notice the final message says something similar to this:
 
-```
-To configure this terminal to LoopWorkspace folder of new download;
- copy and paste the following line into the terminal
+`To configure this terminal to LoopWorkspace folder of new download;``
+` copy and paste the following line into the terminal`
 
-cd /Users/marion/Downloads/BuildLoop/Loop-230106-0845/LoopWorkspace
-```
+`cd /Users/your-name-here/Downloads/BuildLoop/Loop-230106-0845/LoopWorkspace`
 
-Simply highlight the one line that starts with `cd` and ends with `LoopWorkspace`; copy it (CMD-c) and then paste it (CMD-v) and hit return. Next issue the command `pwd` for print working directory and it should match the directory above.
+Simply highlight the one line that starts with `cd` in your terminal (do **not** use the cd line above) and ends with `LoopWorkspace`; copy it (CMD-c) and then paste it (CMD-v) and hit return. Next issue the command `pwd` for print working directory and it should match the directory (the part that starts with `/Users` and ends with `LoopWorkspace`) in your terminal.
 
 ### Copy and Paste Commands
 
