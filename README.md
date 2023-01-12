@@ -192,7 +192,7 @@ Now you can skip ahead to [Copy and Paste Commands](#copy-and-paste-commands).
 
 If the terminal from your download is still open, you'll notice the final message says something similar to this:
 
-`To configure this terminal to LoopWorkspace folder of new download;``
+`To configure this terminal to LoopWorkspace folder of new download;`
 ` copy and paste the following line into the terminal`
 
 `cd /Users/your-name-here/Downloads/BuildLoop/Loop-230106-0845/LoopWorkspace`
