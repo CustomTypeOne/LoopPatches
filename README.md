@@ -1,7 +1,7 @@
 ***
 ## LoopPatches
 
-### README last updated on 14-Jan-2023
+**README last updated on 14-Jan-2023**
 
 With the release of Loop 3.0.0, continue to use the main branch of LoopPatches.
 
@@ -154,14 +154,14 @@ Otherwise, skip ahead to the [LoopWorkspace Quick Access](#loopworkspace-quick-a
 
 #### Open New Terminal at LoopWorkspace
 
-If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
+If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop 3 download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
 For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/code_customization/#open-a-terminal-in-loopworkspace-folder).
 
 The short bullet list is provided here (if you don't need the instructions linked above)
 
 * Use Finder to navigate to Downloads / BuildLoop
-* Find the version of Loop-dev you just downloaded
+* Find the version of Loop 3 you just downloaded
 * Open the folder to view LoopWorkspace
 * Hold down the CTRL key and click (or right-click) LoopWorkspace
 * A menu appears - select New Terminal at Folder (near the bottom of the list)
