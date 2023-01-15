@@ -3,9 +3,9 @@
 
 **README last updated on 14-Jan-2023**
 
-With the release of Loop 3.0.0, continue to use the main branch of LoopPatches.
+The patch code in the **main** branch of LoopPatches and **dev** branch of LoopPatches is identical. The **dev** branch exists as a place to provide updates for those using Loop dev when there is a divergence in the future.
 
-There have been no changes to the patch code recently, it continues to work with Loop 3.
+There have been no changes to the patch code recently, it continues to work with Loop 3 and Loop dev.
 
 The instructions were simplified 06-Jan-2023, so please read carefully.
 
@@ -154,14 +154,14 @@ Otherwise, skip ahead to the [LoopWorkspace Quick Access](#loopworkspace-quick-a
 
 #### Open New Terminal at LoopWorkspace
 
-If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop 3 download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
+If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
 For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/code_customization/#open-a-terminal-in-loopworkspace-folder).
 
 The short bullet list is provided here (if you don't need the instructions linked above)
 
 * Use Finder to navigate to Downloads / BuildLoop
-* Find the version of Loop 3 you just downloaded
+* Find the version of Loop dev you just downloaded
 * Open the folder to view LoopWorkspace
 * Hold down the CTRL key and click (or right-click) LoopWorkspace
 * A menu appears - select New Terminal at Folder (near the bottom of the list)
@@ -170,7 +170,7 @@ The short bullet list is provided here (if you don't need the instructions linke
 
 The response must end in LoopWorkspace and the date-time should match the fresh download. For example:
 
-`/Users/marion/Downloads/BuildLoop/Loop-230114-1645/LoopWorkspace`
+`/Users/marion/Downloads/BuildLoop/Loop-dev-230114-1645/LoopWorkspace`
 
 If the response is wrong, quit out of that terminal and try again.
 
