@@ -1,41 +1,27 @@
 ***
-## LoopPatches main branch updated 15-Dec-2022
+## LoopPatches
 
-### README instructions updated (simplified) 06-Jan-2023
+**README last updated on 14-Jan-2023**
 
-Thanks to community member (bjorkert), the instructions have been simplified.
+With the release of Loop 3.0.0, continue to use the main branch of LoopPatches.
+
+There have been no changes to the patch code recently, it continues to work with Loop 3.
+
+The instructions were simplified 06-Jan-2023, so please read carefully.
+
+Thanks to community member (bjorkert) for this simplification.
 
 * You do not need to manually download LoopPatches - it is automatic
-* The terminal display when you paste the commands will look different
+* The terminal display when you paste the commands shows the `curl` command results
+* Do **Not** Use shortcut if this is your first time with LoopPatches. [Shortcut for repeat patch users](#loopworkspace-quick-access)
 
-The LoopPatches code in this branch have been lightly tested, but you use them at your own risk.
+The LoopPatches code was lightly tested, but you use them at your own risk.
 
-* Tested with Loop Dev version: 15 Dec 2022, commit 290211f
-* Tested using mg/dL
-* As updates happen with the Loop Dev branch, I make sure patches can still be applied
-    * Verified LoopPatches can be applied with commit 3770f56, 23 Dec 2022
-    * Verified LoopPatches can be applied with commit 84afcfb, 01 Jan 2023
-    * Verified LoopPatches can be applied with commit ec9faeb, 06 Jan 2023
-* The updates to BuildLoopFixedDev may lag these checks, which are provided for the convenience of those not relying on the build script.
+There are no guardrails, so be extremely careful when you enter thresholds in iOS settings.
 
-### Loop-dev vs LoopPatches Branch Status
+### LoopPatches Branch Status
 
-The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version built using the **BuildLoopFixedDev** script.
-
-* Before an update is added to [**BuildLoopFixedDev**](https://loopkit.github.io/loopdocs/build/step13/#download-loop-dev) script
-    * LoopPatches main branch is tested to make sure patches can be applied
-    * As long as the patches apply, no change is required to LoopPatches main branch
-* On 27-Nov-2022, the patches required modification
-    * The older version of LoopPatches is saved in the branch named: dev-f245588
-    * If LoopWorkspace commit is f245588 or older, that branch can be used
-    * In the interim, LoopPatches branch dev was modified to work with newer commits until both the build script and LoopPatches were ready for update
-* As of 15-Dec-2022, the main branch of LoopPatches and **BuildLoopFixedDev** script were updated at the same time
-
-* Those users may find the dev branch of LoopPatches useful
-* Use this branch at your own risk
-* This branch is not tested with every commit made to Loop-dev
-
-As of 15-Dec-2022, the patch code from dev was merged into main and the Loop-dev build script was updated. So until the next time - the main and dev branches of LoopPatches provide the same patch code.
+The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version as well as the released Loop 3.0.0 version from the **main** branch of LoopKit/LoopWorkspace.
 
 ## **Table of Contents**
 
@@ -49,7 +35,8 @@ As of 15-Dec-2022, the patch code from dev was merged into main and the Loop-dev
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
     * [Fresh Download of Loop](#fresh-download-of-loop)
-    * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
+        * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
+        * [LoopWorkspace Quick Access](#loopworkspace-quick-access)
     * [Copy and Paste Commands](#copy-and-paste-commands)
     * [Build with LoopPatches](#build-with-looppatches)
     * [Congratulations](#congratulations)
@@ -61,8 +48,6 @@ As of 15-Dec-2022, the patch code from dev was merged into main and the Loop-dev
 # Custom Type One: LoopPatches
 
 LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
-
-Note: for **prior users of LoopPatches**: _The order of features has been modified and new features are available. There is no longer a drag and drop action required to add Settings to Xcode._
 
 * Features near the bottom of the list are either not recommended or are new and require more care
 * The order of patches displayed under Settings does not affect the values saved from previous builds
@@ -160,19 +145,23 @@ Warning: Only apply LoopPatches to a fresh download of Loop. Once patches are ap
 
 For each link below - remember to control-click (or right click) to open link in a new tab or window so you can return to these instructions easily.
 
-* Use the [Loop-dev](https://loopkit.github.io/loopdocs/build/step13/) instructions in LoopDocs to download Loop
+* Use the [Build Select Script](https://loopkit.github.io/loopdocs/build/step14.md#dowload-loop) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
 
-### Open New Terminal at LoopWorkspace
+If you closed your terminal after the download - you need to follow the [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace) steps before applying patches. 
 
-It is now time to open a terminal window associated with the LoopWorkspace folder of your new Loop-dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
+Otherwise, skip ahead to the [LoopWorkspace Quick Access](#loopworkspace-quick-access) instructions.
 
-For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/step13/#open-a-terminal-in-loopworkspace-folder).
+#### Open New Terminal at LoopWorkspace
+
+If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop 3 download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
+
+For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/code_customization/#open-a-terminal-in-loopworkspace-folder).
 
 The short bullet list is provided here (if you don't need the instructions linked above)
 
 * Use Finder to navigate to Downloads / BuildLoop
-* Find the version of Loop-dev you just downloaded
+* Find the version of Loop 3 you just downloaded
 * Open the folder to view LoopWorkspace
 * Hold down the CTRL key and click (or right-click) LoopWorkspace
 * A menu appears - select New Terminal at Folder (near the bottom of the list)
@@ -181,9 +170,21 @@ The short bullet list is provided here (if you don't need the instructions linke
 
 The response must end in LoopWorkspace and the date-time should match the fresh download. For example:
 
-`/Users/marion/Downloads/BuildLoop/Loop-dev-221215-0924_290211f/LoopWorkspace`
+`/Users/marion/Downloads/BuildLoop/Loop-230114-1645/LoopWorkspace`
 
 If the response is wrong, quit out of that terminal and try again.
+
+Now you can skip ahead to [Copy and Paste Commands](#copy-and-paste-commands).
+
+#### LoopWorkspace Quick Access
+
+If the terminal from your download is still open, you'll notice the final message says something similar to this:
+
+| Terminal Display: |
+|---|
+|To configure this terminal to LoopWorkspace folder of new download;<br>&nbsp;copy and paste the following line into the terminal<br><br>cd /Users/your-name-here/Downloads/BuildLoop/Loop-230114-1645/LoopWorkspace|
+
+Simply highlight the one line that starts with `cd` in your terminal (do **not** use the cd line above) and ends with `LoopWorkspace`; copy it (CMD-c) and then paste it (CMD-v) and hit return. Next issue the command `pwd` for print working directory and it should match the directory (the part that starts with `/Users` and ends with `LoopWorkspace`) in your terminal.
 
 ### Copy and Paste Commands
 
