@@ -145,7 +145,7 @@ Warning: Only apply LoopPatches to a fresh download of Loop. Once patches are ap
 
 For each link below - remember to control-click (or right click) to open link in a new tab or window so you can return to these instructions easily.
 
-* Use the [Build Select Script](https://loopkit.github.io/loopdocs/build/step14.md#dowload-loop) instructions in LoopDocs to download Loop
+* Use the [Build Select Script](https://loopkit.github.io/loopdocs/build/step14/#dowload-loop) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
 
 If you closed your terminal after the download - you need to follow the [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace) steps before applying patches. 
