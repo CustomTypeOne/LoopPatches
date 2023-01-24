@@ -5,10 +5,10 @@
 
 With the release of Loop 3.0.0, continue to use the main branch of LoopPatches.
 
-**One user reported that Localized decimal separator is not supported**
+**Warning the Localized decimal separator (of a comma) is not supported**
 
-* [Issue 10](https://github.com/CustomTypeOne/LoopPatches/issues/10)
-* Take extra care if using mmol/L when your language uses a comma
+* See [Issue 10](https://github.com/CustomTypeOne/LoopPatches/issues/10) for more information
+* When using mmol/L, use a period for the decimal separator and check that the threshold is working as expected
 
 There have been no changes to the patch code recently, it continues to work with Loop 3.
 
@@ -66,6 +66,7 @@ The configuration for each patch is found under the iOS Loop settings (after pat
     * This can be enabled or disabled (default)
 1. Automatic Strategy Switching
     * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
+    * When using mmol/L, use a period for the decimal separator and check that the threshold is working as expected
 1. Negative IOB Factor
     * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
     * This feature is disabled by selecting a factor of 100% (default setting is 1.0, same as 100%)
@@ -76,6 +77,7 @@ The configuration for each patch is found under the iOS Loop settings (after pat
 1. Basal Lock
     * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
     * Basal is "locked" to be no lower than the scheduled rate (overrides are ignored)
+    * When using mmol/L, use a period for the decimal separator and check that the threshold is working as expected
     * **Use with care; meant for high glucose >250 mg/dL (13.9 mmol/L)**
         * **When used improperly, this can cause lows**
 
@@ -132,10 +134,10 @@ After each fresh build, check all the values and check behavior for any enabled 
 
 No patch changes are required for mmol/L users. Several users confirmed threshold values are entered in mmol/L, but please check carefully on your device.
 
-**One user reported that Localized decimal separator is not supported**
+**Warning the Localized decimal separator (of a comma) is not supported**
 
-* [Issue 10](https://github.com/CustomTypeOne/LoopPatches/issues/10)
-* Take extra care if using mmol/L when your language uses a comma
+* See [Issue 10](https://github.com/CustomTypeOne/LoopPatches/issues/10) for more information
+* When using mmol/L, use a period for the decimal separator and check that the threshold is working as expected
 
 ## Apply LoopPatches
 
