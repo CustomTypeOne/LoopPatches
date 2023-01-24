@@ -5,6 +5,11 @@
 
 With the release of Loop 3.0.0, continue to use the main branch of LoopPatches.
 
+**One user reported that comma that Localized decimal separator is not supported**
+
+* [Issue 10](https://github.com/CustomTypeOne/LoopPatches/issues/10)
+* Take extra care if using mmol/L when your language uses a comma
+
 There have been no changes to the patch code recently, it continues to work with Loop 3.
 
 The instructions were simplified 06-Jan-2023, so please read carefully.
@@ -126,6 +131,11 @@ After each fresh build, check all the values and check behavior for any enabled 
 ### mmol/L Users
 
 No patch changes are required for mmol/L users. Several users confirmed threshold values are entered in mmol/L, but please check carefully on your device.
+
+**One user reported that comma that Localized decimal separator is not supported**
+
+* [Issue 10](https://github.com/CustomTypeOne/LoopPatches/issues/10)
+* Take extra care if using mmol/L when your language uses a comma
 
 ## Apply LoopPatches
 
