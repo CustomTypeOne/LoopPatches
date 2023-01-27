@@ -9,7 +9,7 @@
 When LoopPatches dev is updated, this README will also be updated. 
 
 * Please be patient
-* If you must have LoopPatches, use an older commit of Loop dev with LoopPatches main.
+* If you must have LoopPatches, use an older commit of Loop dev with LoopPatches main
 
 At this time, the patch code in the **main** branch of LoopPatches and **dev** branch of LoopPatches is still identical. The **dev** branch exists as a place to provide updates for those using Loop dev when there is a divergence as has now happened.
 
