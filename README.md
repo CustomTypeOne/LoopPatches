@@ -1,7 +1,10 @@
 ***
 ## LoopPatches
 
-**README last updated on 14-Jan-2023**
+**README last updated on 27-Jan-2023**
+
+* **A dev user reports the main branch can no longer be used with Loop dev branch**
+* **The dev branch will be updated - check in that branch for messages (later)**
 
 With the release of Loop 3.0.0, continue to use the main branch of LoopPatches.
 
