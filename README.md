@@ -6,9 +6,12 @@
 * **A dev user reports the main branch can no longer be used with Loop dev branch**
 * **The dev branch will be updated - check here for messages (later)**
 
-The patch code in the **main** branch of LoopPatches and **dev** branch of LoopPatches is still identical. The **dev** branch exists as a place to provide updates for those using Loop dev when there is a divergence as has now happened.
+When LoopPatches dev is updated, this README will also be updated. 
 
-When LoopPatches dev is updated, this README will also be updated. Be please patient. If you must have LoopPatches, use an older commit of Loop dev with LoopPatches main.
+* Please be patient
+* If you must have LoopPatches, use an older commit of Loop dev with LoopPatches main.
+
+At this time, the patch code in the **main** branch of LoopPatches and **dev** branch of LoopPatches is still identical. The **dev** branch exists as a place to provide updates for those using Loop dev when there is a divergence as has now happened.
 
 The instructions were simplified 06-Jan-2023, so please read carefully.
 
