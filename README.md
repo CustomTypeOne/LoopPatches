@@ -1,11 +1,14 @@
 ***
 ## LoopPatches
 
-**README last updated on 14-Jan-2023**
+**README last updated on 27-Jan-2023**
 
-The patch code in the **main** branch of LoopPatches and **dev** branch of LoopPatches is identical. The **dev** branch exists as a place to provide updates for those using Loop dev when there is a divergence in the future.
+* **A dev user reports the main branch can no longer be used with Loop dev branch**
+* **The dev branch will be updated - check here for messages (later)**
 
-There have been no changes to the patch code recently, it continues to work with Loop 3 and Loop dev.
+The patch code in the **main** branch of LoopPatches and **dev** branch of LoopPatches is still identical. The **dev** branch exists as a place to provide updates for those using Loop dev when there is a divergence as has now happened.
+
+When LoopPatches dev is updated, this README will also be updated. Be please patient. If you must have LoopPatches, use an older commit of Loop dev with LoopPatches main.
 
 The instructions were simplified 06-Jan-2023, so please read carefully.
 
