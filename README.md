@@ -1,9 +1,9 @@
 ***
 ## LoopPatches
 
-**README last updated on 02-Feb-2023**
+**README last updated on 01-Feb-2023**
 
-The **dev** branch of LoopPatches works with Loop-dev, as of LoopWorkspace commit a9c4e9b.
+The **dev** branch of LoopPatches was updated on 01-Feb-2023 to work with Loop-dev, as of LoopWorkspace commit a9c4e9b.
 
 Please test with every update and be aware that you use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
 
