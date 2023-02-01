@@ -1,25 +1,19 @@
 ***
 ## LoopPatches
 
-**README last updated on 27-Jan-2023**
+**README last updated on 02-Feb-2023**
 
-* **A dev user reports the main branch can no longer be used with Loop dev branch**
-* **The dev branch will be updated - check here for messages (later)**
+* **A dev user reported the main branch can no longer be used with Loop dev branch**
+* **The dev branch of LoopPatches was updated 02-Feb-2023 to work with the LoopWorkspace commit a9c4e9b**
 
-When LoopPatches dev is updated, this README will also be updated. 
+The patch code in the **main** branch of LoopPatches worked until translations were brought into the dev branch of Loop.
 
-* Please be patient
-* If you must have LoopPatches, use an older commit of Loop dev with LoopPatches main
+The **dev** branch of LoopPatches has been modified so it once again works with Loop-dev.
 
-At this time, the patch code in the **main** branch of LoopPatches and **dev** branch of LoopPatches is still identical. The **dev** branch exists as a place to provide updates for those using Loop dev when there is a divergence as has now happened.
+Please test with every update and be aware that you use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
 
-The instructions were simplified 06-Jan-2023, so please read carefully.
-
-Thanks to community member (bjorkert) for this simplification.
-
-* You do not need to manually download LoopPatches - it is automatic
 * The terminal display when you paste the commands shows the `curl` command results
-* Do **Not** Use shortcut if this is your first time with LoopPatches. [Shortcut for repeat patch users](#loopworkspace-quick-access)
+* Do **Not** Use this [Shortcut for repeat patch users](#loopworkspace-quick-access) if this is your first time with LoopPatches.
 
 The LoopPatches code was lightly tested, but you use them at your own risk.
 
