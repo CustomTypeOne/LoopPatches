@@ -97,7 +97,7 @@ Use caution with these features and adjust conservatively and slowly for safety.
 
 **DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches Documentation link (below) in a new tab or window and read the documentation.**
 
-* Hold down the control key and click (or right click) on the link for Loop Patches Documentation : https://www.craft.do/s/pakv8NO1oYpDgh
+* Hold down the control key and click (or right click) on the link for [CustomTypeOne LoopPatches Documentation](https://www.loopandlearn.org/custom-type-one-loop-patches/)
 * Select open in a new window or new tab of your browser and read about each patch provided by Jon Fawcett
 * New additions to the LoopPatches - provided by Marion Barker
     * Add Now Marker, Main Charts: No documentation required
