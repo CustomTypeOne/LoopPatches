@@ -1,7 +1,7 @@
 ***
 ## LoopPatches
 
-**README last updated on 01-Feb-2023**
+**README last updated on 16-Feb-2023**
 
 The **dev** branch of LoopPatches was updated on 01-Feb-2023 to work with Loop-dev, as of LoopWorkspace commit a9c4e9b.
 
@@ -35,6 +35,7 @@ The LoopPatches found in the **main** branch of LoopPatches can be applied to th
     * [Copy and Paste Commands](#copy-and-paste-commands)
     * [Build with LoopPatches](#build-with-looppatches)
     * [Congratulations](#congratulations)
+    * [OOPS: Clean Up Patches](#oops-clean-up-patches)
 * [Confirm Patches Work](#confirm-patches-work)
     * [Example for Switcher Patch](#example-for-switcher-patch)
     * [Example for Basal Lock](#example-for-basal-lock)
@@ -203,7 +204,9 @@ After you paste and hit return. The patches will be automatically applied and yo
 
 <a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="600"></a>
 
-There should be no error messages in response (unless there is an error). Make sure you do not see `error: patch failed` at the beginning of a line with various details afterwords. Be sure to only paste one time to a fresh download. A second paste will show errors.
+There should be no error messages in response (unless there is an error). Make sure you do not see `error: patch failed` at the beginning of a line with various details afterwords. Be sure to only paste one time to a fresh download. A second paste will show errors. See [OOPS - Clean Up Patches](#oops-clean-up-patches)
+
+#### Build from LoopWorkspace Terminal Window
 
 Copy and paste the next line into the same **LoopWorkspace Terminal Window**. This command (`xed`) will open (or bring to front if already open) Xcode so you can build the code with LoopPatches applied. The `.` just means to open Xcode in the current LoopWorkspace location.
 
@@ -213,6 +216,7 @@ xed .
 ```
 
 * Optional, you can check the modified files inside Xcode using [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
+
 
 ### Build with LoopPatches
 
@@ -230,6 +234,18 @@ So long as you did not get any errors, you have now applied the LoopPatches cust
 Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
 Every time you build, please check the settings: refer to [Use iOS Settings](#use-ios-settings).
+
+### OOPS - Clean Up Patches
+
+If you hit paste twice (or perhaps you tried to apply the main branch of LoopPatches to a development branch of Loop).
+
+Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen. When you paste these lines into your **LoopWorkspace Terminal Window**, you are removing the patches and restoring your download to the original state (for Loop and LoopKit).
+
+```
+cd Loop;git stash;rm -rf Settings.bundle;cd ..
+cd LoopKit;git stash;cd ..
+
+```
 
 ## Confirm Patches Work
 
