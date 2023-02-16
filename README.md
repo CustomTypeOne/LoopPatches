@@ -200,7 +200,7 @@ cd ..
 
 After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
-After you paste and hit return. The patches will be automatically applied and your screen should be similar to the graphic below.
+After you paste and hit return. The patches will be automatically applied and your screen should be similar to the graphic below. (NOTE - graphic shows main branch - but yours should show the dev branch.)
 
 <a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="600"></a>
 
