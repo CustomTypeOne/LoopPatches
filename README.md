@@ -35,7 +35,7 @@ The LoopPatches found in the **main** branch of LoopPatches can be applied to th
     * [Copy and Paste Commands](#copy-and-paste-commands)
     * [Build with LoopPatches](#build-with-looppatches)
     * [Congratulations](#congratulations)
-    * [OOPS: Clean Up Patches](#oops---clean-up-patchess)
+    * [OOPS - Clean Up Patches](#oops---clean-up-patches)
 * [Confirm Patches Work](#confirm-patches-work)
     * [Example for Switcher Patch](#example-for-switcher-patch)
     * [Example for Basal Lock](#example-for-basal-lock)
@@ -204,7 +204,7 @@ After you paste and hit return. The patches will be automatically applied and yo
 
 <a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="600"></a>
 
-There should be no error messages in response (unless there is an error). Make sure you do not see `error: patch failed` at the beginning of a line with various details afterwords. Be sure to only paste one time to a fresh download. A second paste will show errors. See [OOPS - Clean Up Patches](##oops---clean-up-patches)
+There should be no error messages in response (unless there is an error). Make sure you do not see `error: patch failed` at the beginning of a line with various details afterwords. Be sure to only paste one time to a fresh download. A second paste will show errors. See [OOPS - Clean Up Patches](#oops---clean-up-patches)
 
 #### Build from LoopWorkspace Terminal Window
 
