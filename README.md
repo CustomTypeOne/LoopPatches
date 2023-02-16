@@ -1,12 +1,13 @@
 ***
 ## LoopPatches
 
-**README last updated on 27-Jan-2023**
+**README last updated on 16-Feb-2023**
 
-* **A dev user reports the main branch can no longer be used with Loop dev branch**
-* **The dev branch will be updated - check in that branch for messages (later)**
+* **A dev user reported on 27-Jan-2023 that the main branch of LoopPatches can no longer be used with Loop dev branch**
+* **The dev branch of LoopPatches has been updated**
+* **Users of development branches of Loop should use the dev branch of LoopPatches**
 
-With the release of Loop 3.0.0, continue to use the main branch of LoopPatches.
+When building released Loop 3.0.0, use the main branch of LoopPatches.
 
 **Warning the Localized decimal separator (of a comma) is not supported**
 
