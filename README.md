@@ -12,8 +12,6 @@ You are in the correct place if you want to apply LoopPatches to the released Lo
 * See [Issue 10](https://github.com/CustomTypeOne/LoopPatches/issues/10) for more information
 * When using mmol/L, use a period for the decimal separator and check that the threshold is working as expected
 
-There have been no changes to the patch code recently, it continues to work with Loop 3.
-
 The instructions were simplified 06-Jan-2023, so please read carefully.
 
 Thanks to community member (bjorkert) for this simplification.
