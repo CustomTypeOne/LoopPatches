@@ -247,6 +247,8 @@ cd LoopKit;git stash;cd ..
 
 ```
 
+You should now be able to return to [Copy and Paste Commands](#copy-and-paste-commands) to try again.
+
 ## Confirm Patches Work
 
 For each patch you enable, please confirm it works the way you expect it to work before allowing it to run "unattended". You should check this each time you build. It is too easy to miss a step and have something not operating the way you expect.
