@@ -7,6 +7,8 @@ The **dev** branch of LoopPatches was updated on 01-Feb-2023 to work with Loop-d
 
 A new branch, dev-b36573a was created from dev. That branch will work up through commit b36573a.
 
+Be sure to use the curl statements from the correct branch to get the correct patches.
+
 Please test with every update and be aware that you use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
 
 * The terminal display when you paste the commands shows the `curl` command results
@@ -192,10 +194,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev/LoopPatch.txt | git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev-3b2a095/LoopPatch.txt | git apply
 cd ..
 cd LoopKit
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev/LoopkitPatch.txt | git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev-3b2a095/LoopkitPatch.txt | git apply
 cd ..
 
 ```
