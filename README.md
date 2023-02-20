@@ -5,7 +5,7 @@
 
 The **dev** branch of LoopPatches was updated on 01-Feb-2023 to work with Loop-dev, as of LoopWorkspace commit a9c4e9b and continued to work with Loop-dev through commit b36573a. During the day on 19-Feb-2023, commit a574124 was merged.
 
-A new branch, dev-b36573a was created from dev. That branch will work up through commit b36573a.
+A new branch, dev-3b2a095_20230218 was created from dev, i.e., dev-commit_date. That branch will work up through commit b36573a and probably with version prior to 18-Feb-2023.
 
 Be sure to use the curl statements from the correct branch to get the correct patches.
 
@@ -194,10 +194,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev-3b2a095/LoopPatch.txt | git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev-3b2a095_20230218/LoopPatch.txt | git apply
 cd ..
 cd LoopKit
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev-3b2a095/LoopkitPatch.txt | git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev-3b2a095_20230218/LoopkitPatch.txt | git apply
 cd ..
 
 ```
