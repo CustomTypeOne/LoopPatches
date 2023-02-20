@@ -3,6 +3,10 @@
 
 **README last updated on 19-Feb-2023**
 
+**At the current time - the patches do NOT work with the tip of LoopWorkspace dev branch**
+
+Please be patient.
+
 The **dev** branch of LoopPatches was updated on 01-Feb-2023 to work with Loop-dev, as of LoopWorkspace commit a9c4e9b and continued to work with Loop-dev through commit b36573a. During the day on 19-Feb-2023, commit a574124 was merged.
 
 A new branch, dev-b36573a_20230218 was created from dev, i.e., dev-commit_date. That branch will work up through commit b36573a and probably with version prior to 18-Feb-2023.
