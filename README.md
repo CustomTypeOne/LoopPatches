@@ -3,7 +3,7 @@
 
 **README last updated on 20-Feb-2023**
 
-The **dev** branch of LoopPatches was updated on 20-Feb-2023 to work with Loop-dev starting with commit a574124, 19-Feb-2023. Earlier commits require different a different branch.
+The **dev** branch of LoopPatches was updated on 20-Feb-2023 to work with Loop-dev starting with commit a574124, 19-Feb-2023. Earlier commits require a different branch.
 
 Please test with every update and be aware that you use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
 
