@@ -1,9 +1,9 @@
 ***
 ## LoopPatches
 
-**README last updated on 16-Feb-2023**
+**README last updated on 17-Mar-2023 with the release of Loop 3.2.0**
 
-You are in the correct place if you want to apply LoopPatches to the released Loop 3.0.0 version.
+You are in the correct place if you want to apply LoopPatches to the released Loop 3.2.0 version.
 
 * **Users of development branches of Loop should use the dev branch of LoopPatches**
 
@@ -26,7 +26,7 @@ There are no guardrails, so be extremely careful when you enter thresholds in iO
 
 ### LoopPatches Branch Status
 
-The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version as well as the released Loop 3.0.0 version from the **main** branch of LoopKit/LoopWorkspace.
+The LoopPatches found in the **main** branch of LoopPatches can be applied to the released Loop 3.2.0 version from the **main** branch of LoopKit/LoopWorkspace.
 
 ## **Table of Contents**
 
