@@ -1,9 +1,11 @@
 ***
 ## LoopPatches
 
-**README last updated on 16-Feb-2023**
+**README last updated on 17-Mar-2023 when Loop 3.2.0 was released**
 
-You are in the correct place if you want to apply LoopPatches to the released Loop 3.0.0 version.
+Now that Loop 3.2.0 has been released, this branch has been renamed to loop_3.0.0. You are best off updating to the latest version of Loop and not using this branch.
+
+* **Users of main (released) branch of Loop should use the main branch of LoopPatches**
 
 * **Users of development branches of Loop should use the dev branch of LoopPatches**
 
@@ -26,7 +28,7 @@ There are no guardrails, so be extremely careful when you enter thresholds in iO
 
 ### LoopPatches Branch Status
 
-The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version as well as the released Loop 3.0.0 version from the **main** branch of LoopKit/LoopWorkspace.
+The LoopPatches found in the **loop_3.0.0** branch of LoopPatches can be applied only to the Loop 3.0.0 version.
 
 ## **Table of Contents**
 
@@ -206,10 +208,10 @@ Copy the lines below by hovering the mouse near the top right side of the text a
 
 ```
 cd Loop
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt | git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/loop_3.0.0/LoopPatch.txt | git apply
 cd ..
 cd LoopKit
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt | git apply
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/loop_3.0.0/LoopkitPatch.txt | git apply
 cd ..
 
 ```
