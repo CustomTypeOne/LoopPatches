@@ -95,10 +95,10 @@ index e13a3613..009c23e8 100644
              return AutomaticDoseRecommendation(basalAdjustment: temp, bolusUnits: bolusUnits)
          }
 diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
-index 18a08166..25d612d7 100644
+index 18a08166..395ad28c 100644
 --- a/Loop/Managers/LoopDataManager.swift
 +++ b/Loop/Managers/LoopDataManager.swift
-@@ -1690,13 +1690,79 @@ extension LoopDataManager {
+@@ -1690,13 +1690,92 @@ extension LoopDataManager {
              let automaticDosingIOBLimit = maxBolus! * 2.0
              let iobHeadroom = automaticDosingIOBLimit - self.insulinOnBoard!.value
  
@@ -138,6 +138,14 @@ index 18a08166..25d612d7 100644
 +                // Begin Sliding Scale PAF
 +                
 +                // settings
++                UserDefaults.standard.register(
++                    defaults: [
++                        "slidingScalePAFEnabled": false,
++                        "slidingScalePAFStartingPAF": 0.4,
++                        "slidingScalePAFMaxPAF": 1.0,
++                    ]
++                )
++
 +                // Enabled
 +                let slidingScalePAFEnabled = UserDefaults.standard.bool(forKey: "slidingScalePAFEnabled")
 +                // Bottom of Scale BG
@@ -154,6 +162,11 @@ index 18a08166..25d612d7 100644
 +                print ("slidingScalePAFStartingPAF: " + String(slidingScalePAFStartingPAF))
 +                print ("slidingScalePAFTopBG: " + String(slidingScalePAFTopBG))
 +                print ("slidingScalePAFMaxPAF: " + String(slidingScalePAFMaxPAF))
++                
++                if (slidingScalePAFEnabled){
++                    //Disable Alternate PAF if Sliding Scale PAF is enabled
++                    UserDefaults.standard.set(false, forKey: "alternatePAFEnabled")
++                }
 +                
 +                if (slidingScalePAFEnabled && slidingScalePAFTopBG > slidingScalePAFBottomBG) {
 +                    let slidingScalePAFLengthOfScale = slidingScalePAFTopBG - slidingScalePAFBottomBG
@@ -181,7 +194,7 @@ index 18a08166..25d612d7 100644
  
                  dosingRecommendation = predictedGlucose.recommendedAutomaticDose(
                      to: glucoseTargetRange!,
-@@ -1706,13 +1772,13 @@ extension LoopDataManager {
+@@ -1706,13 +1785,13 @@ extension LoopDataManager {
                      model: doseStore.insulinModelProvider.model(for: pumpInsulinType),
                      basalRates: basalRateSchedule!,
                      maxAutomaticBolus: maxAutomaticBolus,
@@ -315,10 +328,10 @@ index 01a343d0..c77ac0bc 100644
              yAxisLayer,
 diff --git a/Settings.bundle/Root.plist b/Settings.bundle/Root.plist
 new file mode 100644
-index 00000000..28873d48
+index 00000000..583f2a2e
 --- /dev/null
 +++ b/Settings.bundle/Root.plist
-@@ -0,0 +1,425 @@
+@@ -0,0 +1,421 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 +<plist version="1.0">
@@ -574,8 +587,6 @@ index 00000000..28873d48
 +			<string>slidingScalePAFBottomBG</string>
 +			<key>KeyboardType</key>
 +			<string>NumbersAndPunctuation</string>
-+			<key>DefaultValue</key>
-+			<string>110</string>
 +		</dict>
 +		<dict>
 +			<key>Type</key>
@@ -642,8 +653,6 @@ index 00000000..28873d48
 +			<string>slidingScalePAFTopBG</string>
 +			<key>KeyboardType</key>
 +			<string>NumbersAndPunctuation</string>
-+			<key>DefaultValue</key>
-+			<string>200</string>
 +		</dict>
 +		<dict>
 +			<key>Type</key>
