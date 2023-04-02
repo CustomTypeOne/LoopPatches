@@ -20,6 +20,11 @@ You use these patches at your own risk and are responsible for ensuring they wor
 
 The new Sliding Scale feature is added to the bottom of the list under iOS Settings, Loop.
 
+The default values are shown in this graphic:
+
+-<a href="/img/sliding-scale-default.jpg"><img src="/img/sliding-scale-default.jpg?raw=true" alt="nominal terminal display when sliding scale is first added to patches" width="600"></a>
+
+
 ### Copy and Paste Commands
 
 NOTE: These are meant to be applied in the LoopWorkspace folder and are using the new format developed for GitHub patching. (Same commands work in build_loop.yml or for Mac-Xcode build.)
