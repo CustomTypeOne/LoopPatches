@@ -13,18 +13,18 @@ The patch is extracted from IsThisPaul/Loop branch dev-with-patches-sliding-scal
 
 * If you have not used LoopPatches before - do not use
 * If you are not using dev and keeping up with zulipchat - do not use
-* If you have not followed this topic [Sliding Scale Partial Application Factor](https://loop.zulipchat.com/#narrow/stream/144182-development/topic/Sliding.20Scale.20Partial.20Application.20Factor) - do not use
+* If you have not read every post in this topic [Sliding Scale Partial Application Factor](https://loop.zulipchat.com/#narrow/stream/144182-development/topic/Sliding.20Scale.20Partial.20Application.20Factor) - do not use
 
 You use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
 
-* If you have previously applied the regular dev or main branch of LoopPatches, you must clean them up first using [OOPS - Clean Up Patches](#oops---clean-up-patches).
+* If you have previously applied the dev or main branch of LoopPatches to your clone, you must clean them up first using [OOPS - Clean Up Patches](#oops---clean-up-patches).
 * Note - this will wipe out any other customizations you have applied to Loop or LoopKit submodules
 
 The new Sliding Scale feature is added to the bottom of the list under iOS Settings, Loop.
 
 The default values are shown in this graphic:
 
--<a href="/img/sliding-scale-default.jpg"><img src="/img/sliding-scale-default.jpg?raw=true" alt="nominal terminal display when sliding scale is first added to patches" width="600"></a>
+-<a href="/img/sliding-scale-default.jpg"><img src="/img/sliding-scale-default.jpg?raw=true" alt="nominal terminal display when sliding scale is first added to patches" width="500"></a>
 
 You must enter values suitable for your CGM glucose units (mg/dL or mmol/L). There are no guardrails so be careful.
 
