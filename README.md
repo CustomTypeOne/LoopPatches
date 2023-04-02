@@ -5,6 +5,8 @@
 
 This **sliding-scale** branch of LoopPatches is very experimental. Do NOT use unless you are experienced.
 
+All the patches found in the LoopPatches main and dev branches are also found here. The new feature is added to the bottom of the features under iOS Settings, Loop.
+
 This README file is bare-bones.
 
 The patch is extracted from IsThisPaul/Loop branch dev-with-patches-sliding-scale-paf.
