@@ -15,7 +15,10 @@ The patch is extracted from IsThisPaul/Loop branch dev-with-patches-sliding-scal
 
 You use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
 
-The settings selections are different - pay attention.
+* If you have previously applied the regular dev or main branch of LoopPatches, you must clean them up first using [OOPS - Clean Up Patches](#oops---clean-up-patches).
+* Note - this will wipe out any other customizations you have applied to Loop or LoopKit submodules
+
+The new Sliding Scale feature is added to the bottom of the list under iOS Settings, Loop.
 
 ### Copy and Paste Commands
 
