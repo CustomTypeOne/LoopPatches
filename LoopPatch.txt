@@ -746,5 +746,15 @@ index 00000000..28873d48
 +</plist>
 diff --git a/Settings.bundle/en.lproj/Root.strings b/Settings.bundle/en.lproj/Root.strings
 new file mode 100644
-index 00000000..8cd87b9d
-Binary files /dev/null and b/Settings.bundle/en.lproj/Root.strings differ
+index 0000000000000000000000000000000000000000..8cd87b9d6b20c1fbf87bd4db3db267fca5ad4df9
+GIT binary patch
+literal 546
+zcmaixOHRW;5JYRuDMndFh#Ua1V1d}N;sVAV2TO?uC3a9aJn*VxFrY}tnon0(S66#J
+z-d9>G>6W!ur(SDqlp`9nn~*(m%iWnv?yq`Qfp6XbK1?+om~~#r)ZnhkYQU_VbfjuT
+zHNn`CX<0sd*m<h0(azec(iObNh^%?ujr&=v=s=H#N;|Sb!c#%F;_UPWVjneF55ql&
+z;1>1<hFx!9AHUHrospb<`X7`yGd%lD#4Y=Ob9s`bR=VI@=sx_8^jm=6uzq9L!Fr&_
+nmcBD*Mox@AX7QwJ{2yYbnSDNcs=Q<RN>A}>&5sU$akD=GTXJ1e
+
+literal 0
+HcmV?d00001
+
