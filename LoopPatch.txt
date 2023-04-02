@@ -1,750 +1,750 @@
 diff --git a/Loop.xcodeproj/project.pbxproj b/Loop.xcodeproj/project.pbxproj
-index 195fab67..31b6ebff 100644
+index 31b6ebff..195fab67 100644
 --- a/Loop.xcodeproj/project.pbxproj
 +++ b/Loop.xcodeproj/project.pbxproj
-@@ -425,7 +425,6 @@
+@@ -425,6 +425,7 @@
  		B4E96D5D248A82A2002DABAD /* StatusBarHUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E96D5C248A82A2002DABAD /* StatusBarHUDView.xib */; };
  		B4F3D25124AF890C0095CE44 /* BluetoothStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3D25024AF890C0095CE44 /* BluetoothStateManager.swift */; };
  		B4FEEF7D24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FEEF7C24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift */; };
--		B633A70E291011EE00A39E1D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B633A70D291011EE00A39E1D /* Settings.bundle */; };
++		B633A70E291011EE00A39E1D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B633A70D291011EE00A39E1D /* Settings.bundle */; };
  		C1004DF22981F5B700B8CF94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1004DF02981F5B700B8CF94 /* InfoPlist.strings */; };
  		C1004DF52981F5B700B8CF94 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1004DF32981F5B700B8CF94 /* Localizable.strings */; };
  		C1004DF82981F5B700B8CF94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1004DF62981F5B700B8CF94 /* InfoPlist.strings */; };
-@@ -1406,7 +1405,6 @@
+@@ -1405,6 +1406,7 @@
  		B4E96D5C248A82A2002DABAD /* StatusBarHUDView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusBarHUDView.xib; sourceTree = "<group>"; };
  		B4F3D25024AF890C0095CE44 /* BluetoothStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothStateManager.swift; sourceTree = "<group>"; };
  		B4FEEF7C24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDataManager+DeviceStatus.swift"; sourceTree = "<group>"; };
--		B633A70D291011EE00A39E1D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
++		B633A70D291011EE00A39E1D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
  		C1004DEF2981F5B700B8CF94 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
  		C1004DF12981F5B700B8CF94 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
  		C1004DF42981F5B700B8CF94 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
-@@ -2065,7 +2063,6 @@
+@@ -2063,6 +2065,7 @@
  		43776F831B8022E90074EA36 = {
  			isa = PBXGroup;
  			children = (
--				B633A70D291011EE00A39E1D /* Settings.bundle */,
++				B633A70D291011EE00A39E1D /* Settings.bundle */,
  				C18A491122FCC20B00FDA733 /* Scripts */,
  				4FF4D0FA1E1834BD00846527 /* Common */,
  				43776F8E1B8022E90074EA36 /* Loop */,
-@@ -3506,7 +3503,6 @@
+@@ -3503,6 +3506,7 @@
  				A966152723EA5A26005D8B29 /* DerivedAssets.xcassets in Resources */,
  				7D70764F1FE06EE1004AC8EA /* InfoPlist.strings in Resources */,
  				7D7076631FE06EE4004AC8EA /* Localizable.strings in Resources */,
--				B633A70E291011EE00A39E1D /* Settings.bundle in Resources */,
++				B633A70E291011EE00A39E1D /* Settings.bundle in Resources */,
  				43776F971B8022E90074EA36 /* Main.storyboard in Resources */,
  			);
  			runOnlyForDeploymentPostprocessing = 0;
 diff --git a/Loop/Managers/DoseMath.swift b/Loop/Managers/DoseMath.swift
-index 009c23e8..e13a3613 100644
+index e13a3613..009c23e8 100644
 --- a/Loop/Managers/DoseMath.swift
 +++ b/Loop/Managers/DoseMath.swift
-@@ -398,30 +398,13 @@ extension Collection where Element: GlucoseValue {
+@@ -398,13 +398,30 @@ extension Collection where Element: GlucoseValue {
              maxBasalRate = Swift.min(maxThirtyMinuteRateToKeepIOBBelowLimit, maxBasalRate)
          }
  
--        var temp = correction?.asTempBasal(
-+        let temp = correction?.asTempBasal(
+-        let temp = correction?.asTempBasal(
++        var temp = correction?.asTempBasal(
              scheduledBasalRate: scheduledBasalRate,
              maxBasalRate: maxBasalRate,
              duration: duration,
              rateRounder: rateRounder
          )
  
--        // Basal Lock threshold - Jon Fawcett
--        let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
--        let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
--        let glucoseUnit = UserDefaults.standard.string(forKey: "settingsGlucoseUnit")
--        let hkUnit = glucoseUnit == HKUnit.millimolesPerLiter.unitString ? HKUnit.millimolesPerLiter : HKUnit.milligramsPerDeciliter
--
--        if (basalLockEnabled && basalLockThreshold != 0) {
--            if (( temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate  ||
--                 lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
--                 ) &&
--                 self[0 as! Self.Index].quantity > HKQuantity(unit : hkUnit, doubleValue: basalLockThreshold))
--            {
--                print("####### Temp Basal Lock On #########")
--                temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
--            }
--        }
--
++        // Basal Lock threshold - Jon Fawcett
++        let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
++        let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
++        let glucoseUnit = UserDefaults.standard.string(forKey: "settingsGlucoseUnit")
++        let hkUnit = glucoseUnit == HKUnit.millimolesPerLiter.unitString ? HKUnit.millimolesPerLiter : HKUnit.milligramsPerDeciliter
++
++        if (basalLockEnabled && basalLockThreshold != 0) {
++            if (( temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate  ||
++                 lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
++                 ) &&
++                 self[0 as! Self.Index].quantity > HKQuantity(unit : hkUnit, doubleValue: basalLockThreshold))
++            {
++                print("####### Temp Basal Lock On #########")
++                temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
++            }
++        }
++
          return temp?.ifNecessary(
              at: date,
              scheduledBasalRate: scheduledBasalRate,
-@@ -505,23 +488,6 @@ extension Collection where Element: GlucoseValue {
+@@ -488,6 +505,23 @@ extension Collection where Element: GlucoseValue {
              volumeRounder: volumeRounder
          )
  
--        // Basal Lock threshold - Jon Fawcett
--        let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
--        let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
--        let glucoseUnit = UserDefaults.standard.string(forKey: "settingsGlucoseUnit")
--        let hkUnit = glucoseUnit == HKUnit.millimolesPerLiter.unitString ? HKUnit.millimolesPerLiter : HKUnit.milligramsPerDeciliter
--
--        if (basalLockEnabled && basalLockThreshold != 0) {
--            if ( (temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate ||
--                  lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
--                  ) &&
--                 self[0 as! Self.Index].quantity > HKQuantity(unit : hkUnit, doubleValue: basalLockThreshold))
--            {
--                temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
--                print("####### Temp Basal Lock On #########")
--            }
--        }
--
++        // Basal Lock threshold - Jon Fawcett
++        let basalLockEnabled = UserDefaults.standard.bool(forKey: "basalLockEnabled")
++        let basalLockThreshold = UserDefaults.standard.double(forKey: "basalLockThreshold")
++        let glucoseUnit = UserDefaults.standard.string(forKey: "settingsGlucoseUnit")
++        let hkUnit = glucoseUnit == HKUnit.millimolesPerLiter.unitString ? HKUnit.millimolesPerLiter : HKUnit.milligramsPerDeciliter
++
++        if (basalLockEnabled && basalLockThreshold != 0) {
++            if ( (temp?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate ||
++                  lastTempBasal?.unitsPerHour ?? scheduledBasalRate < scheduledBasalRate
++                  ) &&
++                 self[0 as! Self.Index].quantity > HKQuantity(unit : hkUnit, doubleValue: basalLockThreshold))
++            {
++                temp = TempBasalRecommendation(unitsPerHour: scheduledBasalRate, duration: 1800)
++                print("####### Temp Basal Lock On #########")
++            }
++        }
++
          if temp != nil || bolusUnits > 0 {
              return AutomaticDoseRecommendation(basalAdjustment: temp, bolusUnits: bolusUnits)
          }
 diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
-index 25d612d7..18a08166 100644
+index 18a08166..25d612d7 100644
 --- a/Loop/Managers/LoopDataManager.swift
 +++ b/Loop/Managers/LoopDataManager.swift
-@@ -1690,79 +1690,13 @@ extension LoopDataManager {
+@@ -1690,13 +1690,79 @@ extension LoopDataManager {
              let automaticDosingIOBLimit = maxBolus! * 2.0
              let iobHeadroom = automaticDosingIOBLimit - self.insulinOnBoard!.value
  
--            // Dynamic Application Factor and Strategy Switching
--
--            // Default to the LoopConstants value
--            var alternateApplicationFactor = LoopConstants.bolusPartialApplicationFactor;
--
--            let alternatePAFEnabled = UserDefaults.standard.bool(forKey: "alternatePAFEnabled")
--            let alternatePAFSetting = UserDefaults.standard.double(forKey: "alternatePAFSetting")
--
--            let dosingStrategyAutomationEnabled = UserDefaults.standard.bool(forKey: "dosingStrategyAutomationEnabled")
--            let dosingStrategyThreshold = UserDefaults.standard.double(forKey: "dosingStrategyThreshold")
--
--            if (alternatePAFEnabled && alternatePAFSetting != 0) {
--                alternateApplicationFactor = alternatePAFSetting
--            }
--
--            var switcherIsAB = false;
--
--            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != 0) {
--                if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.automaticDosingStrategy == .automaticBolus){
--                     switcherIsAB = true;
--                 } else {
--                     switcherIsAB = false;
--                 }
--            } else if (settings.automaticDosingStrategy == .automaticBolus) {
--                switcherIsAB = true;
--            }
--
--            UserDefaults.standard.set(settings.glucoseUnit?.unitString ?? HKUnit.milligramsPerDeciliter.unitString, forKey: "settingsGlucoseUnit")
--
--            switch switcherIsAB {
--            case true:
--                // Begin Sliding Scale PAF
--                
--                // settings
--                // Enabled
--                let slidingScalePAFEnabled = UserDefaults.standard.bool(forKey: "slidingScalePAFEnabled")
--                // Bottom of Scale BG
--                let slidingScalePAFBottomBG = UserDefaults.standard.double(forKey: "slidingScalePAFBottomBG")
--                // PAF at and below Bottom of scale
--                let slidingScalePAFStartingPAF = UserDefaults.standard.double(forKey: "slidingScalePAFStartingPAF")
--                // Top of scale BG
--                let slidingScalePAFTopBG = UserDefaults.standard.double(forKey: "slidingScalePAFTopBG")
--                // Max PAF (default 100%)
--                let slidingScalePAFMaxPAF = UserDefaults.standard.double(forKey: "slidingScalePAFMaxPAF")
--                
--                print ("slidingScalePAFEnabled: " + String(slidingScalePAFEnabled))
--                print ("slidingScalePAFBottomBG: " + String(slidingScalePAFBottomBG))
--                print ("slidingScalePAFStartingPAF: " + String(slidingScalePAFStartingPAF))
--                print ("slidingScalePAFTopBG: " + String(slidingScalePAFTopBG))
--                print ("slidingScalePAFMaxPAF: " + String(slidingScalePAFMaxPAF))
--                
--                if (slidingScalePAFEnabled && slidingScalePAFTopBG > slidingScalePAFBottomBG) {
--                    let slidingScalePAFLengthOfScale = slidingScalePAFTopBG - slidingScalePAFBottomBG
--                    let slidingScalePAFLengthOfScalePercent = 1.0 - slidingScalePAFStartingPAF
--                    let slidingScalePAFPercentPerPoint = Double(slidingScalePAFLengthOfScalePercent) / Double(slidingScalePAFLengthOfScale)
--                    
--                    let SlidingScalePAFCalculatedPAF = min(max(((glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter) - slidingScalePAFBottomBG) * slidingScalePAFPercentPerPoint) + slidingScalePAFStartingPAF, slidingScalePAFStartingPAF), slidingScalePAFMaxPAF)
--                    
--                    alternateApplicationFactor = SlidingScalePAFCalculatedPAF
--                    print ("slidingScalePAFLengthOfScale: " + String(slidingScalePAFLengthOfScale))
--                    print ("slidingScalePAFLengthOfScalePercent: " + String(slidingScalePAFLengthOfScalePercent))
--                    print ("slidingScalePAFPercentPerPoint: " + String(slidingScalePAFPercentPerPoint))
--                    print ("slidingScalePAF Glucose: " + String(glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter)))
--                    print ("slidingScalePAF SlidingScalePAFCalculatedPAF: " + String(SlidingScalePAFCalculatedPAF))
--                }
--                
--                // End Sliding Scale PAF
--                
-+            switch settings.automaticDosingStrategy {
-+            case .automaticBolus:
+-            switch settings.automaticDosingStrategy {
+-            case .automaticBolus:
++            // Dynamic Application Factor and Strategy Switching
++
++            // Default to the LoopConstants value
++            var alternateApplicationFactor = LoopConstants.bolusPartialApplicationFactor;
++
++            let alternatePAFEnabled = UserDefaults.standard.bool(forKey: "alternatePAFEnabled")
++            let alternatePAFSetting = UserDefaults.standard.double(forKey: "alternatePAFSetting")
++
++            let dosingStrategyAutomationEnabled = UserDefaults.standard.bool(forKey: "dosingStrategyAutomationEnabled")
++            let dosingStrategyThreshold = UserDefaults.standard.double(forKey: "dosingStrategyThreshold")
++
++            if (alternatePAFEnabled && alternatePAFSetting != 0) {
++                alternateApplicationFactor = alternatePAFSetting
++            }
++
++            var switcherIsAB = false;
++
++            if (dosingStrategyAutomationEnabled && dosingStrategyThreshold != 0) {
++                if( glucose.quantity > HKQuantity(unit : settings.glucoseUnit ?? .milligramsPerDeciliter, doubleValue: dosingStrategyThreshold) && settings.automaticDosingStrategy == .automaticBolus){
++                     switcherIsAB = true;
++                 } else {
++                     switcherIsAB = false;
++                 }
++            } else if (settings.automaticDosingStrategy == .automaticBolus) {
++                switcherIsAB = true;
++            }
++
++            UserDefaults.standard.set(settings.glucoseUnit?.unitString ?? HKUnit.milligramsPerDeciliter.unitString, forKey: "settingsGlucoseUnit")
++
++            switch switcherIsAB {
++            case true:
++                // Begin Sliding Scale PAF
++                
++                // settings
++                // Enabled
++                let slidingScalePAFEnabled = UserDefaults.standard.bool(forKey: "slidingScalePAFEnabled")
++                // Bottom of Scale BG
++                let slidingScalePAFBottomBG = UserDefaults.standard.double(forKey: "slidingScalePAFBottomBG")
++                // PAF at and below Bottom of scale
++                let slidingScalePAFStartingPAF = UserDefaults.standard.double(forKey: "slidingScalePAFStartingPAF")
++                // Top of scale BG
++                let slidingScalePAFTopBG = UserDefaults.standard.double(forKey: "slidingScalePAFTopBG")
++                // Max PAF (default 100%)
++                let slidingScalePAFMaxPAF = UserDefaults.standard.double(forKey: "slidingScalePAFMaxPAF")
++                
++                print ("slidingScalePAFEnabled: " + String(slidingScalePAFEnabled))
++                print ("slidingScalePAFBottomBG: " + String(slidingScalePAFBottomBG))
++                print ("slidingScalePAFStartingPAF: " + String(slidingScalePAFStartingPAF))
++                print ("slidingScalePAFTopBG: " + String(slidingScalePAFTopBG))
++                print ("slidingScalePAFMaxPAF: " + String(slidingScalePAFMaxPAF))
++                
++                if (slidingScalePAFEnabled && slidingScalePAFTopBG > slidingScalePAFBottomBG) {
++                    let slidingScalePAFLengthOfScale = slidingScalePAFTopBG - slidingScalePAFBottomBG
++                    let slidingScalePAFLengthOfScalePercent = 1.0 - slidingScalePAFStartingPAF
++                    let slidingScalePAFPercentPerPoint = Double(slidingScalePAFLengthOfScalePercent) / Double(slidingScalePAFLengthOfScale)
++                    
++                    let SlidingScalePAFCalculatedPAF = min(max(((glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter) - slidingScalePAFBottomBG) * slidingScalePAFPercentPerPoint) + slidingScalePAFStartingPAF, slidingScalePAFStartingPAF), slidingScalePAFMaxPAF)
++                    
++                    alternateApplicationFactor = SlidingScalePAFCalculatedPAF
++                    print ("slidingScalePAFLengthOfScale: " + String(slidingScalePAFLengthOfScale))
++                    print ("slidingScalePAFLengthOfScalePercent: " + String(slidingScalePAFLengthOfScalePercent))
++                    print ("slidingScalePAFPercentPerPoint: " + String(slidingScalePAFPercentPerPoint))
++                    print ("slidingScalePAF Glucose: " + String(glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter)))
++                    print ("slidingScalePAF SlidingScalePAFCalculatedPAF: " + String(SlidingScalePAFCalculatedPAF))
++                }
++                
++                // End Sliding Scale PAF
++                
                  let volumeRounder = { (_ units: Double) in
                      return self.delegate?.roundBolusVolume(units: units) ?? units
                  }
  
--                let maxAutomaticBolus = min(iobHeadroom, maxBolus! * alternateApplicationFactor)
-+                let maxAutomaticBolus = min(iobHeadroom, maxBolus! * LoopConstants.bolusPartialApplicationFactor)
+-                let maxAutomaticBolus = min(iobHeadroom, maxBolus! * LoopConstants.bolusPartialApplicationFactor)
++                let maxAutomaticBolus = min(iobHeadroom, maxBolus! * alternateApplicationFactor)
  
                  dosingRecommendation = predictedGlucose.recommendedAutomaticDose(
                      to: glucoseTargetRange!,
-@@ -1772,13 +1706,13 @@ extension LoopDataManager {
+@@ -1706,13 +1772,13 @@ extension LoopDataManager {
                      model: doseStore.insulinModelProvider.model(for: pumpInsulinType),
                      basalRates: basalRateSchedule!,
                      maxAutomaticBolus: maxAutomaticBolus,
--                    partialApplicationFactor: alternateApplicationFactor * self.timeBasedDoseApplicationFactor,
-+                    partialApplicationFactor: LoopConstants.bolusPartialApplicationFactor * self.timeBasedDoseApplicationFactor,
+-                    partialApplicationFactor: LoopConstants.bolusPartialApplicationFactor * self.timeBasedDoseApplicationFactor,
++                    partialApplicationFactor: alternateApplicationFactor * self.timeBasedDoseApplicationFactor,
                      lastTempBasal: lastTempBasal,
                      volumeRounder: volumeRounder,
                      rateRounder: rateRounder,
                      isBasalRateScheduleOverrideActive: settings.scheduleOverride?.isBasalRateScheduleOverriden(at: startDate) == true
                  )
--            case false:
-+            case .tempBasalOnly:
+-            case .tempBasalOnly:
++            case false:
  
                  let temp = predictedGlucose.recommendedTempBasal(
                      to: glucoseTargetRange!,
 diff --git a/LoopUI/Charts/COBChart.swift b/LoopUI/Charts/COBChart.swift
-index 7c956ddd..b8fbfd8f 100644
+index b8fbfd8f..7c956ddd 100644
 --- a/LoopUI/Charts/COBChart.swift
 +++ b/LoopUI/Charts/COBChart.swift
-@@ -63,16 +63,6 @@ public extension COBChart {
+@@ -63,6 +63,16 @@ public extension COBChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
  
--        // read from Settings->Loop, restart required
--        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
--
--        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: UIColor.carbTintColor, linesWidth: 0.0)
--        let currentTimeValue = ChartAxisValueDate(date: Date(),  formatter: { _ in "" })
--        if addNowMarker {
--            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: UIColor.carbTintColor, linesWidth: 1.0)
--        }
--        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
--
++        // read from Settings->Loop, restart required
++        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
++
++        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: UIColor.carbTintColor, linesWidth: 0.0)
++        let currentTimeValue = ChartAxisValueDate(date: Date(),  formatter: { _ in "" })
++        if addNowMarker {
++            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: UIColor.carbTintColor, linesWidth: 1.0)
++        }
++        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
++
          if gestureRecognizer != nil {
              cobChartCache = ChartPointsTouchHighlightLayerViewCache(
                  xAxisLayer: xAxisLayer,
-@@ -86,7 +76,6 @@ public extension COBChart {
+@@ -76,6 +86,7 @@ public extension COBChart {
  
          let layers: [ChartLayer?] = [
              gridLayer,
--            currentTimeLayer,
++            currentTimeLayer,
              xAxisLayer,
              yAxisLayer,
              cobChartCache?.highlightLayer,
 diff --git a/LoopUI/Charts/DoseChart.swift b/LoopUI/Charts/DoseChart.swift
-index 8ddd6191..a2558511 100644
+index a2558511..8ddd6191 100644
 --- a/LoopUI/Charts/DoseChart.swift
 +++ b/LoopUI/Charts/DoseChart.swift
-@@ -106,16 +106,6 @@ public extension DoseChart {
+@@ -106,6 +106,16 @@ public extension DoseChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
  
--        // read from Settings->Loop, restart required
--        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
--
--        let currentTimeValue = ChartAxisValueDate(date: Date(), formatter: { _ in "" })
--        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 0.0)
--        if addNowMarker {
--            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 1.0)
--        }
--        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
--
++        // read from Settings->Loop, restart required
++        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
++
++        let currentTimeValue = ChartAxisValueDate(date: Date(), formatter: { _ in "" })
++        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 0.0)
++        if addNowMarker {
++            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 1.0)
++        }
++        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
++
          // 0-line
          let dummyZeroChartPoint = ChartPoint(x: ChartAxisValueDouble(0), y: ChartAxisValueDouble(0))
          let zeroGuidelineLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: [dummyZeroChartPoint], viewGenerator: {(chartPointModel, layer, chart) -> UIView? in
-@@ -140,7 +130,6 @@ public extension DoseChart {
+@@ -130,6 +140,7 @@ public extension DoseChart {
  
          let layers: [ChartLayer?] = [
              gridLayer,
--            currentTimeLayer,
++            currentTimeLayer,
              xAxisLayer,
              yAxisLayer,
              zeroGuidelineLayer,
 diff --git a/LoopUI/Charts/IOBChart.swift b/LoopUI/Charts/IOBChart.swift
-index 5d6a44ca..a78699ea 100644
+index a78699ea..5d6a44ca 100644
 --- a/LoopUI/Charts/IOBChart.swift
 +++ b/LoopUI/Charts/IOBChart.swift
-@@ -66,16 +66,6 @@ public extension IOBChart {
+@@ -66,6 +66,16 @@ public extension IOBChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
  
--        // read from Settings->Loop, restart required
--        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
--
--        let currentTimeValue = ChartAxisValueDate(date: Date(), formatter: { _ in "" })
--        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 0.0)
--        if addNowMarker {
--            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 1.0)
--        }
--        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
--
++        // read from Settings->Loop, restart required
++        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
++
++        let currentTimeValue = ChartAxisValueDate(date: Date(), formatter: { _ in "" })
++        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 0.0)
++        if addNowMarker {
++            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.insulinTint, linesWidth: 1.0)
++        }
++        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
++
          // 0-line
          let dummyZeroChartPoint = ChartPoint(x: ChartAxisValueDouble(0), y: ChartAxisValueDouble(0))
          let zeroGuidelineLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: [dummyZeroChartPoint], viewGenerator: {(chartPointModel, layer, chart) -> UIView? in
-@@ -100,7 +90,6 @@ public extension IOBChart {
+@@ -90,6 +100,7 @@ public extension IOBChart {
  
          let layers: [ChartLayer?] = [
              gridLayer,
--            currentTimeLayer,
++            currentTimeLayer,
              xAxisLayer,
              yAxisLayer,
              zeroGuidelineLayer,
 diff --git a/LoopUI/Charts/PredictedGlucoseChart.swift b/LoopUI/Charts/PredictedGlucoseChart.swift
-index c77ac0bc..01a343d0 100644
+index 01a343d0..c77ac0bc 100644
 --- a/LoopUI/Charts/PredictedGlucoseChart.swift
 +++ b/LoopUI/Charts/PredictedGlucoseChart.swift
-@@ -170,16 +170,6 @@ extension PredictedGlucoseChart {
+@@ -170,6 +170,16 @@ extension PredictedGlucoseChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
  
--        // read from Settings->Loop, restart required
--        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
--
--        let currentTimeValue = ChartAxisValueDate(date: Date(), formatter: { _ in "" })
--        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.glucoseTint, linesWidth: 0.0)
--        if addNowMarker {
--            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.glucoseTint, linesWidth: 1.0)
--        }
--        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
--
++        // read from Settings->Loop, restart required
++        let addNowMarker = UserDefaults.standard.bool(forKey: "addNowMarkerToCharts")
++
++        let currentTimeValue = ChartAxisValueDate(date: Date(), formatter: { _ in "" })
++        var currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.glucoseTint, linesWidth: 0.0)
++        if addNowMarker {
++            currentTimeSettings = ChartGuideLinesLayerSettings(linesColor: colors.glucoseTint, linesWidth: 1.0)
++        }
++        let currentTimeLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: currentTimeSettings, axisValuesX: [currentTimeValue], axisValuesY: [])
++
          let circles = ChartPointsScatterCirclesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: glucosePoints, displayDelay: 0, itemSize: CGSize(width: 4, height: 4), itemFillColor: colors.glucoseTint, optimized: true)
  
          var alternatePrediction: ChartLayer?
-@@ -218,7 +208,6 @@ extension PredictedGlucoseChart {
+@@ -208,6 +218,7 @@ extension PredictedGlucoseChart {
  
          let layers: [ChartLayer?] = [
              gridLayer,
--            currentTimeLayer,
++            currentTimeLayer,
              targetsLayer,
              xAxisLayer,
              yAxisLayer,
 diff --git a/Settings.bundle/Root.plist b/Settings.bundle/Root.plist
-deleted file mode 100644
-index 28873d48..00000000
---- a/Settings.bundle/Root.plist
-+++ /dev/null
-@@ -1,425 +0,0 @@
--<?xml version="1.0" encoding="UTF-8"?>
--<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
--<plist version="1.0">
--<dict>
--	<key>StringsTable</key>
--	<string>Root</string>
--	<key>PreferenceSpecifiers</key>
--	<array>
--		<dict>
--			<key>Type</key>
--			<string>PSGroupSpecifier</string>
--			<key>Title</key>
--			<string>Add Now Marker, Main Charts</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSToggleSwitchSpecifier</string>
--			<key>Title</key>
--			<string>Enabled</string>
--			<key>Key</key>
--			<string>addNowMarkerToCharts</string>
--			<key>DefaultValue</key>
--			<false/>
--			<key>TrueValue</key>
--			<true/>
--			<key>FalseValue</key>
--			<false/>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSGroupSpecifier</string>
--			<key>Title</key>
--			<string>Automatic Strategy Switching</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSToggleSwitchSpecifier</string>
--			<key>Title</key>
--			<string>Enabled</string>
--			<key>Key</key>
--			<string>dosingStrategyAutomationEnabled</string>
--			<key>DefaultValue</key>
--			<false/>
--			<key>TrueValue</key>
--			<true/>
--			<key>FalseValue</key>
--			<false/>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSTextFieldSpecifier</string>
--			<key>Title</key>
--			<string>Switching BG Threshold</string>
--			<key>Key</key>
--			<string>dosingStrategyThreshold</string>
--			<key>KeyboardType</key>
--			<string>NumbersAndPunctuation</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSGroupSpecifier</string>
--			<key>Title</key>
--			<string>Negative IOB Factor</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSMultiValueSpecifier</string>
--			<key>Title</key>
--			<string>Negative IOB Factor</string>
--			<key>Key</key>
--			<string>negativeBasalMultiplier</string>
--			<key>DefaultValue</key>
--			<string>1.0</string>
--			<key>Values</key>
--			<array>
--				<real>0.05</real>
--				<real>0.1</real>
--				<real>0.15</real>
--				<real>0.2</real>
--				<real>0.25</real>
--				<real>0.3</real>
--				<real>0.35</real>
--				<real>0.4</real>
--				<real>0.45</real>
--				<real>0.5</real>
--				<real>0.55</real>
--				<real>0.6</real>
--				<real>0.65</real>
--				<real>0.7</real>
--				<real>0.75</real>
--				<real>0.8</real>
--				<real>0.85</real>
--				<real>0.9</real>
--				<real>0.95</real>
--				<real>1</real>
--			</array>
--			<key>Titles</key>
--			<array>
--				<string>5%</string>
--				<string>10%</string>
--				<string>15%</string>
--				<string>20%</string>
--				<string>25%</string>
--				<string>30%</string>
--				<string>35%</string>
--				<string>40%</string>
--				<string>45%</string>
--				<string>50%</string>
--				<string>55%</string>
--				<string>60%</string>
--				<string>65%</string>
--				<string>70%</string>
--				<string>75%</string>
--				<string>80%</string>
--				<string>85%</string>
--				<string>90%</string>
--				<string>95%</string>
--				<string>100%</string>
--			</array>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSGroupSpecifier</string>
--			<key>Title</key>
--			<string>Partial Bolus Application Factor</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSToggleSwitchSpecifier</string>
--			<key>Title</key>
--			<string>Enabled</string>
--			<key>Key</key>
--			<string>alternatePAFEnabled</string>
--			<key>DefaultValue</key>
--			<false/>
--			<key>TrueValue</key>
--			<true/>
--			<key>FalseValue</key>
--			<false/>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSMultiValueSpecifier</string>
--			<key>Title</key>
--			<string>Alternate Application Factor</string>
--			<key>Key</key>
--			<string>alternatePAFSetting</string>
--			<key>DefaultValue</key>
--			<string>0.4</string>
--			<key>Values</key>
--			<array>
--				<real>0.05</real>
--				<real>0.1</real>
--				<real>0.15</real>
--				<real>0.2</real>
--				<real>0.25</real>
--				<real>0.3</real>
--				<real>0.35</real>
--				<real>0.4</real>
--				<real>0.45</real>
--				<real>0.5</real>
--				<real>0.55</real>
--				<real>0.6</real>
--				<real>0.65</real>
--				<real>0.7</real>
--				<real>0.75</real>
--				<real>0.8</real>
--				<real>0.85</real>
--				<real>0.9</real>
--				<real>0.95</real>
--				<real>1</real>
--			</array>
--			<key>Titles</key>
--			<array>
--				<string>5%</string>
--				<string>10%</string>
--				<string>15%</string>
--				<string>20%</string>
--				<string>25%</string>
--				<string>30%</string>
--				<string>35%</string>
--				<string>40%</string>
--				<string>45%</string>
--				<string>50%</string>
--				<string>55%</string>
--				<string>60%</string>
--				<string>65%</string>
--				<string>70%</string>
--				<string>75%</string>
--				<string>80%</string>
--				<string>85%</string>
--				<string>90%</string>
--				<string>95%</string>
--				<string>100%</string>
--			</array>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSGroupSpecifier</string>
--			<key>Title</key>
--			<string>Basal Lock</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSToggleSwitchSpecifier</string>
--			<key>Title</key>
--			<string>Enabled</string>
--			<key>Key</key>
--			<string>basalLockEnabled</string>
--			<key>DefaultValue</key>
--			<false/>
--			<key>TrueValue</key>
--			<true/>
--			<key>FalseValue</key>
--			<false/>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSTextFieldSpecifier</string>
--			<key>Title</key>
--			<string>Basal Lock Threshold</string>
--			<key>Key</key>
--			<string>basalLockThreshold</string>
--			<key>KeyboardType</key>
--			<string>NumbersAndPunctuation</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSGroupSpecifier</string>
--			<key>Title</key>
--			<string>Sliding Scale Partial Bolus Application Factor</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSToggleSwitchSpecifier</string>
--			<key>Title</key>
--			<string>Enabled (Overrides Partial Bolus Application Factor)</string>
--			<key>Key</key>
--			<string>slidingScalePAFEnabled</string>
--			<key>DefaultValue</key>
--			<false/>
--			<key>TrueValue</key>
--			<string>YES</string>
--			<key>FalseValue</key>
--			<string>NO</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSTextFieldSpecifier</string>
--			<key>Title</key>
--			<string>Bottom of Scale BG</string>
--			<key>Key</key>
--			<string>slidingScalePAFBottomBG</string>
--			<key>KeyboardType</key>
--			<string>NumbersAndPunctuation</string>
--			<key>DefaultValue</key>
--			<string>110</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSMultiValueSpecifier</string>
--			<key>Title</key>
--			<string>Starting Application Factor</string>
--			<key>Key</key>
--			<string>slidingScalePAFStartingPAF</string>
--			<key>DefaultValue</key>
--			<string>0.4</string>
--			<key>Values</key>
--			<array>
--				<real>0.05</real>
--				<real>0.1</real>
--				<real>0.15</real>
--				<real>0.2</real>
--				<real>0.25</real>
--				<real>0.3</real>
--				<real>0.35</real>
--				<real>0.4</real>
--				<real>0.45</real>
--				<real>0.5</real>
--				<real>0.55</real>
--				<real>0.6</real>
--				<real>0.65</real>
--				<real>0.7</real>
--				<real>0.75</real>
--				<real>0.8</real>
--				<real>0.85</real>
--				<real>0.9</real>
--				<real>0.95</real>
--				<real>1</real>
--			</array>
--			<key>Titles</key>
--			<array>
--				<string>5%</string>
--				<string>10%</string>
--				<string>15%</string>
--				<string>20%</string>
--				<string>25%</string>
--				<string>30%</string>
--				<string>35%</string>
--				<string>40%</string>
--				<string>45%</string>
--				<string>50%</string>
--				<string>55%</string>
--				<string>60%</string>
--				<string>65%</string>
--				<string>70%</string>
--				<string>75%</string>
--				<string>80%</string>
--				<string>85%</string>
--				<string>90%</string>
--				<string>95%</string>
--				<string>100%</string>
--			</array>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSTextFieldSpecifier</string>
--			<key>Title</key>
--			<string>Top of Scale BG</string>
--			<key>Key</key>
--			<string>slidingScalePAFTopBG</string>
--			<key>KeyboardType</key>
--			<string>NumbersAndPunctuation</string>
--			<key>DefaultValue</key>
--			<string>200</string>
--		</dict>
--		<dict>
--			<key>Type</key>
--			<string>PSMultiValueSpecifier</string>
--			<key>Title</key>
--			<string>Max Application Factor</string>
--			<key>Key</key>
--			<string>slidingScalePAFMaxPAF</string>
--			<key>DefaultValue</key>
--			<string>1</string>
--			<key>Values</key>
--			<array>
--				<real>0.05</real>
--				<real>0.1</real>
--				<real>0.15</real>
--				<real>0.2</real>
--				<real>0.25</real>
--				<real>0.3</real>
--				<real>0.35</real>
--				<real>0.4</real>
--				<real>0.45</real>
--				<real>0.5</real>
--				<real>0.55</real>
--				<real>0.6</real>
--				<real>0.65</real>
--				<real>0.7</real>
--				<real>0.75</real>
--				<real>0.8</real>
--				<real>0.85</real>
--				<real>0.9</real>
--				<real>0.95</real>
--				<real>1</real>
--				<string>1.05</string>
--				<string>1.1</string>
--				<string>1.15</string>
--				<string>1.2</string>
--				<string>1.25</string>
--				<string>1.3</string>
--				<string>1.35</string>
--				<string>1.4</string>
--				<string>1.45</string>
--				<string>1.5</string>
--				<string>1.55</string>
--				<string>1.6</string>
--				<string>1.65</string>
--				<string>1.7</string>
--				<string>1.75</string>
--				<string>1.8</string>
--				<string>1.85</string>
--				<string>1.9</string>
--				<string>1.95</string>
--				<string>2</string>
--			</array>
--			<key>Titles</key>
--			<array>
--				<string>5%</string>
--				<string>10%</string>
--				<string>15%</string>
--				<string>20%</string>
--				<string>25%</string>
--				<string>30%</string>
--				<string>35%</string>
--				<string>40%</string>
--				<string>45%</string>
--				<string>50%</string>
--				<string>55%</string>
--				<string>60%</string>
--				<string>65%</string>
--				<string>70%</string>
--				<string>75%</string>
--				<string>80%</string>
--				<string>85%</string>
--				<string>90%</string>
--				<string>95%</string>
--				<string>100%</string>
--				<string>105%</string>
--				<string>110%</string>
--				<string>115%</string>
--				<string>120%</string>
--				<string>125%</string>
--				<string>130%</string>
--				<string>135%</string>
--				<string>140%</string>
--				<string>145%</string>
--				<string>150%</string>
--				<string>155%</string>
--				<string>160%</string>
--				<string>165%</string>
--				<string>170%</string>
--				<string>175%</string>
--				<string>180%</string>
--				<string>185%</string>
--				<string>190%</string>
--				<string>195%</string>
--				<string>200%</string>
--			</array>
--		</dict>
--	</array>
--</dict>
--</plist>
+new file mode 100644
+index 00000000..28873d48
+--- /dev/null
++++ b/Settings.bundle/Root.plist
+@@ -0,0 +1,425 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>StringsTable</key>
++	<string>Root</string>
++	<key>PreferenceSpecifiers</key>
++	<array>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Add Now Marker, Main Charts</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSToggleSwitchSpecifier</string>
++			<key>Title</key>
++			<string>Enabled</string>
++			<key>Key</key>
++			<string>addNowMarkerToCharts</string>
++			<key>DefaultValue</key>
++			<false/>
++			<key>TrueValue</key>
++			<true/>
++			<key>FalseValue</key>
++			<false/>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Automatic Strategy Switching</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSToggleSwitchSpecifier</string>
++			<key>Title</key>
++			<string>Enabled</string>
++			<key>Key</key>
++			<string>dosingStrategyAutomationEnabled</string>
++			<key>DefaultValue</key>
++			<false/>
++			<key>TrueValue</key>
++			<true/>
++			<key>FalseValue</key>
++			<false/>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSTextFieldSpecifier</string>
++			<key>Title</key>
++			<string>Switching BG Threshold</string>
++			<key>Key</key>
++			<string>dosingStrategyThreshold</string>
++			<key>KeyboardType</key>
++			<string>NumbersAndPunctuation</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Negative IOB Factor</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSMultiValueSpecifier</string>
++			<key>Title</key>
++			<string>Negative IOB Factor</string>
++			<key>Key</key>
++			<string>negativeBasalMultiplier</string>
++			<key>DefaultValue</key>
++			<string>1.0</string>
++			<key>Values</key>
++			<array>
++				<real>0.05</real>
++				<real>0.1</real>
++				<real>0.15</real>
++				<real>0.2</real>
++				<real>0.25</real>
++				<real>0.3</real>
++				<real>0.35</real>
++				<real>0.4</real>
++				<real>0.45</real>
++				<real>0.5</real>
++				<real>0.55</real>
++				<real>0.6</real>
++				<real>0.65</real>
++				<real>0.7</real>
++				<real>0.75</real>
++				<real>0.8</real>
++				<real>0.85</real>
++				<real>0.9</real>
++				<real>0.95</real>
++				<real>1</real>
++			</array>
++			<key>Titles</key>
++			<array>
++				<string>5%</string>
++				<string>10%</string>
++				<string>15%</string>
++				<string>20%</string>
++				<string>25%</string>
++				<string>30%</string>
++				<string>35%</string>
++				<string>40%</string>
++				<string>45%</string>
++				<string>50%</string>
++				<string>55%</string>
++				<string>60%</string>
++				<string>65%</string>
++				<string>70%</string>
++				<string>75%</string>
++				<string>80%</string>
++				<string>85%</string>
++				<string>90%</string>
++				<string>95%</string>
++				<string>100%</string>
++			</array>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Partial Bolus Application Factor</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSToggleSwitchSpecifier</string>
++			<key>Title</key>
++			<string>Enabled</string>
++			<key>Key</key>
++			<string>alternatePAFEnabled</string>
++			<key>DefaultValue</key>
++			<false/>
++			<key>TrueValue</key>
++			<true/>
++			<key>FalseValue</key>
++			<false/>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSMultiValueSpecifier</string>
++			<key>Title</key>
++			<string>Alternate Application Factor</string>
++			<key>Key</key>
++			<string>alternatePAFSetting</string>
++			<key>DefaultValue</key>
++			<string>0.4</string>
++			<key>Values</key>
++			<array>
++				<real>0.05</real>
++				<real>0.1</real>
++				<real>0.15</real>
++				<real>0.2</real>
++				<real>0.25</real>
++				<real>0.3</real>
++				<real>0.35</real>
++				<real>0.4</real>
++				<real>0.45</real>
++				<real>0.5</real>
++				<real>0.55</real>
++				<real>0.6</real>
++				<real>0.65</real>
++				<real>0.7</real>
++				<real>0.75</real>
++				<real>0.8</real>
++				<real>0.85</real>
++				<real>0.9</real>
++				<real>0.95</real>
++				<real>1</real>
++			</array>
++			<key>Titles</key>
++			<array>
++				<string>5%</string>
++				<string>10%</string>
++				<string>15%</string>
++				<string>20%</string>
++				<string>25%</string>
++				<string>30%</string>
++				<string>35%</string>
++				<string>40%</string>
++				<string>45%</string>
++				<string>50%</string>
++				<string>55%</string>
++				<string>60%</string>
++				<string>65%</string>
++				<string>70%</string>
++				<string>75%</string>
++				<string>80%</string>
++				<string>85%</string>
++				<string>90%</string>
++				<string>95%</string>
++				<string>100%</string>
++			</array>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Basal Lock</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSToggleSwitchSpecifier</string>
++			<key>Title</key>
++			<string>Enabled</string>
++			<key>Key</key>
++			<string>basalLockEnabled</string>
++			<key>DefaultValue</key>
++			<false/>
++			<key>TrueValue</key>
++			<true/>
++			<key>FalseValue</key>
++			<false/>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSTextFieldSpecifier</string>
++			<key>Title</key>
++			<string>Basal Lock Threshold</string>
++			<key>Key</key>
++			<string>basalLockThreshold</string>
++			<key>KeyboardType</key>
++			<string>NumbersAndPunctuation</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSGroupSpecifier</string>
++			<key>Title</key>
++			<string>Sliding Scale Partial Bolus Application Factor</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSToggleSwitchSpecifier</string>
++			<key>Title</key>
++			<string>Enabled (Overrides Partial Bolus Application Factor)</string>
++			<key>Key</key>
++			<string>slidingScalePAFEnabled</string>
++			<key>DefaultValue</key>
++			<false/>
++			<key>TrueValue</key>
++			<string>YES</string>
++			<key>FalseValue</key>
++			<string>NO</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSTextFieldSpecifier</string>
++			<key>Title</key>
++			<string>Bottom of Scale BG</string>
++			<key>Key</key>
++			<string>slidingScalePAFBottomBG</string>
++			<key>KeyboardType</key>
++			<string>NumbersAndPunctuation</string>
++			<key>DefaultValue</key>
++			<string>110</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSMultiValueSpecifier</string>
++			<key>Title</key>
++			<string>Starting Application Factor</string>
++			<key>Key</key>
++			<string>slidingScalePAFStartingPAF</string>
++			<key>DefaultValue</key>
++			<string>0.4</string>
++			<key>Values</key>
++			<array>
++				<real>0.05</real>
++				<real>0.1</real>
++				<real>0.15</real>
++				<real>0.2</real>
++				<real>0.25</real>
++				<real>0.3</real>
++				<real>0.35</real>
++				<real>0.4</real>
++				<real>0.45</real>
++				<real>0.5</real>
++				<real>0.55</real>
++				<real>0.6</real>
++				<real>0.65</real>
++				<real>0.7</real>
++				<real>0.75</real>
++				<real>0.8</real>
++				<real>0.85</real>
++				<real>0.9</real>
++				<real>0.95</real>
++				<real>1</real>
++			</array>
++			<key>Titles</key>
++			<array>
++				<string>5%</string>
++				<string>10%</string>
++				<string>15%</string>
++				<string>20%</string>
++				<string>25%</string>
++				<string>30%</string>
++				<string>35%</string>
++				<string>40%</string>
++				<string>45%</string>
++				<string>50%</string>
++				<string>55%</string>
++				<string>60%</string>
++				<string>65%</string>
++				<string>70%</string>
++				<string>75%</string>
++				<string>80%</string>
++				<string>85%</string>
++				<string>90%</string>
++				<string>95%</string>
++				<string>100%</string>
++			</array>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSTextFieldSpecifier</string>
++			<key>Title</key>
++			<string>Top of Scale BG</string>
++			<key>Key</key>
++			<string>slidingScalePAFTopBG</string>
++			<key>KeyboardType</key>
++			<string>NumbersAndPunctuation</string>
++			<key>DefaultValue</key>
++			<string>200</string>
++		</dict>
++		<dict>
++			<key>Type</key>
++			<string>PSMultiValueSpecifier</string>
++			<key>Title</key>
++			<string>Max Application Factor</string>
++			<key>Key</key>
++			<string>slidingScalePAFMaxPAF</string>
++			<key>DefaultValue</key>
++			<string>1</string>
++			<key>Values</key>
++			<array>
++				<real>0.05</real>
++				<real>0.1</real>
++				<real>0.15</real>
++				<real>0.2</real>
++				<real>0.25</real>
++				<real>0.3</real>
++				<real>0.35</real>
++				<real>0.4</real>
++				<real>0.45</real>
++				<real>0.5</real>
++				<real>0.55</real>
++				<real>0.6</real>
++				<real>0.65</real>
++				<real>0.7</real>
++				<real>0.75</real>
++				<real>0.8</real>
++				<real>0.85</real>
++				<real>0.9</real>
++				<real>0.95</real>
++				<real>1</real>
++				<string>1.05</string>
++				<string>1.1</string>
++				<string>1.15</string>
++				<string>1.2</string>
++				<string>1.25</string>
++				<string>1.3</string>
++				<string>1.35</string>
++				<string>1.4</string>
++				<string>1.45</string>
++				<string>1.5</string>
++				<string>1.55</string>
++				<string>1.6</string>
++				<string>1.65</string>
++				<string>1.7</string>
++				<string>1.75</string>
++				<string>1.8</string>
++				<string>1.85</string>
++				<string>1.9</string>
++				<string>1.95</string>
++				<string>2</string>
++			</array>
++			<key>Titles</key>
++			<array>
++				<string>5%</string>
++				<string>10%</string>
++				<string>15%</string>
++				<string>20%</string>
++				<string>25%</string>
++				<string>30%</string>
++				<string>35%</string>
++				<string>40%</string>
++				<string>45%</string>
++				<string>50%</string>
++				<string>55%</string>
++				<string>60%</string>
++				<string>65%</string>
++				<string>70%</string>
++				<string>75%</string>
++				<string>80%</string>
++				<string>85%</string>
++				<string>90%</string>
++				<string>95%</string>
++				<string>100%</string>
++				<string>105%</string>
++				<string>110%</string>
++				<string>115%</string>
++				<string>120%</string>
++				<string>125%</string>
++				<string>130%</string>
++				<string>135%</string>
++				<string>140%</string>
++				<string>145%</string>
++				<string>150%</string>
++				<string>155%</string>
++				<string>160%</string>
++				<string>165%</string>
++				<string>170%</string>
++				<string>175%</string>
++				<string>180%</string>
++				<string>185%</string>
++				<string>190%</string>
++				<string>195%</string>
++				<string>200%</string>
++			</array>
++		</dict>
++	</array>
++</dict>
++</plist>
 diff --git a/Settings.bundle/en.lproj/Root.strings b/Settings.bundle/en.lproj/Root.strings
-deleted file mode 100644
-index 8cd87b9d..00000000
-Binary files a/Settings.bundle/en.lproj/Root.strings and /dev/null differ
+new file mode 100644
+index 00000000..8cd87b9d
+Binary files /dev/null and b/Settings.bundle/en.lproj/Root.strings differ
