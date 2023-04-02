@@ -10,10 +10,12 @@ This README file is bare-bones.
 The patch is extracted from IsThisPaul/Loop branch dev-with-patches-sliding-scale-paf.
 
 * If you have not used LoopPatches before - do not use
-* If you are not using dev can keeping up with zulipchat - do not use
+* If you are not using dev and keeping up with zulipchat - do not use
 * If you have not followed this topic [Sliding Scale Partial Application Factor](https://loop.zulipchat.com/#narrow/stream/144182-development/topic/Sliding.20Scale.20Partial.20Application.20Factor) - do not use
 
 You use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
+
+The settings selections are different - pay attention.
 
 ### Copy and Paste Commands
 
