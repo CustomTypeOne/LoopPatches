@@ -24,6 +24,22 @@ The default values are shown in this graphic:
 
 -<a href="/img/sliding-scale-default.jpg"><img src="/img/sliding-scale-default.jpg?raw=true" alt="nominal terminal display when sliding scale is first added to patches" width="600"></a>
 
+You must enter values suitable for your CGM glucose units (mg/dL or mmol/L). There are no guardrails so be careful.
+
+* If you use mmol/L, do not use a comma as a decimal separator
+    * Enter 5.5 not 5,5 (which whould be interpreted as 5.0 mmol/L)
+
+Definition of the settings:
+
+* At a blood glucose reading at or below `Bottom of Scale BG`, Loop will dose `Starting Application Factor` of the recommended bolus
+* At a blood glucose reading above `Bottom of Scale BG` and up to `Top of Scale BG`, Loop will linearly increase the application to 100% but limited by `Max Application Factor`
+* If `Max Application Factor` exceeds 100%, then
+    * At a blood glucose reading above `Top of Scale BG`, Loop will continue to linearly increase the application factor up to that maximum value
+* When `Max Application Factor` is less than 100%, the linear ramp matches that of hitting 100% at `Top of Scale BG`, but is limited to `Max Application Factor`
+
+But what happens if I get more than my recommended dose?
+
+* Any additional dose above 100% will be accounted for on the next loop and removed from the recommended dose, effectively making that large dose a "super bolus"
 
 ### Copy and Paste Commands
 
