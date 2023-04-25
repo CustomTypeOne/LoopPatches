@@ -190,7 +190,7 @@ index 18a08166..395ad28c 100644
                  }
  
 -                let maxAutomaticBolus = min(iobHeadroom, maxBolus! * LoopConstants.bolusPartialApplicationFactor)
-+                let maxAutomaticBolus = min(iobHeadroom, maxBolus! * alternateApplicationFactor)
++                let maxAutomaticBolus = min(iobHeadroom, maxBolus! * min(alternateApplicationFactor, 1.0)) // cannot exceed maxBolus
  
                  dosingRecommendation = predictedGlucose.recommendedAutomaticDose(
                      to: glucoseTargetRange!,
