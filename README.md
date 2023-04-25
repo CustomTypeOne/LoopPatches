@@ -1,7 +1,16 @@
 ***
 ## LoopPatches
 
-**README last updated on 02-April-2023**
+**README last updated on 25-April-2023**
+
+On 25-April-2023 a fix was added to the code.
+
+* It turns out the prior version did not respect maxBolus as the limit for a single automatic bolus; this has been corrected
+* This could have been an issue in this situation
+   * High glucose level
+   * Enter (or edit) meal carb entry
+   * Save without Bolus
+   * Next cycle might have exceeded maxBolus if sliding scale PAF was > 1.0
 
 This **sliding-scale** branch of LoopPatches is very experimental. Do NOT use unless you are experienced.
 
