@@ -92,7 +92,7 @@ If the terminal from your download is still open, you can scroll up to where the
 
 | Terminal Display: |
 |---|
-| -- Downloading Loop to your Downloads folder --<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/Users/marion/Downloads/BuildLoop/Loop-230521-1655 |
+| -- Downloading Loop to your Downloads folder --<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/Users/marion/Downloads/BuildLoop/Loop-230521-1655 |
 
 Highlight the path and put a `cd` in front of it and a `/LoopWorkspace` at the end and paste it into the terminal. It will look like this, but will have your path name.
 
