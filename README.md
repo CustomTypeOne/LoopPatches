@@ -19,7 +19,7 @@ There are no guardrails, so be extremely careful when you enter thresholds in iO
 
 The LoopPatches found in the **main** branch of LoopPatches can be applied to the released Loop code from the **main** branch of LoopKit/LoopWorkspace.
 
-The LoopPatches found in the **dev** branch of LoopPatches can be applied to the **dev** branch of LoopKit/LoopWorkspace. Often, the dev branch is identical to the main branch. When there is a change required, it may take a few days for the dev branch to be updated.
+The LoopPatches found in the **dev** branch of LoopPatches can be applied to the **dev** branch of LoopKit/LoopWorkspace. The dev branch is often identical to the main branch. When there is a change required, it may take a few days for the dev branch to be updated. For each copy/paste block of text below - you will need to replace the word `main` with the word `dev` to use the dev branch for LoopPatches.
 
 ## **Table of Contents**
 
