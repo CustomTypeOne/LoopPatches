@@ -87,24 +87,13 @@ Now you can skip ahead to [Copy and Paste Commands](#copy-and-paste-commands).
 
 #### LoopWorkspace Quick Access
 
-If the terminal from your download is still open, you can scroll up to where the download started. You'll see a line that says:
+If the terminal from your download is still open, you can scroll up to where the download started. You'll see a section similar to this:
 
-`Downloading Loop to your Downloads folder`
-
-folded by a path name similar to this:
-
-`/Users/marion/Downloads/BuildLoop/Loop-230519-0737`
-
-Copy that path and add `/LoopWorkspace` to the end.
-
-
-:
 
 | Terminal Display: |
 |---|
 |
- -- Downloading Loop to your Downloads folder --<br>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/Users/marion/Downloads/BuildLoop/Loop-230521-1655 |
+ -- Downloading Loop to your Downloads folder --;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/Users/marion/Downloads/BuildLoop/Loop-230521-1655 |
 
 Highlight the path and put a `cd` in front of it and a `/LoopWorkspace` at the end and paste it into the terminal. It will look like this, but will have your path name.
 
