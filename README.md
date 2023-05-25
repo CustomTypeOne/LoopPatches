@@ -1,32 +1,28 @@
 ***
 ## LoopPatches
 
-**README last updated on 20-Feb-2023**
+LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
-The **dev** branch of LoopPatches was updated on 20-Feb-2023 to work with Loop-dev starting with commit a574124, 19-Feb-2023. Earlier commits require a different branch.
+**README last updated on 21-May-2023**
 
-Please test with every update and be aware that you use these patches at your own risk and are responsible for ensuring they work as you expect. Adjust settings carefully - there are no guardrails or error checking features.
+You are in the correct place if you want to apply LoopPatches to the released Loop 3.2.2 version.
 
-* The terminal display when you paste the commands shows the `curl` command results
-* Do **Not** Use this [Shortcut for repeat patch users](#loopworkspace-quick-access) if this is your first time with LoopPatches.
+This page has instructions for applying LoopPatches.
 
-The LoopPatches code was lightly tested, but you use them at your own risk.
+Refer to the [LoopPatches](https://www.loopandlearn.org/custom-type-one-loop-patches/) documentation page on the Loop and Learn website for usage instructions. **Read the documentation before applying and using the patches.**
+
+The LoopPatches code was lightly tested, but you use this at your own risk.
 
 There are no guardrails, so be extremely careful when you enter thresholds in iOS settings.
 
-### LoopPatches Branch Status
+### LoopPatches Branches
 
-The LoopPatches found in the **main** branch of LoopPatches can be applied to the Loop-dev version as well as the released Loop 3.0.0 version from the **main** branch of LoopKit/LoopWorkspace.
+The LoopPatches found in the **main** branch of LoopPatches can be applied to the released Loop code from the **main** branch of LoopKit/LoopWorkspace.
+
+The LoopPatches found in the **dev** branch of LoopPatches can be applied to the **dev** branch of LoopKit/LoopWorkspace. The dev branch is often identical to the main branch. When there is a change required, it may take a few days for the dev branch to be updated. For each copy/paste block of text below - you will need to replace the word `main` with the word `dev` to use the dev branch for LoopPatches.
 
 ## **Table of Contents**
 
-* [Custom Type One: LoopPatches Overview](#custom-type-one-looppatches)
-* [Feature Details](#feature-details)
-* [Feature Selection](#feature-selection)
-    * [Use iOS Settings](#use-ios-settings)
-    * [All Features](#all-features)
-    * [Automatic Switching Strategy or Basal Lock](#automatic-switching-strategy-or-basal-lock)
-    * [mmol/L Users](#mmolL-users)
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
     * [Fresh Download of Loop](#fresh-download-of-loop)
@@ -40,88 +36,6 @@ The LoopPatches found in the **main** branch of LoopPatches can be applied to th
     * [Example for Switcher Patch](#example-for-switcher-patch)
     * [Example for Basal Lock](#example-for-basal-lock)
 * [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
-
-# Custom Type One: LoopPatches
-
-LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
-
-* Features near the bottom of the list are either not recommended or are new and require more care
-* The order of patches displayed under Settings does not affect the values saved from previous builds
-    * Those values are remembered (by name) for a given phone.
-
-The configuration for each patch is found under the iOS Loop settings (after patch installation) in this order with these names:
-
-1. Add Now Marker, Main Charts
-    * Display Feature
-    * A vertical line is presented on each of the 4 main charts on the main Loop screen
-    * This can be enabled or disabled (default)
-1. Automatic Strategy Switching
-    * Switch Dosing Strategy from Temp Basal to Automatic Bolus at a glucose level you choose
-1. Negative IOB Factor
-    * Restrict the insulin Loop doses for negative IOB to prevent rebound lows
-    * This feature is disabled by selecting a factor of 100% (default setting is 1.0, same as 100%)
-    * Note - this modifies what Loop records as IOB whenever IOB is negative
-1. Partial Bolus Application Factor
-    * Adjust the percentage of recommended insulin that Loop delivers for each Automatic Bolus when that Dosing Strategy is selected
-    * **NOT RECOMMENDED, added for convenience of people returning from FreeAPS**
-1. Basal Lock
-    * Prevent Loop from reducing or suspending insulin when you go over a set glucose value to assist with stubborn highs
-    * Basal is "locked" to be no lower than the scheduled rate (overrides are ignored)
-    * **Use with care; meant for high glucose >250 mg/dL (13.9 mmol/L)**
-        * **When used improperly, this can cause lows**
-
-Use caution with these features and adjust conservatively and slowly for safety.
-
-**WARNING: These patches are open source, experimental and not approved for therapy by any governmental organization.**
-
-* Do not use LoopPatches if you are not an experienced Looper who has previously built Loop and understands how to customize the code.
-* It is your responsibility to review the code and understand the changes made.
-* You take full responsibility for building and running Loop Dev with the patches and do so at your own risk.
-* Please consult with your health care professional regarding your diabetes management.
-
-## Feature Details
-
-**DO NOT attempt to use these patches until you have read and understood the documentation for each patch. Open the Loop Patches Documentation link (below) in a new tab or window and read the documentation.**
-
-* Hold down the control key and click (or right click) on the link for [CustomTypeOne LoopPatches Documentation](https://www.loopandlearn.org/custom-type-one-loop-patches/)
-* Select open in a new window or new tab of your browser and read about each patch provided by Jon Fawcett
-* New additions to the LoopPatches - provided by Marion Barker
-    * Add Now Marker, Main Charts: No documentation required
-* Then return to this page before continuing (the documentation page does not have the patch code)
-
-## Feature Selection
-
-### Use iOS Settings
-
-After installation, each patch will be enabled or modified using the phone iOS settings.
-
-Tap on the phone settings icon
-
-* Scroll down until you find the Loop app
-* Tap on Loop
-* The graphic below shows phone (Loop) settings: Left before the Patch, Right after the Patch
-
-<a href="/img/looppatches-loop-settings.svg"><img src="/img/looppatches-loop-settings.svg?raw=true" alt="Image showing the iOS settings screen before and after applying Settings.bundle" width="500"></a>
-
-All settings can be enabled or disabled individually. Be certain that you enter appropriate values before enabling each. Please file an issue if you experience problems or have a question.
-
-After each fresh build, check all the values and check behavior for any enabled patches.
-
-### All Features:
-
-* To make sure your modification of a setting is updated in Loop immediately, quit the Loop app (swipe up) and then restart
-    * If you do not do this, then within one Loop cycle, the values should be updated anyway
-    * Do not guess, make sure the feature you just changed is behaving the way you want
-
-### Automatic Switching Strategy or Basal Lock:
-
-* When modifying a threshold value: disable the feature, modify threshold and then enable
-* Tap on the "Threshold" row to bring up a keyboard and enter or edit a value, return when done
-* Make sure that value is reasonable **before** sliding the switch to Enabled
-
-### mmol/L Users
-
-No patch changes are required for mmol/L users. Several users confirmed threshold values are entered in mmol/L, but please check carefully on your device.
 
 ## Apply LoopPatches
 
@@ -137,12 +51,11 @@ No patch changes are required for mmol/L users. Several users confirmed threshol
 
 ### Fresh Download of Loop
 
-Warning: Only apply LoopPatches to a fresh download of Loop. Once patches are applied, you cannot apply them again without taking steps that are not included in these instructions. If you have other customizations you wish to apply, those should be added after applying LoopPatches.
-
 For each link below - remember to control-click (or right click) to open link in a new tab or window so you can return to these instructions easily.
 
 * Use the [Build Select Script](https://loopkit.github.io/loopdocs/build/step14/#download-loop) instructions in LoopDocs to download Loop
 * When building, choose to build to a simulator (not your phone) to ensure build succeeds before applying LoopPatches
+* If you chose [Loop with Patches](https://www.loopandlearn.org/main-lnl-patches/) when your ran the Build Select Script, you already have LoopPatches along with a few other customizations, so stop now and read about how to use the patches
 
 If you closed your terminal after the download - you need to follow the [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace) steps before applying patches. 
 
@@ -174,27 +87,30 @@ Now you can skip ahead to [Copy and Paste Commands](#copy-and-paste-commands).
 
 #### LoopWorkspace Quick Access
 
-If the terminal from your download is still open, you'll notice the final message says something similar to this:
+If the terminal from your download is still open, you can scroll up to where the download started. You'll see a section similar to this:
+
 
 | Terminal Display: |
 |---|
-|To configure this terminal to LoopWorkspace folder of new download;<br>&nbsp;copy and paste the following line into the terminal<br><br>cd /Users/your-name-here/Downloads/BuildLoop/Loop-230114-1645/LoopWorkspace|
+| -- Downloading Loop to your Downloads folder --<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/Users/marion/Downloads/BuildLoop/Loop-230521-1655 |
 
-Simply highlight the one line that starts with `cd` in your terminal (do **not** use the cd line above) and ends with `LoopWorkspace`; copy it (CMD-c) and then paste it (CMD-v) and hit return. Next issue the command `pwd` for print working directory and it should match the directory (the part that starts with `/Users` and ends with `LoopWorkspace`) in your terminal.
+Highlight the path and put a `cd` in front of it and a `/LoopWorkspace` at the end and paste it into the terminal. It will look like this, but will have your path name.
+
+```
+cd /Users/marion/Downloads/BuildLoop/Loop-230521-1655/LoopWorkspace
+```
+
+Do **not** use the cd line above - make your own. Enter that into your terminal.
 
 ### Copy and Paste Commands
 
-Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. Each patch must be applied to the correct folder, so you will see change directory (`cd`) commands, copy from a URL (`curl`) that is then piped (`|`) into `git apply` commands. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.**
+Now that you have a new terminal window opened in the LoopWorkspace folder, you can copy and paste the following sets of commands into that terminal window. If you see the word `error` at the beginning of a line, stop and review the instructions. **DO NOT CONTINUE after an error is observed.**
 
 Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen.
 
 ```
-cd Loop
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev/LoopPatch.txt | git apply
-cd ..
-cd LoopKit
-curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/dev/LoopkitPatch.txt | git apply
-cd ..
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt | git apply --directory="Loop"
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt | git apply --directory="LoopKit"
 
 ```
 
@@ -237,9 +153,17 @@ Every time you build, please check the settings: refer to [Use iOS Settings](#us
 
 ### OOPS - Clean Up Patches
 
-If you hit paste twice (or perhaps you tried to apply the main branch of LoopPatches to a development branch of Loop).
+If you hit paste twice (or perhaps you tried to apply the wrong branch of LoopPatches).
 
-Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen. When you paste these lines into your **LoopWorkspace Terminal Window**, you are removing the patches and restoring your download to the original state (for Loop and LoopKit).
+Copy the lines below by hovering the mouse near the top right side of the text and clicking the copy icon. When you click the icon, a message that says “Copied” will appear on your screen. When you paste these lines into your **LoopWorkspace Terminal Window**, you are removing LoopPatches from your clone for Loop and LoopKit.
+
+```
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt | git apply --directory="Loop" --reverse
+curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt | git apply --directory="LoopKit" --reverse
+
+```
+
+If that does not work - if you get errors, then you can try the next approach. This will remove all customizations (any you made as well as the LoopPatches changes) from your clone for both Loop and LoopKit and you will have to apply them again.
 
 ```
 cd Loop;git stash;rm -rf Settings.bundle;cd ..
