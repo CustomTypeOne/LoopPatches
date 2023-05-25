@@ -3,7 +3,7 @@
 
 LoopPatches offer several adjustments to Loop. Each is disabled by default the first time you build after adding the patches, but your selected values are maintained for subsequent builds for a given phone. Only enable the feature(s) you want to use and test. Leave the rest disabled.
 
-**README last updated on 21-May-2023**
+**README last updated on 25-May-2023**
 
 You are in the correct place if you want to apply LoopPatches to the released Loop 3.2.2 version.
 
@@ -15,6 +15,10 @@ The LoopPatches code was lightly tested, but you use this at your own risk.
 
 There are no guardrails, so be extremely careful when you enter thresholds in iOS settings.
 
+**[Loop with Patches](https://www.loopandlearn.org/main-lnl-patches/) already includes the CustomTypeOne LoopPatches with some additional customizations**
+
+* Do not attempt to add LoopPatches if you selected that version of Loop from the Build Select Script
+
 ### LoopPatches Branches
 
 The LoopPatches found in the **main** branch of LoopPatches can be applied to the released Loop code from the **main** branch of LoopKit/LoopWorkspace.
@@ -25,7 +29,7 @@ The LoopPatches found in the **dev** branch of LoopPatches can be applied to the
 
 * [Apply LoopPatches](#apply-looppatches)
     * [Summary of Steps](#summary-of-steps)
-    * [Fresh Download of Loop](#fresh-download-of-loop)
+    * (Optional)[Fresh Download of Loop](#fresh-download-of-loop)
         * [Open New Terminal at LoopWorkspace](#open-new-terminal-at-loopworkspace)
         * [LoopWorkspace Quick Access](#loopworkspace-quick-access)
     * [Copy and Paste Commands](#copy-and-paste-commands)
@@ -41,12 +45,13 @@ The LoopPatches found in the **dev** branch of LoopPatches can be applied to the
 
 ### Summary of Steps
 
-1. Obtain a fresh download of Loop
+1. (Optional) Obtain a fresh download of Loop
     * Build to a simulator; ensure it builds without error
-1. Open a NEW terminal in new LoopWorkspace
-1. Follow directions to install patches
+    * You can attempt to apply LoopPatches to an existing LoopWorkspace; if that fails, then you need a fresh download
+1. Open a NEW terminal in the LoopWorkspace folder
+1. Follow directions to install LoopPatches
     * STOP IMMEDIATELY if you get an error
-1. Build Loop with LoopPatches to your phone
+1. Build Loop with CustomTypeOne LoopPatches to your phone
 1. Choose the feature(s) to enable and test each one
 
 ### Fresh Download of Loop
@@ -77,9 +82,9 @@ The short bullet list is provided here (if you don't need the instructions linke
 
 **As soon as that window opens, type pwd in the terminal and hit return.  The command pwd means to print the working directory.**
 
-The response must end in LoopWorkspace and the date-time should match the fresh download. For example:
+The response must end in LoopWorkspace and the date-time should match the your download. For example:
 
-`/Users/marion/Downloads/BuildLoop/Loop-230114-1645/LoopWorkspace`
+`/Users/username/Downloads/BuildLoop/Loop-230114-1645/LoopWorkspace`
 
 If the response is wrong, quit out of that terminal and try again.
 
@@ -92,12 +97,12 @@ If the terminal from your download is still open, you can scroll up to where the
 
 | Terminal Display: |
 |---|
-| -- Downloading Loop to your Downloads folder --<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/Users/marion/Downloads/BuildLoop/Loop-230521-1655 |
+| -- Downloading Loop to your Downloads folder --<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/Users/username/Downloads/BuildLoop/Loop-230521-1655 |
 
 Highlight the path and put a `cd` in front of it and a `/LoopWorkspace` at the end and paste it into the terminal. It will look like this, but will have your path name.
 
 ```
-cd /Users/marion/Downloads/BuildLoop/Loop-230521-1655/LoopWorkspace
+cd /Users/username/Downloads/BuildLoop/Loop-230521-1655/LoopWorkspace
 ```
 
 Do **not** use the cd line above - make your own. Enter that into your terminal.
