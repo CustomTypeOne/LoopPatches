@@ -63,14 +63,14 @@ Otherwise, skip ahead to the [LoopWorkspace Quick Access](#loopworkspace-quick-a
 
 #### Open New Terminal at LoopWorkspace
 
-If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop dev download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
+If you are returning to add LoopPatches and have closed your terminal from the download, you should follow these steps to open a terminal window associated with the LoopWorkspace folder of your new Loop 3 download. This will be called the **LoopWorkspace Terminal Window** to distinguish it from any other terminal windows you might have open.
 
 For full directions, with graphics, refer to LoopDocs at this link: [Open a Terminal in LoopWorkspace Folder](https://loopkit.github.io/loopdocs/build/code_customization/#open-a-terminal-in-loopworkspace-folder).
 
 The short bullet list is provided here (if you don't need the instructions linked above)
 
 * Use Finder to navigate to Downloads / BuildLoop
-* Find the version of Loop dev you just downloaded
+* Find the version of Loop 3 you just downloaded
 * Open the folder to view LoopWorkspace
 * Hold down the CTRL key and click (or right-click) LoopWorkspace
 * A menu appears - select New Terminal at Folder (near the bottom of the list)
@@ -79,7 +79,7 @@ The short bullet list is provided here (if you don't need the instructions linke
 
 The response must end in LoopWorkspace and the date-time should match the fresh download. For example:
 
-`/Users/marion/Downloads/BuildLoop/Loop-dev-230114-1645/LoopWorkspace`
+`/Users/marion/Downloads/BuildLoop/Loop-230114-1645/LoopWorkspace`
 
 If the response is wrong, quit out of that terminal and try again.
 
@@ -116,7 +116,7 @@ curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPat
 
 After the text is copied, click in the **LoopWorkspace Terminal Window** and paste the text. (Ways to paste: CMD-V; or CNTL-click and select from menu or Edit-Paste at top of Mac screen.) Once the line is pasted, hit return.  On some computers the return is not necessary but does not hurt anything. On some computers the return is required to execute the commands.
 
-After you paste and hit return. The patches will be automatically applied and your screen should be similar to the graphic below. (NOTE - graphic shows main branch - but yours should show the dev branch.)
+After you paste and hit return. The patches will be automatically applied and your screen should be similar to the graphic below.
 
 <a href="/img/looppatches-with-curl.png"><img src="/img/looppatches-with-curl.png?raw=true" alt="nominal terminal display when applying LoopPatches" width="600"></a>
 
@@ -132,7 +132,6 @@ xed .
 ```
 
 * Optional, you can check the modified files inside Xcode using [(Optional) Examine Code Before Building](#optional-examine-code-before-building)
-
 
 ### Build with LoopPatches
 
