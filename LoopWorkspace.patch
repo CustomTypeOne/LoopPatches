@@ -1,8 +1,9 @@
-diff --git a/Loop.xcodeproj/project.pbxproj b/Loop.xcodeproj/project.pbxproj
-index 6ddb07b1..07827ef6 100644
---- a/Loop.xcodeproj/project.pbxproj
-+++ b/Loop.xcodeproj/project.pbxproj
-@@ -454,6 +454,7 @@
+Submodule Loop contains modified content
+diff --git a/Loop/Loop.xcodeproj/project.pbxproj b/Loop/Loop.xcodeproj/project.pbxproj
+index 31b6ebff..195fab67 100644
+--- a/Loop/Loop.xcodeproj/project.pbxproj
++++ b/Loop/Loop.xcodeproj/project.pbxproj
+@@ -425,6 +425,7 @@
  		B4E96D5D248A82A2002DABAD /* StatusBarHUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E96D5C248A82A2002DABAD /* StatusBarHUDView.xib */; };
  		B4F3D25124AF890C0095CE44 /* BluetoothStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3D25024AF890C0095CE44 /* BluetoothStateManager.swift */; };
  		B4FEEF7D24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FEEF7C24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift */; };
@@ -10,7 +11,7 @@ index 6ddb07b1..07827ef6 100644
  		C1004DF22981F5B700B8CF94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1004DF02981F5B700B8CF94 /* InfoPlist.strings */; };
  		C1004DF52981F5B700B8CF94 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1004DF32981F5B700B8CF94 /* Localizable.strings */; };
  		C1004DF82981F5B700B8CF94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1004DF62981F5B700B8CF94 /* InfoPlist.strings */; };
-@@ -1443,6 +1444,7 @@
+@@ -1405,6 +1406,7 @@
  		B4E96D5C248A82A2002DABAD /* StatusBarHUDView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusBarHUDView.xib; sourceTree = "<group>"; };
  		B4F3D25024AF890C0095CE44 /* BluetoothStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothStateManager.swift; sourceTree = "<group>"; };
  		B4FEEF7C24B8A71F00A8DF9B /* DeviceDataManager+DeviceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDataManager+DeviceStatus.swift"; sourceTree = "<group>"; };
@@ -18,7 +19,7 @@ index 6ddb07b1..07827ef6 100644
  		C1004DEF2981F5B700B8CF94 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
  		C1004DF12981F5B700B8CF94 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
  		C1004DF42981F5B700B8CF94 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
-@@ -2045,6 +2047,7 @@
+@@ -2063,6 +2065,7 @@
  		43776F831B8022E90074EA36 = {
  			isa = PBXGroup;
  			children = (
@@ -26,7 +27,7 @@ index 6ddb07b1..07827ef6 100644
  				C18A491122FCC20B00FDA733 /* Scripts */,
  				4FF4D0FA1E1834BD00846527 /* Common */,
  				43776F8E1B8022E90074EA36 /* Loop */,
-@@ -3465,6 +3468,7 @@
+@@ -3503,6 +3506,7 @@
  				A966152723EA5A26005D8B29 /* DerivedAssets.xcassets in Resources */,
  				7D70764F1FE06EE1004AC8EA /* InfoPlist.strings in Resources */,
  				7D7076631FE06EE4004AC8EA /* Localizable.strings in Resources */,
@@ -34,10 +35,10 @@ index 6ddb07b1..07827ef6 100644
  				43776F971B8022E90074EA36 /* Main.storyboard in Resources */,
  			);
  			runOnlyForDeploymentPostprocessing = 0;
-diff --git a/Loop/Managers/DoseMath.swift b/Loop/Managers/DoseMath.swift
+diff --git a/Loop/Loop/Managers/DoseMath.swift b/Loop/Loop/Managers/DoseMath.swift
 index e13a3613..009c23e8 100644
---- a/Loop/Managers/DoseMath.swift
-+++ b/Loop/Managers/DoseMath.swift
+--- a/Loop/Loop/Managers/DoseMath.swift
++++ b/Loop/Loop/Managers/DoseMath.swift
 @@ -398,13 +398,30 @@ extension Collection where Element: GlucoseValue {
              maxBasalRate = Swift.min(maxThirtyMinuteRateToKeepIOBBelowLimit, maxBasalRate)
          }
@@ -94,10 +95,10 @@ index e13a3613..009c23e8 100644
          if temp != nil || bolusUnits > 0 {
              return AutomaticDoseRecommendation(basalAdjustment: temp, bolusUnits: bolusUnits)
          }
-diff --git a/Loop/Managers/LoopDataManager.swift b/Loop/Managers/LoopDataManager.swift
+diff --git a/Loop/Loop/Managers/LoopDataManager.swift b/Loop/Loop/Managers/LoopDataManager.swift
 index 18a08166..a130caea 100644
---- a/Loop/Managers/LoopDataManager.swift
-+++ b/Loop/Managers/LoopDataManager.swift
+--- a/Loop/Loop/Managers/LoopDataManager.swift
++++ b/Loop/Loop/Managers/LoopDataManager.swift
 @@ -1690,13 +1690,42 @@ extension LoopDataManager {
              let automaticDosingIOBLimit = maxBolus! * 2.0
              let iobHeadroom = automaticDosingIOBLimit - self.insulinOnBoard!.value
@@ -160,10 +161,10 @@ index 18a08166..a130caea 100644
  
                  let temp = predictedGlucose.recommendedTempBasal(
                      to: glucoseTargetRange!,
-diff --git a/LoopUI/Charts/COBChart.swift b/LoopUI/Charts/COBChart.swift
+diff --git a/Loop/LoopUI/Charts/COBChart.swift b/Loop/LoopUI/Charts/COBChart.swift
 index b8fbfd8f..7c956ddd 100644
---- a/LoopUI/Charts/COBChart.swift
-+++ b/LoopUI/Charts/COBChart.swift
+--- a/Loop/LoopUI/Charts/COBChart.swift
++++ b/Loop/LoopUI/Charts/COBChart.swift
 @@ -63,6 +63,16 @@ public extension COBChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
@@ -189,10 +190,10 @@ index b8fbfd8f..7c956ddd 100644
              xAxisLayer,
              yAxisLayer,
              cobChartCache?.highlightLayer,
-diff --git a/LoopUI/Charts/DoseChart.swift b/LoopUI/Charts/DoseChart.swift
+diff --git a/Loop/LoopUI/Charts/DoseChart.swift b/Loop/LoopUI/Charts/DoseChart.swift
 index a2558511..8ddd6191 100644
---- a/LoopUI/Charts/DoseChart.swift
-+++ b/LoopUI/Charts/DoseChart.swift
+--- a/Loop/LoopUI/Charts/DoseChart.swift
++++ b/Loop/LoopUI/Charts/DoseChart.swift
 @@ -106,6 +106,16 @@ public extension DoseChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
@@ -218,11 +219,11 @@ index a2558511..8ddd6191 100644
              xAxisLayer,
              yAxisLayer,
              zeroGuidelineLayer,
-diff --git a/LoopUI/Charts/IOBChart.swift b/LoopUI/Charts/IOBChart.swift
-index 256d2685..745161c8 100644
---- a/LoopUI/Charts/IOBChart.swift
-+++ b/LoopUI/Charts/IOBChart.swift
-@@ -62,6 +62,16 @@ public extension IOBChart {
+diff --git a/Loop/LoopUI/Charts/IOBChart.swift b/Loop/LoopUI/Charts/IOBChart.swift
+index a78699ea..5d6a44ca 100644
+--- a/Loop/LoopUI/Charts/IOBChart.swift
++++ b/Loop/LoopUI/Charts/IOBChart.swift
+@@ -66,6 +66,16 @@ public extension IOBChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
  
@@ -239,7 +240,7 @@ index 256d2685..745161c8 100644
          // 0-line
          let dummyZeroChartPoint = ChartPoint(x: ChartAxisValueDouble(0), y: ChartAxisValueDouble(0))
          let zeroGuidelineLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: [dummyZeroChartPoint], viewGenerator: {(chartPointModel, layer, chart) -> UIView? in
-@@ -86,6 +96,7 @@ public extension IOBChart {
+@@ -90,6 +100,7 @@ public extension IOBChart {
  
          let layers: [ChartLayer?] = [
              gridLayer,
@@ -247,10 +248,10 @@ index 256d2685..745161c8 100644
              xAxisLayer,
              yAxisLayer,
              zeroGuidelineLayer,
-diff --git a/LoopUI/Charts/PredictedGlucoseChart.swift b/LoopUI/Charts/PredictedGlucoseChart.swift
+diff --git a/Loop/LoopUI/Charts/PredictedGlucoseChart.swift b/Loop/LoopUI/Charts/PredictedGlucoseChart.swift
 index 01a343d0..c77ac0bc 100644
---- a/LoopUI/Charts/PredictedGlucoseChart.swift
-+++ b/LoopUI/Charts/PredictedGlucoseChart.swift
+--- a/Loop/LoopUI/Charts/PredictedGlucoseChart.swift
++++ b/Loop/LoopUI/Charts/PredictedGlucoseChart.swift
 @@ -170,6 +170,16 @@ extension PredictedGlucoseChart {
          // Grid lines
          let gridLayer = ChartGuideLinesForValuesLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, settings: guideLinesLayerSettings, axisValuesX: Array(xAxisValues.dropFirst().dropLast()), axisValuesY: yAxisValues)
@@ -276,11 +277,11 @@ index 01a343d0..c77ac0bc 100644
              targetsLayer,
              xAxisLayer,
              yAxisLayer,
-diff --git a/Settings.bundle/Root.plist b/Settings.bundle/Root.plist
+diff --git a/Loop/Settings.bundle/Root.plist b/Loop/Settings.bundle/Root.plist
 new file mode 100644
 index 00000000..a176bd16
 --- /dev/null
-+++ b/Settings.bundle/Root.plist
++++ b/Loop/Settings.bundle/Root.plist
 @@ -0,0 +1,229 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -511,17 +512,63 @@ index 00000000..a176bd16
 +	</array>
 +</dict>
 +</plist>
-diff --git a/Settings.bundle/en.lproj/Root.strings b/Settings.bundle/en.lproj/Root.strings
-new file mode 100644
-index 0000000000000000000000000000000000000000..8cd87b9d6b20c1fbf87bd4db3db267fca5ad4df9
-GIT binary patch
-literal 546
-zcmaixOHRW;5JYRuDMndFh#Ua1V1d}N;sVAV2TO?uC3a9aJn*VxFrY}tnon0(S66#J
-z-d9>G>6W!ur(SDqlp`9nn~*(m%iWnv?yq`Qfp6XbK1?+om~~#r)ZnhkYQU_VbfjuT
-zHNn`CX<0sd*m<h0(azec(iObNh^%?ujr&=v=s=H#N;|Sb!c#%F;_UPWVjneF55ql&
-z;1>1<hFx!9AHUHrospb<`X7`yGd%lD#4Y=Ob9s`bR=VI@=sx_8^jm=6uzq9L!Fr&_
-nmcBD*Mox@AX7QwJ{2yYbnSDNcs=Q<RN>A}>&5sU$akD=GTXJ1e
-
-literal 0
-HcmV?d00001
-
+Submodule LoopKit contains modified content
+diff --git a/LoopKit/LoopKit/InsulinKit/InsulinMath.swift b/LoopKit/LoopKit/InsulinKit/InsulinMath.swift
+index 29c7053..509e631 100644
+--- a/LoopKit/LoopKit/InsulinKit/InsulinMath.swift
++++ b/LoopKit/LoopKit/InsulinKit/InsulinMath.swift
+@@ -40,10 +40,23 @@ extension DoseEntry {
+         }
+ 
+         // Consider doses within the delta time window as momentary
++        //ken changes
++        //implement user set negative basal multiplier
++        var negativeBasalMultiplier = UserDefaults.standard.double(forKey: "negativeBasalMultiplier")
++        // if user has not modified settings, this value reports as 0 initially
++        // Default shows as 100%, aka, same as unmodified code
++        if negativeBasalMultiplier == 0 {
++            negativeBasalMultiplier = 1
++        }
++        var modifiednetBasalUnits = netBasalUnits
++        if netBasalUnits < 0.0 {
++            modifiednetBasalUnits = netBasalUnits * negativeBasalMultiplier
++        }
++        //this used netBasalUnits as multiplier originally
+         if endDate.timeIntervalSince(startDate) <= 1.05 * delta {
+-            return netBasalUnits * model.percentEffectRemaining(at: time)
++            return modifiednetBasalUnits * model.percentEffectRemaining(at: time)
+         } else {
+-            return netBasalUnits * continuousDeliveryInsulinOnBoard(at: date, model: model, delta: delta)
++            return modifiednetBasalUnits * continuousDeliveryInsulinOnBoard(at: date, model: model, delta: delta)
+         }
+     }
+ 
+@@ -77,11 +90,23 @@ extension DoseEntry {
+         }
+ 
+         // Consider doses within the delta time window as momentary
+-        if endDate.timeIntervalSince(startDate) <= 1.05 * delta {
+-            return netBasalUnits * -insulinSensitivity * (1.0 - model.percentEffectRemaining(at: time))
+-        } else {
+-            return netBasalUnits * -insulinSensitivity * continuousDeliveryGlucoseEffect(at: date, model: model, delta: delta)
+-        }
++        //ken changes
++            //if net basal is negative use a mulitplier (0-1)
++            //modified in user settings
++            var negativeBasalMultiplier = UserDefaults.standard.double(forKey: "negativeBasalMultiplier")
++            if negativeBasalMultiplier == 0 {
++                negativeBasalMultiplier = 1
++            }
++            var modifiednetBasalUnits = netBasalUnits
++            if netBasalUnits < 0.0 {
++                modifiednetBasalUnits = netBasalUnits * negativeBasalMultiplier
++            }
++            //originally used netBasalUnits
++            if endDate.timeIntervalSince(startDate) <= 1.05 * delta {
++                return modifiednetBasalUnits * -insulinSensitivity * (1.0 - model.percentEffectRemaining(at: time))
++            } else {
++                return modifiednetBasalUnits * -insulinSensitivity * continuousDeliveryGlucoseEffect(at: date, model: model, delta: delta)
++            }
+     }
+ 
+     func trimmed(from start: Date? = nil, to end: Date? = nil, syncIdentifier: String? = nil) -> DoseEntry {
