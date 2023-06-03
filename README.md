@@ -9,7 +9,7 @@ Documentation found at [LoopPatches](https://www.loopandlearn.org/custom-type-on
 
 You can use the LoopWorkspace patch file in this repository to apply LoopPatches to released and (as of now) development code.
 
-However, it is much easier to use the Customization Select script instead. Copy and paste this command into any terminal window to use this script to select desired Customizations for your most recent download of Loop. Documentation is at [Run Customization Select Script](https://www.loopandlearn.org/build-select/#utilities-custom). 
+However, it is much easier to use the Customization Select script instead. Copy and paste this command into any terminal window to use this script to select desired Customizations for your most recent download of Loop. Documentation is at [Run Customization Select Script](https://www.loopandlearn.org/build-select/#customization-select). 
 
 The Customization Select Script automatically handles selecting the correct version should updates be required by changes to dev or released code in the future.
 
