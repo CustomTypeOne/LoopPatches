@@ -26,13 +26,13 @@ The patches stored in this repository are no longer being updated.
 * They do not work with development code
 * They will not work with the next release of Loop
 
-The Loop and Learn team has taken over development for these patches as part of the CustomizationSelectScrip used to modify Loop.
+The Loop and Learn team has taken over development for these patches as part of the CustomizationSelect script used to modify Loop.
 
-* Documentation is at [Run Customization Select Script](https://www.loopandlearn.org/build-select/#customization-select)
+* Documentation is at [Customization Select](https://www.loopandlearn.org/custom-code)
 
 The Customization Select Script automatically handles selecting the correct version as updates are required by changes to dev or released code.
 
-Copy and paste the command below into any terminal window to use this script to select desired Customizations for your most recent download of Loop. 
+Copy and paste the command below into any terminal window to use this script to select desired Customizations for your most recent download of Loop.
 
 ```
 /bin/bash -c "$(curl -fsSL \
